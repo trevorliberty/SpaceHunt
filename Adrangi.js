@@ -1,0 +1,3 @@
+function adrangi(){
+   alert("Adrangi");
+}
