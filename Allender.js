@@ -1,3 +1,0 @@
-function allender(){
-   alert("Allender");
-}
