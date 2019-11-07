@@ -1,3 +1,5 @@
 function checkEnergy() {
-   alert ("Checking Energy");
+   if(document.UI.energy.value <= 0){
+       alert("You died!!");
+   }
 }
