@@ -24,7 +24,10 @@
 // *** supplies so I know I have lost the game
 -->
 
-<script src="RunningOutOfSupplies.js"></script>
+<script src="RunningOutOfSupplies.js">
+if(document.UI.supllies.value <= 1)
+	checkSupllies();
+</script>
 
 <!--
 // *** User Story: SH-1	Spacecraft Movement	Priority: HIGH
