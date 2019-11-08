@@ -1,0 +1,30 @@
+<html>
+
+<head>
+ <!-- JS goes here -->
+<script>
+	function addPlanet(){
+		var newPlanet = parseInt($('#planet').val())+1;
+		var newInput = "<input type='text' id='new_"+planet+"'>";
+	}
+</script>
+
+</head>
+
+<body>
+
+<h1>Settings</h1>
+
+<form name="settings">
+
+	<p>Celestial Artifacts</p>
+
+	<p>Click to add a planet</p>
+	<button onclick="addPlanet()">Add</button>
+	<button onclick="removePlanet()">Remove</button>
+	<input type="hidden" id="planet">
+</form>
+
+
+</body>
+</html>
