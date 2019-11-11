@@ -2,12 +2,37 @@
 
 <head>
  <!-- JS goes here -->
-<script>
-	function addPlanet(){
-		var newPlanet = parseInt($('#planet').val())+1;
-		var newInput = "<input type='text' id='new_"+planet+"'>";
-	}
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="add_removePlanets.js"></script>
+	<script>
+	
+ 	/*$(document).ready(function(){
+		var storage = window.localStorage;
+		var role = storage.getItem('role');
+		if(role !== Admin){
+			console.log("Not Admin");
+			alert("Only Admins can access the settings page");
+		}else{
+			console.log("Is Admin");
+			alert("You can change the settings");
+		}
+	});*/
+
 </script>
+
+<style>
+	a, .removePlanet:link, a, .removePlanet:visited {
+  color: #777;
+  text-decoration: none;
+  cursor: auto;
+}
+
+	a:hover, .removePlanet:hover, button{
+		cursor: pointer;
+		color:#000;
+	}
+</style>
 
 </head>
 
@@ -17,12 +42,23 @@
 
 <form name="settings">
 
-	<p>Celestial Artifacts</p>
+	<h4>Celestial Artifacts</h4>
 
+	<!--------------------PLANETS-------------------------------->
 	<p>Click to add a planet</p>
-	<button onclick="addPlanet()">Add</button>
-	<button onclick="removePlanet()">Remove</button>
-	<input type="hidden" id="planet">
+	<button class="addPlanet" onclick="addPlanet()">Add</button>
+	
+	<div id='newPlanets'></div>
+	<input type="hidden" value ="0" id="planets">
+
+	<!-------------------ASTROIDS--------------------------------->
+	<p>Click to add an astroid</p>
+	<button class="addAstroid" onclick="addAstroid()">Add</button>
+	<button class="removeAstroid" onclick="removeAstroid()">Remove</button>
+	<div id='newAstroids'></div>
+	<input type="hidden" value ="0" id="astroids">
+
+
 </form>
 
 
