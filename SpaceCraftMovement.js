@@ -18,7 +18,7 @@ function moveSpacecraft(angle, distance) {
       yCoordloc += distance;
     }
   } else if (angle === 180) {
-    if (xCoordloc - distance > 128) {
+    if (xCoordloc + distance > 128) {
       //fallen off the world
       console.log("out of bounds");
     } else {
