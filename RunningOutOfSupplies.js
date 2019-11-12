@@ -1,5 +1,5 @@
 function checkSupplies() {
-	/*var gameType = document.UI.gameType.value;
+	var gameType = document.UI.gameType.value;
 	if(gameType == 0)
 	{
 		if(document.UI.supplies.value <= 1){
@@ -9,7 +9,7 @@ function checkSupplies() {
    	   		alert("Your Supplies is done! Game Over!");
 		}
 		}
-	}*/
-	alert("Check your Supplies!");
+	}
+	//alert("Check your Supplies!");
 
 }
