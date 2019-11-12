@@ -8,7 +8,7 @@ function moveSpacecraft(angle, distance) {
       //fallen off the world
       console.log("out of bounds");
     } else {
-      xCoordloc -= distance;
+      xCoordloc += distance;
     }
   } else if (angle === 90) {
     if (yCoordloc + distance > 128) {
@@ -21,7 +21,7 @@ function moveSpacecraft(angle, distance) {
       //fallen off the world
       console.log("out of bounds");
     } else {
-      xCoordloc += distance;
+      xCoordloc -= distance;
     }
   } else {
     //angle is 270
