@@ -3,33 +3,38 @@ function moveSpacecraft(angle, distance) {
   let xCoordloc = parseInt(document.getElementById("xCoord").value);
   let yCoordloc = parseInt(document.getElementById("yCoord").value);
   distance = parseInt(distance);
-  if (angle === 0) {
+  if (angle == 0) {
+    if (parseInt(xCoordloc + distance > 128)) {
+      //fallen off the world
+      console.log("out of bounds");
+    } else {
+      xCoordloc += distance;
+      document.getElementById("xCoord").value = xCoordloc;
+    }
+  } else if (angle == 90) {
+    if (parseInt(yCoordloc + distance) > 128) {
+      //fallen off the world
+      console.log("out of bounds");
+    } else {
+      yCoordloc += distance;
+      document.getElementById("yCoord").value = yCoordloc;
+    }
+  } else if (angle == 180) {
     if (parseInt(xCoordloc - distance) < 0) {
       //fallen off the world
       console.log("out of bounds");
     } else {
       xCoordloc -= distance;
-    }
-  } else if (angle === 90) {
-    if (yCoordloc + distance > 128) {
-      console.log("out of bounds");
-    } else {
-      yCoordloc += distance;
-    }
-  } else if (angle === 180) {
-    if (xCoordloc + distance > 128) {
-      //fallen off the world
-      console.log("out of bounds");
-    } else {
-      xCoordloc += distance;
+      document.getElementById("xCoord").value = xCoordloc;
     }
   } else {
     //angle is 270
-    if (yCoordloc - distance < 0) {
+    if (parseInt(yCoordloc - distance) < 0) {
       //fallen off the world
       console.log("out of bounds");
     } else {
       yCoordloc -= distance;
+      document.getElementById("yCoord").value = yCoordloc;
     }
   }
 
