@@ -9,7 +9,10 @@ function moveSpacecraft(angle, distance) {
       console.log("out of bounds");
     } else {
       xCoordloc += distance;
+<<<<<<< HEAD
+=======
       document.getElementById("xCoord").value = xCoordloc;
+>>>>>>> origin/master
     }
   } else if (angle == 90) {
     if (parseInt(yCoordloc + distance) > 128) {
@@ -25,7 +28,10 @@ function moveSpacecraft(angle, distance) {
       console.log("out of bounds");
     } else {
       xCoordloc -= distance;
+<<<<<<< HEAD
+=======
       document.getElementById("xCoord").value = xCoordloc;
+>>>>>>> origin/master
     }
   } else {
     //angle is 270
