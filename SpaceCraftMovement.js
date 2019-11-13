@@ -1,5 +1,6 @@
 function moveSpacecraft(angle, distance) {
   checkEnergy();
+    checkSupplies();
   let xCoordloc = parseInt(document.getElementById("xCoord").value);
   let yCoordloc = parseInt(document.getElementById("yCoord").value);
   distance = parseInt(distance);
