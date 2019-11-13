@@ -26,5 +26,9 @@ function load() {
   localStorage.setItem("credits", "100");
   localStorage.setItem("xCoord", "0");
   localStorage.setItem("yCoord", "0");
+  var dies = true;
+  localStorage.setItem("dies", JSON.stringify(dies)); 
+  var wormholeFixed = true;
+  localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
   makeboard(25, 25);
 }
