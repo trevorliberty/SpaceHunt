@@ -25,16 +25,49 @@
         STATUS
         <p>
           Current Location: X
-          <input id="xCoord" type="text" name="xValue" size="4" value="0" /> Y
-          <input id="yCoord" type="text" name="yValue" size="4" value="0" />
+          <input
+            id="xCoord"
+            style="color:black"
+            type="text"
+            name="xValue"
+            size="4"
+            value="0"
+          />
+          Y
+          <input
+            id="yCoord"
+            style="color:black"
+            type="text"
+            name="yValue"
+            size="4"
+            value="0"
+          />
         </p>
 
         <p></p>
         <script>
           document.UI.energy.value = localStorage.getItem("energy");
         </script>
-        <p>Energy <input type="text" name="energy" size="4" /></p>
-        <p>Supplies <input type="text" name="supplies" size="4" />%</p>
+        <p>
+          Energy
+          <input
+            id="energy"
+            type="text"
+            style="color:black"
+            name="energy"
+            size="4"
+          />
+        </p>
+        <p>
+          Supplies
+          <input
+            id="supplies"
+            type="text"
+            style="color:black"
+            name="supplies"
+            size="4"
+          />%
+        </p>
         <p>
           GameType (0-Regular, 1-Never Dies)<input
             type="text"
@@ -46,25 +79,36 @@
         <hr />
         MAKE A MOVE
         <p>
-          Distance <input type="number" name="distance" size="4" value="0" />
+          Distance
+          <input
+            style="color:black"
+            type="number"
+            name="distance"
+            size="4"
+            value=""
+          />
         </p>
         <p>
           <input
+            style="color:black"
             type="button"
             value="0"
             onclick="moveSpacecraft(0,distance.value)"
           />
           <input
+            style="color:black"
             type="button"
             value="90"
             onclick="moveSpacecraft(90,distance.value)"
           />
           <input
+            style="color:black"
             type="button"
             value="180"
             onclick="moveSpacecraft(180,distance.value)"
           />
           <input
+            style="color:black"
             type="button"
             value="270"
             onclick="moveSpacecraft(270,distance.value)"
