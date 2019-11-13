@@ -5,6 +5,7 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="add_removePlanets.js"></script>
+<script src="configuration.js"></script>
 	<script>
 
  	/*$(document).ready(function(){
@@ -75,12 +76,25 @@
 	<!--------------------USER SETTINGS-------------------------------->
 	<h4>User Settings</h4>
 
-    Energy: <input type="number" name="energy" value="100" min="1" required><br>
-    Location: <br>
-        x: <input type="number" name="x" value="0" style="width:50px" min="0" required><br>
-        y: <input type="number" name="y" value="0" style="width:50px" min="0" required><br>
-    Credits: <input type="number" name="credits" value="100" required><br>
-    <button onclick="configure()">Submit</button>
+    Energy: <input type="number" id="energy" value="100" min="1" required><br>
+
+	Supplies: <input type="number" id="supplies" value="100" min="0" required><br>
+
+	Credits: <input type="number" id="credits" value="100" required><br>
+
+	Location: <br>
+        x: <input type="number" id="x" value="0" style="width:50px" min="0" required><br>
+        y: <input type="number" id="y" value="0" style="width:50px" min="0" required><br>
+
+	Dying: <br> <input type="radio" id="dying" value="true"><br>
+
+	God Mode: <br> <input type="radio" id="godMode" value="false"><br>
+
+	Fixed Wormhole Behavior: <br> <input type="radio" id="fixedWormhole" value="true"><br>
+
+	Random Wormhole Behavior: <br> <input type="radio" id="randomWormhole" value="false"><br>
+
+    <button type="reset" onclick="configure()">Submit</button>
 
 
 </form>
