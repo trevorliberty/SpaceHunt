@@ -63,6 +63,7 @@ function makeboard(rows, cols) {
   }
 }
 
+<<<<<<< HEAD
 function retrieveCell() {
   const xCoord = parseInt(document.getElementById("xCoord").value);
   const yCoord = parseInt(document.getElementById("yCoord").value);
@@ -103,11 +104,19 @@ function load() {
   localStorage.setItem("xCoord", "0");
   localStorage.setItem("yCoord", "0");
   var dies = true;
+=======
+function load() {
+  configObj = JSON.parse(localStorage.getItem('config'));
+  localStorage.setItem("energy", configObj.energy);
+  localStorage.setItem("supplies", configObj.supplies);
+  localStorage.setItem("credits", configObj.credits);
+  localStorage.setItem("xCoord", configObj.xCoord);
+  localStorage.setItem("yCoord", configObj.yCoord);
+  var dies = configObj.dies;
+>>>>>>> 566eb0df3bf73b7860ecdeef6fb4346ae5d88658
   localStorage.setItem("dies", JSON.stringify(dies));
-  var wormholeFixed = true;
+  var wormholeFixed = configObj.wormholeFixed;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
-  document.getElementById("energy").value = 1000;
-  document.getElementById("supplies").value = 100;
   makeboard(25, 25);
   saveCell.id = "0,0";
   shipInit();
