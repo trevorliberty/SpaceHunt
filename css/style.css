@@ -2,7 +2,18 @@
   --grid-cols: 1;
   --grid-rows: 1;
 }
-
+#ship {
+  background-image: url("../ship.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+#space {
+  max-width: "100%";
+  max-height: "100%";
+  background-color: transparent;
+}
 #wrap {
   color: white;
 }
@@ -12,7 +23,7 @@
   grid-template-columns: repeat(var(--grid-cols), 1fr);
   align-self: center;
   align-items: center;
-  background-color: transparent;
+  background-color: black;
 }
 
 .grid-item {
@@ -31,12 +42,4 @@ body {
 }
 .jumbotron {
   background-color: transparent;
-}
-#ship {
-  background-image: url("./ship.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  z-index: 3;
-  left: 0px;
 }
