@@ -27,8 +27,10 @@ function load() {
   localStorage.setItem("xCoord", "0");
   localStorage.setItem("yCoord", "0");
   var dies = true;
-  localStorage.setItem("dies", JSON.stringify(dies)); 
+  localStorage.setItem("dies", JSON.stringify(dies));
   var wormholeFixed = true;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
+  document.getElementById("energy").value = 1000;
+  document.getElementById("supplies").value = 100;
   makeboard(25, 25);
 }
