@@ -21,7 +21,7 @@ function makeboard(rows, cols) {
   }
 }
 function load() {
-  localStorage.setItem("health", "100");
+  localStorage.setItem("energy", "1000");
   localStorage.setItem("supplies", "100");
   localStorage.setItem("credits", "100");
   localStorage.setItem("xCoord", "0");
