@@ -70,13 +70,12 @@
       <p></p>
         
       <p>Energy <input type="number" name="energy" id="energy" size="4"/></p>
-      <p>Supplies <input type="text" name="supplies" size="4" />%</p>
+      <p>Supplies <input type="number" name="supplies" id="supplies" size="4" />%</p>
       <p>
-        GameType (0-Regular, 1-Never Dies)<input
+        GameType (Dies?)<input
           type="text"
           name="gameType"
-          size="1"
-          value=0
+          size="4"
         />
       </p>
       <p></p>
@@ -112,5 +111,7 @@
     
     <script>
             document.getElementById("energy").value = localStorage.getItem("energy");
+            document.getElementById("supplies").value = localStorage.getItem("supplies");
+            document.UI.gameType.value = localStorage.getItem("dies");
         </script>
 </html>
