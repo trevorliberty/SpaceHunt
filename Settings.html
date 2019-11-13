@@ -6,7 +6,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="add_removePlanets.js"></script>
 	<script>
-	
+
  	/*$(document).ready(function(){
 		var storage = window.localStorage;
 		var role = storage.getItem('role');
@@ -32,6 +32,20 @@
 		cursor: pointer;
 		color:#000;
 	}
+
+	body {
+		background-color: LightGrey;
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+	form[name="settings"] {
+		text-align: center;
+	}
+
+
 </style>
 
 </head>
@@ -47,7 +61,7 @@
 	<!--------------------PLANETS-------------------------------->
 	<p>Click to add a planet</p>
 	<button class="addPlanet" onclick="addPlanet()">Add</button>
-	
+
 	<div id='newPlanets'></div>
 	<input type="hidden" value ="0" id="planets">
 
@@ -57,6 +71,16 @@
 	<button class="removeAstroid" onclick="removeAstroid()">Remove</button>
 	<div id='newAstroids'></div>
 	<input type="hidden" value ="0" id="astroids">
+
+	<!--------------------USER SETTINGS-------------------------------->
+	<h4>User Settings</h4>
+
+    Energy: <input type="number" name="energy" value="100" min="1" required><br>
+    Location: <br>
+        x: <input type="number" name="x" value="0" style="width:50px" min="0" required><br>
+        y: <input type="number" name="y" value="0" style="width:50px" min="0" required><br>
+    Credits: <input type="number" name="credits" value="100" required><br>
+    <button onclick="configure()">Submit</button>
 
 
 </form>
