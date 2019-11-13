@@ -8,9 +8,9 @@ function makeboard(rows, cols) {
       cell.setAttribute("id", `${c + "," + j}`);
       container.appendChild(cell).className = "grid-item";
       let space = document.createElement("div");
-      space.setAttribute("id", space);
-      space.style.width = "50px";
-      space.style.height = "50px";
+      space.setAttribute("id", "space");
+      space.style.width = "20px";
+      space.style.height = "20px";
       /*let img = document.createElement("img");
       img.style.width = "100%";
       img.style.height = "auto";

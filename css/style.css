@@ -1,0 +1,42 @@
+:root {
+  --grid-cols: 1;
+  --grid-rows: 1;
+}
+
+#wrap {
+  color: white;
+}
+#container {
+  display: grid;
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  align-self: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.grid-item {
+  padding: 0.5em;
+  border: 1px solid #ddd;
+}
+input {
+  color: black;
+}
+body {
+  color: white;
+  display: table;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.jumbotron {
+  background-color: transparent;
+}
+#ship {
+  background-image: url("./ship.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  z-index: 3;
+  left: 0px;
+}
