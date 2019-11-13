@@ -13,18 +13,6 @@
       checkSupplies();
     </script>
 
-<<<<<<< HEAD
-=======
-      .grid-item {
-        padding: 0.5em;
-        border: 1px solid #ddd;
-        text-align: center;
-      }
-    </style>
-    <script src="RunningOutOfSupplies.js"></script>
-    
-    
->>>>>>> 2336fd886063e028cdbe9eab77a83f094f63d8c5
     <script src="RunningOutOfEnergy.js"></script>
 
     <script src="SpaceCraftMovement.js"></script>
@@ -41,19 +29,12 @@
           <input id="yCoord" type="text" name="yValue" size="4" value="0" />
         </p>
 
-<<<<<<< HEAD
         <p></p>
         <script>
           document.UI.energy.value = localStorage.getItem("energy");
         </script>
-        <p>
-          Energy
-          <input style="color:black" type="text" name="energy" size="4" />
-        </p>
-        <p>
-          Supplies
-          <input style="color:black" type="text" name="supplies" size="4" />%
-        </p>
+        <p>Energy <input type="text" name="energy" size="4" /></p>
+        <p>Supplies <input type="text" name="supplies" size="4" />%</p>
         <p>
           GameType (0-Regular, 1-Never Dies)<input
             type="text"
@@ -104,53 +85,4 @@
       </div>
     </div>
   </body>
-=======
-      <p></p>
-        
-      <p>Energy <input type="number" name="energy" id="energy" size="4"/></p>
-      <p>Supplies <input type="number" name="supplies" id="supplies" size="4" />%</p>
-      <p>
-        GameType (Dies?)<input
-          type="text"
-          name="gameType"
-          size="4"
-        />
-      </p>
-      <p></p>
-      <hr />
-      MAKE A MOVE
-      <p>Distance <input type="number" name="distance" size="4" value="0" /></p>
-      <p>
-        <input
-          type="button"
-          value="0"
-          onclick="moveSpacecraft(0,distance.value)"
-        />
-        <input
-          type="button"
-          value="90"
-          onclick="moveSpacecraft(90,distance.value)"
-        />
-        <input
-          type="button"
-          value="180"
-          onclick="moveSpacecraft(180,distance.value)"
-        />
-        <input
-          type="button"
-          value="270"
-          onclick="moveSpacecraft(270,distance.value)"
-        />
-      </p>
-    </form>
-  </body>
-
-  <div id="container"></div>
-    
-    <script>
-            document.getElementById("energy").value = localStorage.getItem("energy");
-            document.getElementById("supplies").value = localStorage.getItem("supplies");
-            document.UI.gameType.value = localStorage.getItem("dies");
-        </script>
->>>>>>> 2336fd886063e028cdbe9eab77a83f094f63d8c5
 </html>
