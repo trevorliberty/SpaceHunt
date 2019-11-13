@@ -22,14 +22,19 @@ function makeboard(rows, cols) {
 }
 
 function load() {
-  localStorage.setItem("energy", "1000");
-  localStorage.setItem("supplies", "100");
-  localStorage.setItem("credits", "100");
-  localStorage.setItem("xCoord", "0");
-  localStorage.setItem("yCoord", "0");
-  var dies = true;
+  configObj = JSON.parse(localStorage.getItem('config'));
+  localStorage.setItem("energy", configObj.energy);
+  localStorage.setItem("supplies", configObj.supplies);
+  localStorage.setItem("credits", configObj.credits);
+  localStorage.setItem("xCoord", configObj.xCoord);
+  localStorage.setItem("yCoord", configObj.yCoord);
+  var dies = configObj.dies;
   localStorage.setItem("dies", JSON.stringify(dies));
-  var wormholeFixed = true;
+  var wormholeFixed = configObj.wormholeFixed;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
   makeboard(25, 25);
+
+  alert(localStorage.getItem('energy'));
+  alert(localStorage.getItem('supplies'));
+  alert(localStorage.getItem('credits'));
 }
