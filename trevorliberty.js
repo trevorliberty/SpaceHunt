@@ -33,8 +33,4 @@ function load() {
   var wormholeFixed = configObj.wormholeFixed;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
   makeboard(25, 25);
-
-  alert(localStorage.getItem('energy'));
-  alert(localStorage.getItem('supplies'));
-  alert(localStorage.getItem('credits'));
 }
