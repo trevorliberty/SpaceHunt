@@ -68,16 +68,15 @@
       </p>
 
       <p></p>
-        <script>
-            document.UI.energy.value = localStorage.getItem("energy")
-        </script>
-      <p>Energy <input type="text" name="energy" size="4" /></p>
+        
+      <p>Energy <input type="number" name="energy" id="energy" size="4"/></p>
       <p>Supplies <input type="text" name="supplies" size="4" />%</p>
       <p>
         GameType (0-Regular, 1-Never Dies)<input
           type="text"
           name="gameType"
           size="1"
+          value=0
         />
       </p>
       <p></p>
@@ -110,4 +109,8 @@
   </body>
 
   <div id="container"></div>
+    
+    <script>
+            document.getElementById("energy").value = localStorage.getItem("energy");
+        </script>
 </html>
