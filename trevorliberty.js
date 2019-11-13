@@ -32,5 +32,6 @@ function load() {
   localStorage.setItem("dies", JSON.stringify(dies));
   var wormholeFixed = configObj.wormholeFixed;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
+  localStorage.removeItem('config');
   makeboard(25, 25);
 }
