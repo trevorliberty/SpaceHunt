@@ -11,5 +11,6 @@ function checkSupplies() {
             //otherwise nodie game type
 	
 	//alert("Check your Supplies!");
-
+        }
 }
+
