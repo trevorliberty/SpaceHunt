@@ -64,8 +64,8 @@ function makeboard(rows, cols) {
 }
 
 function retrieveCell() {
-  const xCoord = parseInt(document.getElementById("yCoord").value);
-  const yCoord = parseInt(document.getElementById("xCoord").value);
+  const xCoord = parseInt(document.getElementById("xCoord").value);
+  const yCoord = parseInt(document.getElementById("yCoord").value);
   const x = document.getElementById("xCoord").value;
   const y = document.getElementById("yCoord").value;
   const id = saveCell.id;
@@ -79,16 +79,16 @@ function retrieveCell() {
 
 function updateCell(x, y, lastCell) {
   saveCell.id = lastCell.id;
-  document.getElementById("yCoord").value = x;
-  document.getElementById("xCoord").value = y;
+  document.getElementById("xCoord").value = x;
+  document.getElementById("yCoord").value = y;
   saveNode = document.getElementById("ship");
   if (saveNode !== null) {
     saveNode.id = `${lastCell.x + "," + lastCell.y}`;
   }
   let elem = getElement(x, y);
   elem.setAttribute("id", "ship");
-  localStorage.setItem("yCoord", toString(x));
-  localStorage.setItem("xCoord", toString(y));
+  localStorage.setItem("xCoord", toString(x));
+  localStorage.setItem("yCoord", toString(y));
 }
 
 function getElement(x, y) {
@@ -96,19 +96,17 @@ function getElement(x, y) {
 }
 
 function load() {
-  configObj = JSON.parse(localStorage.getItem("config"));
-  //localStorage.setItem("energy", configObj.energy);
-  //localStorage.setItem("supplies", configObj.supplies);
-  //localStorage.setItem("credits", configObj.credits);
-  //localStorage.setItem("xCoord", configObj.xCoord);
-  //localStorage.setItem("yCoord", configObj.yCoord);
-  //var dies = configObj.dies;
-  //localStorage.setItem("dies", JSON.stringify(dies));
-  //var wormholeFixed = configObj.wormholeFixed;
-  //localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
-  document.getElementById("energy").value = 1000;
-  document.getElementById("supplies").value = 100;
-  makeboard(25, 26);
+  //check first if there is a value at these localstorage items
+  localStorage.setItem("energy", "1000");
+  localStorage.setItem("supplies", "100");
+  localStorage.setItem("credits", "100");
+  localStorage.setItem("xCoord", "0");
+  localStorage.setItem("yCoord", "0");
+  var dies = true;
+  localStorage.setItem("dies", JSON.stringify(dies));
+  var wormholeFixed = true;
+  localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
+  makeboard(25, 25);
   saveCell.id = "0,0";
   shipInit();
 }
@@ -124,3 +122,51 @@ let ship = {
   xCoord: 0,
   yCoord: 0
 };
+
+function moveSpacecraft(angle, distance) {
+  checkEnergy();
+  checkSupplies();
+  let obj = retrieveCell();
+  let x = obj.x;
+  let y = obj.y;
+
+  distance = parseInt(distance);
+  if (angle == 0) {
+    if (parseInt(x + distance > 128)) {
+      //fallen off the world
+      console.log("out of bounds");
+    } else {
+      x += distance;
+    }
+  } else if (angle == 90) {
+    if (parseInt(y + distance) > 128) {
+      //fallen off the world
+      console.log("out of bounds");
+    } else {
+      y += distance;
+    }
+  } else if (angle == 180) {
+    if (parseInt(x - distance) < 0) {
+      //fallen off the world
+      console.log("out of bounds");
+    } else {
+      x -= distance;
+    }
+  } else {
+    //angle is 270
+    if (parseInt(y - distance) < 0) {
+      //fallen off the world
+      console.log("out of bounds");
+    } else {
+      y -= distance;
+    }
+  }
+
+  if (x != obj.x || y != obj.y) {
+    updateCell(x, y, obj);
+  }
+  //0 is east
+  //90 north
+  //180 west
+  //270 south
+}
