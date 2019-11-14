@@ -97,17 +97,18 @@ function getElement(x, y) {
 
 function load() {
   configObj = JSON.parse(localStorage.getItem("config"));
-  //localStorage.setItem("energy", configObj.energy);
-  //localStorage.setItem("supplies", configObj.supplies);
-  //localStorage.setItem("credits", configObj.credits);
-  //localStorage.setItem("xCoord", configObj.xCoord);
-  //localStorage.setItem("yCoord", configObj.yCoord);
-  //var dies = configObj.dies;
-  //localStorage.setItem("dies", JSON.stringify(dies));
-  //var wormholeFixed = configObj.wormholeFixed;
-  //localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
-  document.getElementById("energy").value = 1000;
-  document.getElementById("supplies").value = 100;
+  document.getElementById("energy").value = configObj.energy;
+  document.getElementById("supplies").value = configObj.supplies;
+  // localStorage.setItem("energy", configObj.energy);
+  // localStorage.setItem("supplies", configObj.supplies);
+  localStorage.setItem("credits", configObj.credits);
+  localStorage.setItem("xCoord", configObj.xCoord);
+  localStorage.setItem("yCoord", configObj.yCoord);
+  var dies = configObj.dies;
+  localStorage.setItem("dies", JSON.stringify(dies));
+  var wormholeFixed = configObj.wormholeFixed;
+  localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
+  localStorage.removeItem('config');
   makeboard(25, 26);
   saveCell.id = "0,0";
   shipInit();
