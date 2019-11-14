@@ -99,9 +99,9 @@ function load() {
   configObj = JSON.parse(localStorage.getItem("config"));
   //localStorage.setItem("energy", configObj.energy);
   //localStorage.setItem("supplies", configObj.supplies);
-  // localStorage.setItem("credits", configObj.credits);
-  // localStorage.setItem("xCoord", configObj.xCoord);
-  // localStorage.setItem("yCoord", configObj.yCoord);
+  //localStorage.setItem("credits", configObj.credits);
+  //localStorage.setItem("xCoord", configObj.xCoord);
+  //localStorage.setItem("yCoord", configObj.yCoord);
   //var dies = configObj.dies;
   //localStorage.setItem("dies", JSON.stringify(dies));
   //var wormholeFixed = configObj.wormholeFixed;

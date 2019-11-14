@@ -106,8 +106,6 @@ function load() {
   localStorage.setItem("dies", JSON.stringify(dies));
   var wormholeFixed = true;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
-  document.getElementById("energy").value = 1000;
-  document.getElementById("supplies").value = 100;
   makeboard(25, 25);
   saveCell.id = "0,0";
   shipInit();
