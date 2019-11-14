@@ -7,23 +7,20 @@ function moveSpacecraft(angle, distance) {
 
   distance = parseInt(distance);
   if (angle === 0) {
-    if (parseInt(x + distance) > 25) {
+    if (parseInt(x + distance) > size) {
       //fallen off the world
-      console.log("out of bounds");
     } else {
       x += distance;
     }
   } else if (angle === 90) {
-    if (parseInt(y + distance) > 25) {
+    if (parseInt(y + distance) > size) {
       //fallen off the world
-      console.log("out of bounds");
     } else {
       y += distance;
     }
   } else if (angle === 180) {
     if (parseInt(x - distance) < 0) {
       //fallen off the world
-      console.log("out of bounds");
     } else {
       x -= distance;
     }
@@ -31,14 +28,13 @@ function moveSpacecraft(angle, distance) {
     //angle is 270
     if (parseInt(y - distance) < 0) {
       //fallen off the world
-      console.log("out of bounds");
     } else {
       y -= distance;
     }
   }
 
   if (x != obj.x || y != obj.y) {
-    updateCell(x, y, obj);
+    updateShip(x, y, obj);
   }
   //0 is east
   //90 north

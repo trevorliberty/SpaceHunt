@@ -77,7 +77,7 @@ function retrieveCell() {
   return obj;
 }
 
-function updateCell(x, y, lastCell) {
+function updateShip(x, y, lastCell) {
   saveCell.id = lastCell.id;
   document.getElementById("xCoord").value = x;
   document.getElementById("yCoord").value = y;
@@ -115,7 +115,7 @@ function shipInit() {
   currentCell = retrieveCell();
   let x = currentCell.x;
   let y = currentCell.y;
-  updateCell(x, y, currentCell);
+  updateShip(x, y, currentCell);
 }
 
 let ship = {
@@ -163,7 +163,7 @@ function moveSpacecraft(angle, distance) {
   }
 
   if (x != obj.x || y != obj.y) {
-    updateCell(x, y, obj);
+    updateShip(x, y, obj);
   }
   //0 is east
   //90 north

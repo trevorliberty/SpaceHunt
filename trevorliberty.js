@@ -1,3 +1,4 @@
+size = 25;
 window.addEventListener("keydown", function(e) {
   if (
     (e.keyCode == 38 ||
@@ -24,23 +25,19 @@ document.onkeydown = function(e) {
     if (e.keyCode == 39) {
       //right
       moveSpacecraft(90, 1);
-      return;
       9;
     } else if (e.keyCode == 37) {
       moveSpacecraft(270, 1);
-      return;
       //left
     } else if (e.keyCode == 38) {
       //up
       moveSpacecraft(0, 1);
-      return;
     } else if (e.keyCode == 40) {
       moveSpacecraft(180, 1);
-      return;
       //down
     }
     document
-      .getElementById("container")
+      .getElementById("ship")
       .scrollIntoView({ behavior: "smooth", block: "center" });
   }
 };
@@ -53,11 +50,11 @@ function makeboard(rows, cols) {
     for (j = 0; j < cols; ++j) {
       let cell = document.createElement("div");
       cell.setAttribute("id", `${c + "," + j}`);
-      container.appendChild(cell).className = "grid-item";
+      container.appendChild(cell).className = `grid-item ${c + "," + j}`;
       let space = document.createElement("div");
       space.setAttribute("id", "space");
-      space.style.width = "20px";
-      space.style.height = "20px";
+      space.style.width = "50px";
+      space.style.height = "50px";
       cell.appendChild(space);
     }
   }
@@ -66,8 +63,6 @@ function makeboard(rows, cols) {
 function retrieveCell() {
   const xCoord = parseInt(document.getElementById("yCoord").value);
   const yCoord = parseInt(document.getElementById("xCoord").value);
-  const x = document.getElementById("xCoord").value;
-  const y = document.getElementById("yCoord").value;
   const id = saveCell.id;
   let obj = {
     x: xCoord,
@@ -77,7 +72,7 @@ function retrieveCell() {
   return obj;
 }
 
-function updateCell(x, y, lastCell) {
+function updateShip(x, y, lastCell) {
   saveCell.id = lastCell.id;
   document.getElementById("yCoord").value = x;
   document.getElementById("xCoord").value = y;
@@ -87,37 +82,45 @@ function updateCell(x, y, lastCell) {
   }
   let elem = getElement(x, y);
   elem.setAttribute("id", "ship");
-  localStorage.setItem("yCoord", toString(x));
-  localStorage.setItem("xCoord", toString(y));
+  // localStorage.setItem("yCoord", toString(x));
+  // localStorage.setItem("xCoord", toString(y));
 }
 
+function updateCell(x, y, cellId) {
+  //send the id that you want to update the cell into here
+  document.getElementById(`${x + "," + y}`);
+}
 function getElement(x, y) {
-  return document.getElementById(`${x + "," + y}`);
+  //return document.getElementById(`${x + "," + y}`);
+  return document.getElementsByClassName(`${x + "," + y}`)[0];
 }
 
 function load() {
   configObj = JSON.parse(localStorage.getItem("config"));
-  //localStorage.setItem("energy", configObj.energy);
-  //localStorage.setItem("supplies", configObj.supplies);
-  //localStorage.setItem("credits", configObj.credits);
-  //localStorage.setItem("xCoord", configObj.xCoord);
-  //localStorage.setItem("yCoord", configObj.yCoord);
-  //var dies = configObj.dies;
-  //localStorage.setItem("dies", JSON.stringify(dies));
-  //var wormholeFixed = configObj.wormholeFixed;
-  //localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
+  localStorage.setItem("energy", configObj.energy);
+  localStorage.setItem("supplies", configObj.supplies);
+  localStorage.setItem("credits", configObj.credits);
+  localStorage.setItem("xCoord", configObj.xCoord);
+  localStorage.setItem("yCoord", configObj.yCoord);
+  var dies = configObj.dies;
+  localStorage.setItem("dies", JSON.stringify(dies));
+  var wormholeFixed = configObj.wormholeFixed;
+  localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
   document.getElementById("energy").value = 1000;
   document.getElementById("supplies").value = 100;
-  makeboard(25, 26);
+  makeboard(size, size + 1);
   saveCell.id = "0,0";
   shipInit();
+  document
+    .getElementById("ship")
+    .scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function shipInit() {
   currentCell = retrieveCell();
   let x = currentCell.x;
   let y = currentCell.y;
-  updateCell(x, y, currentCell);
+  updateShip(x, y, currentCell);
 }
 
 let ship = {
