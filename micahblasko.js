@@ -1,1 +1,1 @@
-document.getElementById("energy") = localStorage.getItem("energy");
+//document.getElementById("energy") = localStorage.getItem("energy");
