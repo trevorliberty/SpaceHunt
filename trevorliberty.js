@@ -64,8 +64,8 @@ function makeboard(rows, cols) {
 }
 
 function retrieveCell() {
-  const xCoord = parseInt(document.getElementById("xCoord").value);
-  const yCoord = parseInt(document.getElementById("yCoord").value);
+  const xCoord = parseInt(document.getElementById("yCoord").value);
+  const yCoord = parseInt(document.getElementById("xCoord").value);
   const x = document.getElementById("xCoord").value;
   const y = document.getElementById("yCoord").value;
   const id = saveCell.id;
@@ -79,16 +79,16 @@ function retrieveCell() {
 
 function updateCell(x, y, lastCell) {
   saveCell.id = lastCell.id;
-  document.getElementById("xCoord").value = x;
-  document.getElementById("yCoord").value = y;
+  document.getElementById("yCoord").value = x;
+  document.getElementById("xCoord").value = y;
   saveNode = document.getElementById("ship");
   if (saveNode !== null) {
     saveNode.id = `${lastCell.x + "," + lastCell.y}`;
   }
   let elem = getElement(x, y);
   elem.setAttribute("id", "ship");
-  localStorage.setItem("xCoord", toString(x));
-  localStorage.setItem("yCoord", toString(y));
+  localStorage.setItem("yCoord", toString(x));
+  localStorage.setItem("xCoord", toString(y));
 }
 
 function getElement(x, y) {
@@ -108,7 +108,7 @@ function load() {
   //localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
   document.getElementById("energy").value = 1000;
   document.getElementById("supplies").value = 100;
-  makeboard(25, 25);
+  makeboard(25, 26);
   saveCell.id = "0,0";
   shipInit();
 }
