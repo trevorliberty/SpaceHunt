@@ -113,7 +113,7 @@ function load() {
   shipInit();
   document
     .getElementById("ship")
-    .scrollIntoView({ behavior: "smooth", block: "center" });
+    .scrollIntoView({ behavior: "instant", block: "center" });
 }
 
 function shipInit() {
