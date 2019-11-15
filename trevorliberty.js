@@ -1,4 +1,6 @@
 size = 25;
+supplies = 0;
+energy = 0;
 window.addEventListener("keydown", function(e) {
   if (
     (e.keyCode == 38 ||
@@ -38,7 +40,7 @@ document.onkeydown = function(e) {
     }
     document
       .getElementById("ship")
-      .scrollIntoView({ behavior: "smooth", block: "center" });
+      .scrollIntoView({ behavior: "instant", block: "center" });
   }
 };
 
@@ -53,8 +55,8 @@ function makeboard(rows, cols) {
       container.appendChild(cell).className = `grid-item ${c + "," + j}`;
       let space = document.createElement("div");
       space.setAttribute("id", "space");
-      space.style.width = "50px";
-      space.style.height = "50px";
+      space.style.width = "30px";
+      space.style.height = "30px";
       cell.appendChild(space);
     }
   }
@@ -91,10 +93,18 @@ function updateCell(x, y, cellId) {
   document.getElementById(`${x + "," + y}`);
 }
 function getElement(x, y) {
-  //return document.getElementById(`${x + "," + y}`);
   return document.getElementsByClassName(`${x + "," + y}`)[0];
 }
 
+function updateEnergy(amount) {
+  let elem = document.getElementById("energy");
+  elem.value = parseInt(elem.value) + amount;
+}
+function updateSupplies(amount) {
+  let elem = document.getElementById("supplies");
+  elem.value = parseInt(elem.value) + amount + "%";
+  supplies += amount;
+}
 function load() {
   configObj = JSON.parse(localStorage.getItem("config"));
   localStorage.setItem("energy", configObj.energy);
