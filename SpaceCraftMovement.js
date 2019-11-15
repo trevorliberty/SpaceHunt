@@ -35,7 +35,10 @@ function moveSpacecraft(angle, distance) {
 
   if (x != obj.x || y != obj.y) {
     updateShip(x, y, obj);
+    updateEnergy(-(distance * 10));
+    updateSupplies(-2);
   }
+
   //0 is east
   //90 north
   //180 west

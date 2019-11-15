@@ -95,6 +95,14 @@ function getElement(x, y) {
   return document.getElementsByClassName(`${x + "," + y}`)[0];
 }
 
+function updateEnergy(amount) {
+  let elem = document.getElementById("energy");
+  elem.value = parseInt(elem.value) + amount;
+}
+function updateSupplies(amount) {
+  let elem = document.getElementById("supplies");
+  elem.value = parseInt(elem.value) + amount;
+}
 function load() {
   configObj = JSON.parse(localStorage.getItem("config"));
   localStorage.setItem("energy", configObj.energy);
