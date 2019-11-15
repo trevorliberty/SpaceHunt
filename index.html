@@ -1,103 +1,112 @@
+<head>
+  <audio autoplay>
+    <source src="space.mp3" type="audio/mpeg" />
+  </audio>
+</head>
 <html>
-    <style>
-        /*
+  <style>
+    /*
             Stylized background borrowed from Nazar The Vis Azhar, via https://codepen.io/NazarTheVis/pen/zqXMqP
          */
-        @import "susy";
-        @import "compass/reset";
+    @import "susy";
+    @import "compass/reset";
 
+    .stars,
+    .twinkling,
+    .clouds {
+      position: absolute;
+      display: block;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-        .stars, .twinkling, .clouds {
-        	position:absolute;
-        	display:block;
-        	top:0; bottom:0;
-        	left:0; right:0;
-        	width:100%; height:100%;
-        }
+    .stars {
+      z-index: 0;
+      background: #000 url("https://image.ibb.co/mjnygo/stars.png") repeat top
+        center;
+    }
 
-        .stars {
-        	z-index: 0;
-        	background: #000 url('https://image.ibb.co/mjnygo/stars.png') repeat top center;
-        }
+    .twinkling {
+      z-index: 1;
+      background: transparent url("https://image.ibb.co/ir1DE8/twinkling.png")
+        repeat top center;
+      animation: move-twink-back 100s linear infinite;
+    }
 
-        .twinkling{
-        	z-index: 1;
-        	background:transparent url('https://image.ibb.co/ir1DE8/twinkling.png') repeat top center;
-        	animation: move-twink-back 100s linear infinite;
-        }
+    @keyframes move-twink-back {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: -10000px 5000px;
+      }
+    }
 
-        @keyframes move-twink-back {
-        	from {background-position:0 0;}
-        	to {background-position:-10000px 5000px;}
-        }
+    #title {
+      z-index: -1;
+      text-align: center;
+      color: white;
+      font-size: 80px;
+    }
 
-        #title {
-            z-index: -1;
-            text-align: center;
-            color: white;
-            font-size: 80px;
-        }
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
 
-        html, body {
+    .button {
+      background-color: #3d3d5c;
+      padding: 20px 60px;
+      border: rounded;
+      border-style: double;
+      text-align: center;
+    }
+  </style>
 
-            margin: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .button {
-            background-color: #3d3d5c;
-            padding: 20px 60px;
-            border: rounded;
-            border-style: double;
-            text-align: center;
-        }
-
-    </style>
-    <body>
-        <div class='stars'>
-        <div class='twinkling'>
-
+  <body>
+    <div class="stars">
+      <div class="twinkling">
         <h1 id="title">Space Hunt Adventure</h1>
 
         <div class="container" id="options">
-
-            <form>
-                <button type="reset" class="button" onClick="loadMap()">Standard</button><br>
-                <button type="reset" class="button" onClick="loadSettings()">Administrator</button>
-            </form>
-
+          <form>
+            <button type="reset" class="button" onClick="loadMap()">
+              Standard</button
+            ><br />
+            <button type="reset" class="button" onClick="loadSettings()">
+              Administrator
+            </button>
+          </form>
         </div>
-        </div>
-        </div>
+      </div>
+    </div>
 
+    <script>
+      function loadMap() {
+        localStorage.setItem("userType", "user");
+        var defaulConfig = {
+          energy: "1000",
+          supplies: "100",
+          credits: "100",
+          xCoord: "0",
+          yCoord: "0",
+          dies: true,
+          wormholeFixed: true
+        };
+        localStorage.setItem("config", JSON.stringify(defaulConfig));
+        window.location.href = "SpaceHunt Core HTML.html";
+      }
 
-        <script>
-            function loadMap() {
-                localStorage.setItem("userType", "user");
-                var defaulConfig = {
-                    energy : "1000",
-                    supplies : "100",
-                    credits : "100",
-                    xCoord : "0",
-                    yCoord : "0",
-                    dies : true,
-                    wormholeFixed : true,
-                };
-                localStorage.setItem('config', JSON.stringify(defaulConfig));
-                window.location.href = "SpaceHunt Core HTML.html";
-            }
-
-            function loadSettings() {
-                localStorage.setItem("userType", "administrator");
-                window.location.href = "Settings.html";
-            }
-        </script>
-    </body>
-
-
-
-
-
-
+      function loadSettings() {
+        localStorage.setItem("userType", "administrator");
+        window.location.href = "Settings.html";
+      }
+    </script>
+  </body>
 </html>

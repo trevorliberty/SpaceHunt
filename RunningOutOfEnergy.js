@@ -1,6 +1,7 @@
 function checkEnergy() {
   if (localStorage.getItem("dies")) {
     if (
+      energy <= 0 ||
       document.getElementById("energy").value <= 0 ||
       localStorage.getItem("energy") <= 0
     ) {
