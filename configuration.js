@@ -16,21 +16,27 @@ function configure() {
     config.xCoord = parseInt(document.getElementById("x").value);
     config.yCoord = parseInt(document.getElementById("y").value);
 
-    if(document.getElementById('dying').checked) {
-        config.dies = JSON.parse(document.getElementById('dying').value);
+    if((!document.getElementById('dying').checked && !document.getElementById('godMode').checked) || (!document.getElementById('fixedWormhole').checked && !document.getElementById('randomWormhole').checked)) {
+        alert("Please select which player mode && wormhole behavior");
     }
-    else if (document.getElementById('godMode').checked) {
-        config.dies = JSON.parse(document.getElementById('godMode').value);
+    else {
+        if(document.getElementById('dying').checked) {
+            config.dies = JSON.parse(document.getElementById('dying').value);
+        }
+        else if (document.getElementById('godMode').checked) {
+            config.dies = JSON.parse(document.getElementById('godMode').value);
+        }
+
+        if(document.getElementById('fixedWormhole').checked) {
+            config.wormholeFixed = JSON.parse(document.getElementById('fixedWormhole').value);
+        }
+        else if (document.getElementById('randomWormhole')) {
+            config.wormholeFixed = JSON.parse(document.getElementById('randomWormhole').value);
+        }
+
+        localStorage.setItem('config', JSON.stringify(config));
+        window.location.href = "SpaceHunt Core HTML.html";
     }
 
-    if(document.getElementById('fixedWormhole').checked) {
-        config.wormholeFixed = JSON.parse(document.getElementById('fixedWormhole').value);
-    }
-    else if (document.getElementById('randomWormhole')) {
-        config.wormholeFixed = JSON.parse(document.getElementById('randomWormhole').value);
-    }
-
-    localStorage.setItem('config', JSON.stringify(config));
-    window.location.href = "SpaceHunt Core HTML.html";
 
 }
