@@ -1,4 +1,6 @@
 size = 25;
+supplies = 0;
+energy = 0;
 window.addEventListener("keydown", function(e) {
   if (
     (e.keyCode == 38 ||
@@ -38,7 +40,7 @@ document.onkeydown = function(e) {
     }
     document
       .getElementById("ship")
-      .scrollIntoView({ behavior: "smooth", block: "center" });
+      .scrollIntoView({ behavior: "instant", block: "center" });
   }
 };
 
@@ -53,8 +55,8 @@ function makeboard(rows, cols) {
       container.appendChild(cell).className = `grid-item ${c + "," + j}`;
       let space = document.createElement("div");
       space.setAttribute("id", "space");
-      space.style.width = "50px";
-      space.style.height = "50px";
+      space.style.width = "30px";
+      space.style.height = "30px";
       cell.appendChild(space);
     }
   }
@@ -91,7 +93,6 @@ function updateCell(x, y, cellId) {
   document.getElementById(`${x + "," + y}`);
 }
 function getElement(x, y) {
-  //return document.getElementById(`${x + "," + y}`);
   return document.getElementsByClassName(`${x + "," + y}`)[0];
 }
 
@@ -101,7 +102,8 @@ function updateEnergy(amount) {
 }
 function updateSupplies(amount) {
   let elem = document.getElementById("supplies");
-  elem.value = parseInt(elem.value) + amount;
+  elem.value = parseInt(elem.value) + amount + "%";
+  supplies += amount;
 }
 function load() {
   configObj = JSON.parse(localStorage.getItem("config"));
@@ -115,6 +117,8 @@ function load() {
   var wormholeFixed = configObj.wormholeFixed;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
   document.getElementById("energy").value = 1000;
+  supplies = 100;
+  energy = 1000;
   document.getElementById("supplies").value = 100;
   makeboard(size, size + 1);
   saveCell.id = "0,0";
