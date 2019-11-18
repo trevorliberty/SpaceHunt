@@ -1,13 +1,12 @@
 <html>
-
-<head>
- <!-- JS goes here -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="add_removePlanets.js"></script>
-	<script>
-
- 	/*$(document).ready(function(){
+  <head>
+    <!-- JS goes here -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="add_removeArtifacts.js"></script>
+    <script src="configuration.js"></script>
+    <script>
+      /*$(document).ready(function(){
 		var storage = window.localStorage;
 		var role = storage.getItem('role');
 		if(role !== Admin){
@@ -18,73 +17,115 @@
 			alert("You can change the settings");
 		}
 	});*/
+    </script>
 
-</script>
+    <style>
+      a,
+      .removePlanet:link,
+      a,
+      .removePlanet:visited {
+        color: #777;
+        text-decoration: none;
+        cursor: auto;
+        margin: 5px;
+      }
 
-<style>
-	a, .removePlanet:link, a, .removePlanet:visited {
-  color: #777;
-  text-decoration: none;
-  cursor: auto;
-}
+      a:hover,
+      .removePlanet:hover,
+      button {
+        cursor: pointer;
+        color: #000;
+      }
 
-	a:hover, .removePlanet:hover, button{
-		cursor: pointer;
-		color:#000;
-	}
+      button, input{
+      	margin: 5px;
+      }
 
-	body {
-		background-color: LightGrey;
-	}
+      body {
+        background-color: LightGrey;
+      }
 
-	h1 {
-		text-align: center;
-	}
+      h1 {
+        text-align: center;
+      }
 
-	form[name="settings"] {
-		text-align: center;
-	}
+      form[name="settings"] {
+        text-align: center;
+      }
+    </style>
+    <audio autoplay>
+      <source src="space.mp3" type="audio/mpeg" />
+    </audio>
+  </head>
 
+  <body>
+    <h1>Settings</h1>
+    <form name="settings">
+      <h4>Celestial Artifacts</h4>
 
-</style>
+      <!--------------------PLANETS-------------------------------->
+      <button type="button" class="addPlanet" onclick="addPlanet()">Add Planet</button>
 
-</head>
+      <div id="newPlanets"></div>
+      <input type="hidden" value="0" id="planets" />
 
-<body>
+      <!-------------------ASTEROIDS--------------------------------->
+      <button type="button" class="addAsteroid" onclick="addAsteroid()">Add Asteroid</button>
 
-<h1>Settings</h1>
+      <div id="newAsteroids"></div>
+      <input type="hidden" value="0" id="asteroids" />
 
-<form name="settings">
+      <!-------------------SPACE STATIONS--------------------------->
+      <button type="button" class="addSatation" onclick="addStation()">Add Space Station</button>
 
-	<h4>Celestial Artifacts</h4>
-
-	<!--------------------PLANETS-------------------------------->
-	<p>Click to add a planet</p>
-	<button class="addPlanet" onclick="addPlanet()">Add</button>
-
-	<div id='newPlanets'></div>
-	<input type="hidden" value ="0" id="planets">
-
-	<!-------------------ASTROIDS--------------------------------->
-	<p>Click to add an astroid</p>
-	<button class="addAstroid" onclick="addAstroid()">Add</button>
-	<button class="removeAstroid" onclick="removeAstroid()">Remove</button>
-	<div id='newAstroids'></div>
-	<input type="hidden" value ="0" id="astroids">
-
-	<!--------------------USER SETTINGS-------------------------------->
-	<h4>User Settings</h4>
-
-    Energy: <input type="number" name="energy" value="100" min="1" required><br>
-    Location: <br>
-        x: <input type="number" name="x" value="0" style="width:50px" min="0" required><br>
-        y: <input type="number" name="y" value="0" style="width:50px" min="0" required><br>
-    Credits: <input type="number" name="credits" value="100" required><br>
-    <button onclick="configure()">Submit</button>
-
-
-</form>
+      <div id="newStations"></div>
+      <input type="hidden" value="0" id="stations" />
 
 
-</body>
+      <!--------------------USER SETTINGS-------------------------------->
+      <h4>User Settings</h4>
+
+      Energy:
+      <input type="number" id="energy" value="100" min="1" required /><br />
+
+      Supplies:
+      <input type="number" id="supplies" value="100" min="0" required /><br />
+
+      Credits: <input type="number" id="credits" value="100" required /><br />
+
+      Location: <br />
+      x:
+      <input
+        type="number"
+        id="x"
+        value="0"
+        style="width:50px"
+        min="0"
+        required
+      /><br />
+      y:
+      <input
+        type="number"
+        id="y"
+        value="0"
+        style="width:50px"
+        min="0"
+        required
+      /><br />
+
+      Dying: <br />
+      <input type="radio" id="dying" value="true" /><br />
+
+      God Mode: <br />
+      <input type="radio" id="godMode" value="false" /><br />
+
+      Fixed Wormhole Behavior: <br />
+      <input type="radio" id="fixedWormhole" value="true" /><br />
+
+      Random Wormhole Behavior: <br />
+      <input type="radio" id="randomWormhole" value="false" /><br />
+
+      <button type="button" onclick="configure(), setArtifacts()">Submit</button>
+    </form>
+  </body>
 </html>
