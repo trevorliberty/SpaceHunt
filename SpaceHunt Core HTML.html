@@ -1,30 +1,74 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="configuration.js"></script>
     <script src="trevorliberty.js"></script>
-      
-    <script src="micahblasko.js"> </script>
+
+    <script src="micahblasko.js"></script>
 
     <script src="RunningOutOfSupplies.js"></script>
 
     <script src="RunningOutOfEnergy.js"></script>
 
     <script src="SpaceCraftMovement.js"></script>
+    <script src="placeArtifacts.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
-
-  <body onload="load()" style="background-image: url('background.jpg')">
-    <div id="wrap">
-      <h1>SpaceHunt</h1>
+  
+  <body onload="load(), loadArtifacts()"class="stars">
+    <nav class="navbar navbar-expand-sm  bg-custom-2 navbar-dark fixed-top"style="background-image: linear-gradient( 179deg,  rgba(109,19,132,1) 18.4%, rgba(245,135,75,1) 108.3% );">
+      <a class="navbar-brand" href="#">
+        <img src="spacehunt.png" width="300" height="30" alt="">
+      </a>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbardrop"
+            data-toggle="dropdown"
+          >
+            Energy
+          </a>
+          <div class="dropdown-menu">
+            <input class="dropdown-item" type="number"id="energy"></input>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbardrop"
+            data-toggle="dropdown"
+          >
+            Supplies
+          </a>
+          <div class="dropdown-menu">
+            <input class="dropdown-item" id="supplies" value=0 >
+          </input>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbardrop"
+            data-toggle="dropdown"
+          >
+           Dashboard 
+          </a>
+          <div class="dropdown-menu" id="inventory">
       <form name="UI">
-        STATUS
         <p>
-          Current Location: X
+          Current Location: 
+          <br>X
           <input
             id="xCoord"
             style="color:black"
@@ -44,37 +88,10 @@
           />
         </p>
 
-        <p></p>
-        <p>
-          Energy
-          <input
-            id="energy"
-            type="text"
-            style="color:black"
-            name="energy"
-            size="4"
-          />
-        </p>
-        <p>
-          Supplies
-          <input
-            id="supplies"
-            type="text"
-            style="color:black"
-            name="supplies"
-            size="4"
-          />%
-        </p>
         <p>
           GameType (0-Regular, 1-Never Dies)
-          <input
-          style= "color:black"
-            type="text"
-            name="gameType"
-            size="1"
-          />
+          <input style="color:black" type="text" name="gameType" size="1" />
         </p>
-        <p></p>
         <hr />
         MAKE A MOVE
         <p>
@@ -114,7 +131,17 @@
           />
         </p>
       </form>
-      <div class="container h-100 style=background-color:transparent">
+            <a class="dropdown-item" href="#">Link 1</a>
+            <a class="dropdown-item" href="#">Link 2</a>
+            <a class="dropdown-item" href="#">Link 3</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <div class="stars twinkling">
+      <br>
+
+      <div class="container h-100 style=background-color:transparent ">
         <div
           class="row align-items-center h-100"
           style="background-color: transparent;"
