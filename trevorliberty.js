@@ -55,8 +55,8 @@ function makeboard(rows, cols) {
       container.appendChild(cell).className = `grid-item ${c + "," + j}`;
       let space = document.createElement("div");
       space.setAttribute("id", "space");
-      space.style.width = "30px";
-      space.style.height = "30px";
+      //      space.style.width = "30px";
+      //      space.style.height = "30px";
       cell.appendChild(space);
     }
   }
@@ -116,13 +116,23 @@ function load() {
   localStorage.setItem("dies", JSON.stringify(dies));
   var wormholeFixed = configObj.wormholeFixed;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
-  document.getElementById("energy").value = parseInt(localStorage.getItem('energy'));
-  document.getElementById("supplies").value = parseInt(localStorage.getItem('supplies'));
+  document.getElementById("energy").value = parseInt(
+    localStorage.getItem("energy")
+  );
+  document.getElementById("supplies").value = parseInt(
+    localStorage.getItem("supplies")
+  );
   //document.getElementById("credits").value = parseInt(localStorage.getItem('credits'));
-  document.getElementById("xCoord").value = parseInt(localStorage.getItem('xCoord'));
-  document.getElementById("yCoord").value = parseInt(localStorage.getItem('yCoord'));
+  document.getElementById("xCoord").value = parseInt(
+    localStorage.getItem("xCoord")
+  );
+  document.getElementById("yCoord").value = parseInt(
+    localStorage.getItem("yCoord")
+  );
   makeboard(size, size + 1);
   saveCell.id = "0,0";
+  energy = localStorage.getItem("energy");
+  supplies = localStorage.getItem("supplies");
   shipInit();
   document
     .getElementById("ship")
