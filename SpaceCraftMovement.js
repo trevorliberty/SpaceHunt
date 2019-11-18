@@ -1,49 +1,56 @@
 function moveSpacecraft(angle, distance) {
   checkEnergy();
-    checkSupplies();
-  let xCoordloc = parseInt(document.getElementById("xCoord").value);
-  let yCoordloc = parseInt(document.getElementById("yCoord").value);
+  checkSupplies();
+  let obj = retrieveCell();
+  let x = obj.x;
+  let y = obj.y;
+
   distance = parseInt(distance);
-  if (angle == 0) {
-    if (parseInt(xCoordloc + distance > 128)) {
+  if (angle === 0) {
+    if (parseInt(x + distance) > size) {
       //fallen off the world
-      console.log("out of bounds");
+      return teleportShip(0, y, obj, distance);
     } else {
-      xCoordloc += distance;
+      x += distance;
     }
-  } else if (angle == 90) {
-    if (parseInt(yCoordloc + distance) > 128) {
+  } else if (angle === 90) {
+    if (parseInt(y + distance) > size) {
       //fallen off the world
-      console.log("out of bounds");
+      //wormhole options
+      return teleportShip(x, 0, obj, distance);
     } else {
-      yCoordloc += distance;
-      document.getElementById("yCoord").value = yCoordloc;
+      y += distance;
     }
-  } else if (angle == 180) {
-    if (parseInt(xCoordloc - distance) < 0) {
+  } else if (angle === 180) {
+    if (parseInt(x - distance) < 0) {
       //fallen off the world
-      console.log("out of bounds");
+      return teleportShip(size, y, obj, distance);
     } else {
-      xCoordloc -= distance;
+      x -= distance;
     }
   } else {
     //angle is 270
-    if (parseInt(yCoordloc - distance) < 0) {
+    if (parseInt(y - distance) < 0) {
       //fallen off the world
-      console.log("out of bounds");
+      return teleportShip(x, size, obj, distance);
     } else {
-      yCoordloc -= distance;
-      document.getElementById("yCoord").value = yCoordloc;
+      y -= distance;
     }
   }
 
-  document.getElementById("xCoord").value = xCoordloc;
-  document.getElementById("yCoord").value = yCoordloc;
+  if (x != obj.x || y != obj.y) {
+    updateShip(x, y, obj);
+    updateEnergy(-(distance * 10));
+    updateSupplies(-2);
+  }
 
-  localStorage.setItem("xCoord", toString(xCoordloc));
-  localStorage.setItem("yCoord", toString(yCoordloc));
   //0 is east
   //90 north
   //180 west
   //270 south
+}
+function teleportShip(x, y, obj, distance) {
+  updateShip(x, y, obj);
+  updateEnergy(-(distance * 10));
+  updateSupplies(-2);
 }
