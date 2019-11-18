@@ -55,8 +55,8 @@ function makeboard(rows, cols) {
       container.appendChild(cell).className = `grid-item ${c + "," + j}`;
       let space = document.createElement("div");
       space.setAttribute("id", "space");
-      space.style.width = "30px";
-      space.style.height = "30px";
+      //      space.style.width = "30px";
+      //      space.style.height = "30px";
       cell.appendChild(space);
     }
   }
