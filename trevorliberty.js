@@ -116,10 +116,11 @@ function load() {
   localStorage.setItem("dies", JSON.stringify(dies));
   var wormholeFixed = configObj.wormholeFixed;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
-  document.getElementById("energy").value = 1000;
-  supplies = 100;
-  energy = 1000;
-  document.getElementById("supplies").value = 100;
+  document.getElementById("energy").value = parseInt(localStorage.getItem('energy'));
+  document.getElementById("supplies").value = parseInt(localStorage.getItem('supplies'));
+  //document.getElementById("credits").value = parseInt(localStorage.getItem('credits'));
+  document.getElementById("xCoord").value = parseInt(localStorage.getItem('xCoord'));
+  document.getElementById("yCoord").value = parseInt(localStorage.getItem('yCoord'));
   makeboard(size, size + 1);
   saveCell.id = "0,0";
   shipInit();

@@ -3,7 +3,7 @@
     <!-- JS goes here -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="add_removePlanets.js"></script>
+    <script src="add_removeArtifacts.js"></script>
     <script src="configuration.js"></script>
     <script>
       /*$(document).ready(function(){
@@ -27,6 +27,7 @@
         color: #777;
         text-decoration: none;
         cursor: auto;
+        margin: 5px;
       }
 
       a:hover,
@@ -34,6 +35,10 @@
       button {
         cursor: pointer;
         color: #000;
+      }
+
+      button, input{
+      	margin: 5px;
       }
 
       body {
@@ -59,20 +64,23 @@
       <h4>Celestial Artifacts</h4>
 
       <!--------------------PLANETS-------------------------------->
-      <p>Click to add a planet</p>
-      <button type="button" class="addPlanet" onclick="addPlanet()">Add</button>
+      <button type="button" class="addPlanet" onclick="addPlanet()">Add Planet</button>
 
       <div id="newPlanets"></div>
       <input type="hidden" value="0" id="planets" />
 
-      <!-------------------ASTROIDS--------------------------------->
-      <p>Click to add an astroid</p>
-      <button type="button" class="addAstroid" onclick="addAstroid()">
-        Add
-      </button>
+      <!-------------------ASTEROIDS--------------------------------->
+      <button type="button" class="addAsteroid" onclick="addAsteroid()">Add Asteroid</button>
 
-      <div id="newAstroids"></div>
-      <input type="hidden" value="0" id="astroids" />
+      <div id="newAsteroids"></div>
+      <input type="hidden" value="0" id="asteroids" />
+
+      <!-------------------SPACE STATIONS--------------------------->
+      <button type="button" class="addSatation" onclick="addStation()">Add Space Station</button>
+
+      <div id="newStations"></div>
+      <input type="hidden" value="0" id="stations" />
+
 
       <!--------------------USER SETTINGS-------------------------------->
       <h4>User Settings</h4>
@@ -117,7 +125,7 @@
       Random Wormhole Behavior: <br />
       <input type="radio" id="randomWormhole" value="false" /><br />
 
-      <button type="button" onclick="configure()">Submit</button>
+      <button type="button" onclick="configure(), setArtifacts()">Submit</button>
     </form>
   </body>
 </html>
