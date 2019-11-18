@@ -1,6 +1,30 @@
-size = 25;
+size = 20;
 supplies = 0;
 energy = 0;
+artifacts = JSON.parse(localStorage.getItem("celestialArtifacts"));
+locations = new Map();
+planets = artifacts.planets;
+asteroids = artifacts.asteroids;
+stations = artifacts.stations;
+
+if (planets) {
+  for (let i = 0; i < planets.length; ++i) {
+    let coordinate = planets[i].Planet.coords;
+    locations.set(coordinate, "planet");
+  }
+}
+if (asteroids) {
+  for (let i = 0; i < asteroids.length; ++i) {
+    let coordinate = asteroids[i].Astroid.coords;
+    locations.set(coordinate, "asteroid");
+  }
+}
+if (stations) {
+  for (let i = 0; i < stations.length; ++i) {
+    let coordinate = stations[i].Station.coords;
+    locations.set(coordinate, "station");
+  }
+}
 window.addEventListener("keydown", function(e) {
   if (
     (e.keyCode == 38 ||
@@ -50,14 +74,18 @@ function makeboard(rows, cols) {
   container.style.setProperty("--grid-cols", cols);
   for (c = rows; c >= 0; c--) {
     for (j = 0; j < cols; ++j) {
-      let cell = document.createElement("div");
-      cell.setAttribute("id", `${c + "," + j}`);
-      container.appendChild(cell).className = `grid-item ${c + "," + j}`;
-      let space = document.createElement("div");
-      space.setAttribute("id", "space");
-      //      space.style.width = "30px";
-      //      space.style.height = "30px";
-      cell.appendChild(space);
+      id = `${c + "," + j}`;
+      let val = locations.get(id);
+      let cell = document.createElement("tr");
+      container.appendChild(cell).className = `grid-item ${id}`;
+      if (val !== undefined) {
+        id = val;
+        let img = document.createElement("img");
+        img.src = "planet.png";
+      }
+      cell.setAttribute("id", id);
+      cell.style.width = "100px";
+      cell.style.height = "100px";
     }
   }
 }
@@ -75,17 +103,15 @@ function retrieveCell() {
 }
 
 function updateShip(x, y, lastCell) {
+  saveNode = document.getElementById("ship");
+  let elem = getElement(x, y);
+  elem.setAttribute("id", "ship");
   saveCell.id = lastCell.id;
   document.getElementById("yCoord").value = x;
   document.getElementById("xCoord").value = y;
-  saveNode = document.getElementById("ship");
   if (saveNode !== null) {
     saveNode.id = `${lastCell.x + "," + lastCell.y}`;
   }
-  let elem = getElement(x, y);
-  elem.setAttribute("id", "ship");
-  // localStorage.setItem("yCoord", toString(x));
-  // localStorage.setItem("xCoord", toString(y));
 }
 
 function updateCell(x, y, cellId) {
@@ -145,8 +171,3 @@ function shipInit() {
   let y = currentCell.y;
   updateShip(x, y, currentCell);
 }
-
-let ship = {
-  xCoord: 0,
-  yCoord: 0
-};

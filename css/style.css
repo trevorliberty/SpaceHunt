@@ -25,15 +25,38 @@
   grid-template-columns: repeat(var(--grid-cols), 1fr);
   align-self: center;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
 }
 
 .grid-item {
   padding: 0.5em;
   border: 1px solid #ddd;
-  background-color: black;
+  height: 100px;
+  width: 100px;
+  background-color: transparent;
 }
 
+#asteroid {
+  background-image: url(../asteroid.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+#station {
+  background-image: url(../station.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+#planet {
+  background-image: url(../planet.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
 .modal {
   display: none;
   position: fixed;
