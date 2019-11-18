@@ -4,10 +4,11 @@ var celestialArtifacts = {
   stations: []
 };
 
-planetArry = [];
-asteroidArry = [];
-stationArry = [];
+var planetArry = [];
+var asteroidArry = [];
+var stationArry = [];
 
+//Save a planet to the array of planets//
 function savePlanet(id) {
   var planet = {
     Name: $("#new_planet" + id).val(),
@@ -15,13 +16,12 @@ function savePlanet(id) {
     YCoord: parseInt($("#planetYCoord_" + id).val())
   };
 
-  planet.coords = `${planet.XCoord + "," + planet.YCoord}`;
-
   var arryStr = { Planet: planet };
   planetArry.push(arryStr);
   console.log(planetArry);
 }
 
+//Remove a planet from the array of planets//
 function deletePlanet(id) {
   var planet = {
     Name: $("#new_planet" + id).val(),
@@ -33,6 +33,7 @@ function deletePlanet(id) {
   console.log(planetArry);
 }
 
+//Save a astriod to the array of asteriod//
 function saveAsteroid(id) {
   var asteroid = {
     Name: $("#new_asteroid" + id).val(),
@@ -40,48 +41,48 @@ function saveAsteroid(id) {
     YCoord: parseInt($("#asteroidYCoord_" + id).val())
   };
 
-  asteroid.coords = `${asteroid.XCoord + "," + asteroid.YCoord}`;
   var arryStr = { Astroid: asteroid };
   asteroidArry.push(arryStr);
   console.log(asteroidArry);
 }
 
+//Remove a asteriod from the array of asteriod//
 function deleteAsteroid(id) {
   var asteroid = {
     Name: $("#new_asteroid" + id).val(),
     XCoord: parseInt($("#asteroidXCoord_" + id).val()),
-    YCoord: parseInt($("#asteroidYCoord_" + id).val()),
-    coords: `${XCoord + "," + YCoord}`
+    YCoord: parseInt($("#asteroidYCoord_" + id).val())
   };
 
   asteroidArry.splice(id - 1, 1);
   console.log(asteroidArry);
 }
 
+//Save a sapace station to the array of stations//
 function saveStation(id) {
   var station = {
     Name: $("#new_station" + id).val(),
     XCoord: parseInt($("#stationXCoord_" + id).val()),
     YCoord: parseInt($("#stationYCoord_" + id).val())
   };
-  station.coords = `${station.XCoord + "," + station.YCoord}`;
 
   var arryStr = { Station: station };
   stationArry.push(arryStr);
   console.log(stationArry);
 }
 
+//Remove a space station from the array of stations//
 function deleteStation(id) {
   var station = {
     Name: $("#new_station" + id).val(),
     XCoord: parseInt($("#stationXCoord_" + id).val()),
-    YCoord: parseInt($("#stationYCoord_" + id).val()),
-    coords: `${XCoord + "," + YCoord}`
+    YCoord: parseInt($("#stationYCoord_" + id).val())
   };
   stationArry.splice(id - 1, 1);
   console.log(stationArry);
 }
 
+//Adds the planet input fields to the settings.html page//
 function addPlanet() {
   var newPlanetNum = parseInt($("#planets").val()) + 1;
   var newPlanetInput =
@@ -104,6 +105,7 @@ function addPlanet() {
   console.log("Added Planet" + newPlanetNum);
 }
 
+//Removes the planet input fields to the settings.html page//
 function removePlanet(id) {
   var lastPlanetNum = parseInt(id);
   if (lastPlanetNum >= 1) {
@@ -114,6 +116,7 @@ function removePlanet(id) {
   }
 }
 
+//Adds the asteriod input fields to the settings.html page//
 function addAsteroid() {
   var newAsteroidNum = parseInt($("#asteroids").val()) + 1;
   var newAsteroidInput =
@@ -138,6 +141,7 @@ function addAsteroid() {
   console.log("Added Asteroid" + newAsteroidNum);
 }
 
+//Removes the planet input fields to the settings.html page//
 function removeAsteroid(id) {
   var lastAsteroidNum = parseInt(id);
   if (lastAsteroidNum >= 1) {
@@ -148,6 +152,7 @@ function removeAsteroid(id) {
   }
 }
 
+//Adds the space station input fields to the settings.html page//
 function addStation() {
   var newStationNum = parseInt($("#stations").val()) + 1;
   var newStationInput =
@@ -172,6 +177,7 @@ function addStation() {
   console.log("Added Station" + newStationNum);
 }
 
+//Removes the planet input fields to the settings.html page//
 function removeStation(id) {
   var lastStationNum = parseInt(id);
   if (lastStationNum >= 1) {
@@ -182,6 +188,7 @@ function removeStation(id) {
   }
 }
 
+//Saves the celertial artifacts to the local storage//
 function setArtifacts() {
   celestialArtifacts.planets = planetArry;
   celestialArtifacts.asteroids = asteroidArry;
