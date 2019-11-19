@@ -151,32 +151,40 @@ function updateSupplies(amount) {
 }
 function load() {
   configObj = JSON.parse(localStorage.getItem("config"));
+
   localStorage.setItem("energy", configObj.energy);
   localStorage.setItem("supplies", configObj.supplies);
   localStorage.setItem("credits", configObj.credits);
   localStorage.setItem("xCoord", configObj.xCoord);
   localStorage.setItem("yCoord", configObj.yCoord);
+  localStorage.setItem("xSize", configObj.xSize);
+  localStorage.setItem("ySize", configObj.ySize);
   var dies = configObj.dies;
   localStorage.setItem("dies", JSON.stringify(dies));
   var wormholeFixed = configObj.wormholeFixed;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
+
+  var xSize = parseInt(localStorage.getItem("xSize"));
+  var ySize = parseInt(localStorage.getItem("ySize"));
+
   document.getElementById("energy").value = parseInt(
     localStorage.getItem("energy")
   );
   document.getElementById("supplies").value = parseInt(
     localStorage.getItem("supplies")
   );
-  //document.getElementById("credits").value = parseInt(localStorage.getItem('credits'));
   document.getElementById("xCoord").value = parseInt(
     localStorage.getItem("xCoord")
   );
   document.getElementById("yCoord").value = parseInt(
     localStorage.getItem("yCoord")
   );
-  makeboard(size, size + 1);
+
+  makeboard(xSize, (ySize + 1));
   saveCell.id = "0,0";
   energy = localStorage.getItem("energy");
   supplies = localStorage.getItem("supplies");
+  //credit = localStorage.getItem("credits");
   shipInit();
   document
     .getElementById("ship")
