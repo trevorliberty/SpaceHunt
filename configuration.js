@@ -6,6 +6,8 @@ var config = {
     yCoord : "0",
     dies : true,
     wormholeFixed : true,
+    xSize : "128",
+    ySize : "128"
 };
 
 function configure() {
@@ -15,6 +17,9 @@ function configure() {
     config.credits = parseInt(document.getElementById("credits").value);
     config.xCoord = parseInt(document.getElementById("x").value);
     config.yCoord = parseInt(document.getElementById("y").value);
+    config.xSize = parseInt(document.getElementById("xSize").value);
+    config.ySize = parseInt(document.getElementById("ySize").value);
+
 
     if((!document.getElementById('dying').checked && !document.getElementById('godMode').checked) || (!document.getElementById('fixedWormhole').checked && !document.getElementById('randomWormhole').checked)) {
         alert("Please select which player mode && wormhole behavior");

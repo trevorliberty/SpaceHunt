@@ -52,7 +52,14 @@ document.onkeydown = function(e) {
   ) {
     if (e.keyCode == 39) {
       //right
+      
       moveSpacecraft(90, 1);
+      if(!sensorPaused){
+        sensor();
+      }else{
+        sensorPaused = true;
+        sensor();
+      }
       9;
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
@@ -62,6 +69,12 @@ document.onkeydown = function(e) {
     } else if (e.keyCode == 37) {
       //left
       moveSpacecraft(270, 1);
+      if(!sensorPaused){
+        sensor();
+      }else{
+        sensorPaused = true;
+        sensor();
+      }
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
@@ -70,6 +83,12 @@ document.onkeydown = function(e) {
     } else if (e.keyCode == 38) {
       //up
       moveSpacecraft(0, 1);
+      if(!sensorPaused){
+        sensor();
+      }else{
+        sensorPaused = true;
+        sensor();
+      }
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
@@ -78,6 +97,12 @@ document.onkeydown = function(e) {
     } else if (e.keyCode == 40) {
       //down
       moveSpacecraft(180, 1);
+      if(!sensorPaused){
+        sensor();
+      }else{
+        sensorPaused = true;
+        sensor();
+      }
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
@@ -121,7 +146,6 @@ function retrieveCell() {
 function updateShip(x, y, lastCell) {
   saveNode = document.getElementById("ship");
   let elem = getElement(x, y);
-  visited.push(elem.classList[1]);
   elem.setAttribute("id", "ship");
   saveCell.id = lastCell.id;
   document.getElementById("yCoord").value = x;
@@ -151,32 +175,41 @@ function updateSupplies(amount) {
 }
 function load() {
   configObj = JSON.parse(localStorage.getItem("config"));
+
   localStorage.setItem("energy", configObj.energy);
   localStorage.setItem("supplies", configObj.supplies);
   localStorage.setItem("credits", configObj.credits);
   localStorage.setItem("xCoord", configObj.xCoord);
   localStorage.setItem("yCoord", configObj.yCoord);
+  localStorage.setItem("xSize", configObj.xSize);
+  localStorage.setItem("ySize", configObj.ySize);
   var dies = configObj.dies;
   localStorage.setItem("dies", JSON.stringify(dies));
   var wormholeFixed = configObj.wormholeFixed;
   localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
+
+  var xSize = parseInt(localStorage.getItem("xSize"));
+  var ySize = parseInt(localStorage.getItem("ySize"));
+
   document.getElementById("energy").value = parseInt(
     localStorage.getItem("energy")
   );
   document.getElementById("supplies").value = parseInt(
     localStorage.getItem("supplies")
   );
-  //document.getElementById("credits").value = parseInt(localStorage.getItem('credits'));
   document.getElementById("xCoord").value = parseInt(
     localStorage.getItem("xCoord")
   );
   document.getElementById("yCoord").value = parseInt(
     localStorage.getItem("yCoord")
   );
-  makeboard(size, size + 1);
+
+  size = xSize;
+  makeboard(xSize, ySize + 1);
   saveCell.id = "0,0";
   energy = localStorage.getItem("energy");
   supplies = localStorage.getItem("supplies");
+  //credit = localStorage.getItem("credits");
   shipInit();
   document
     .getElementById("ship")
