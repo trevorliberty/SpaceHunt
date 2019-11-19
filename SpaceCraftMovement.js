@@ -7,7 +7,7 @@ function moveSpacecraft(angle, distance) {
   if (angle === 0) {
     if (parseInt(x + distance) > size) {
       //fallen off the world
-      return teleportShip(0, y, obj, distance);
+      return teleportShip(x, y, obj, distance);
     } else {
       x += distance;
     }
