@@ -52,7 +52,14 @@ document.onkeydown = function(e) {
   ) {
     if (e.keyCode == 39) {
       //right
+      
       moveSpacecraft(90, 1);
+      if(!sensorPaused){
+        sensor();
+      }else{
+        sensorPaused = true;
+        sensor();
+      }
       9;
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
@@ -62,6 +69,12 @@ document.onkeydown = function(e) {
     } else if (e.keyCode == 37) {
       //left
       moveSpacecraft(270, 1);
+      if(!sensorPaused){
+        sensor();
+      }else{
+        sensorPaused = true;
+        sensor();
+      }
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
@@ -70,6 +83,12 @@ document.onkeydown = function(e) {
     } else if (e.keyCode == 38) {
       //up
       moveSpacecraft(0, 1);
+      if(!sensorPaused){
+        sensor();
+      }else{
+        sensorPaused = true;
+        sensor();
+      }
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
@@ -78,6 +97,12 @@ document.onkeydown = function(e) {
     } else if (e.keyCode == 40) {
       //down
       moveSpacecraft(180, 1);
+      if(!sensorPaused){
+        sensor();
+      }else{
+        sensorPaused = true;
+        sensor();
+      }
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
