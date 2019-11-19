@@ -7,6 +7,7 @@ function checkEnergy() {
     ) {
       alert("You silly! You ran out of energy! You will not be  resurrected.");
       //game ends
+      window.location.href = "index.html";
     }
   }
 }
