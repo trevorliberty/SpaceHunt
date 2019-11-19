@@ -52,7 +52,7 @@ document.onkeydown = function(e) {
   ) {
     if (e.keyCode == 39) {
       //right
-      
+
       moveSpacecraft(90, 1);
       if(!sensorPaused){
         sensor();
