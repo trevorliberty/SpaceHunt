@@ -121,7 +121,6 @@ function retrieveCell() {
 function updateShip(x, y, lastCell) {
   saveNode = document.getElementById("ship");
   let elem = getElement(x, y);
-  visited.push(elem.classList[1]);
   elem.setAttribute("id", "ship");
   saveCell.id = lastCell.id;
   document.getElementById("yCoord").value = x;
@@ -180,7 +179,8 @@ function load() {
     localStorage.getItem("yCoord")
   );
 
-  makeboard(xSize, (ySize + 1));
+  size = xSize;
+  makeboard(xSize, ySize + 1);
   saveCell.id = "0,0";
   energy = localStorage.getItem("energy");
   supplies = localStorage.getItem("supplies");
