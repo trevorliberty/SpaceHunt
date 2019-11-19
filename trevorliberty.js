@@ -75,14 +75,8 @@ function makeboard(rows, cols) {
   for (c = rows; c >= 0; c--) {
     for (j = 0; j < cols; ++j) {
       id = `${c + "," + j}`;
-      let val = locations.get(id);
       let cell = document.createElement("tr");
       container.appendChild(cell).className = `grid-item ${id}`;
-      if (val !== undefined) {
-        id = val;
-        let img = document.createElement("img");
-        img.src = "planet.png";
-      }
       cell.setAttribute("id", id);
       cell.style.width = "100px";
       cell.style.height = "100px";
