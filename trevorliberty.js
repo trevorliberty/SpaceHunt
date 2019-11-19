@@ -51,16 +51,36 @@ document.onkeydown = function(e) {
     if (e.keyCode == 39) {
       //right
       moveSpacecraft(90, 1);
-      9;
+      9;      
+      currentCell = retrieveCell();
+      if(isArtifact((currentCell.x + "," + currentCell.y))){
+        //Move back to previous CP
+        moveSpacecraft(270,1);
+      }
     } else if (e.keyCode == 37) {
-      moveSpacecraft(270, 1);
       //left
+      moveSpacecraft(270, 1);
+      currentCell = retrieveCell();
+      if(isArtifact((currentCell.x + "," + currentCell.y))){
+        //Move back to previous CP
+        moveSpacecraft(90,1);
+      }      
     } else if (e.keyCode == 38) {
       //up
       moveSpacecraft(0, 1);
+      currentCell = retrieveCell();
+      if(isArtifact((currentCell.x + "," + currentCell.y))){
+        //Move back to previous CP
+        moveSpacecraft(180,1);
+      }
     } else if (e.keyCode == 40) {
-      moveSpacecraft(180, 1);
       //down
+      moveSpacecraft(180, 1);
+      currentCell = retrieveCell();
+      if(isArtifact((currentCell.x + "," + currentCell.y))){
+        //Move back to previous CP
+        moveSpacecraft(0,1);
+      }      
     }
     document
       .getElementById("ship")
