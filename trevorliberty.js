@@ -7,6 +7,8 @@ planets = artifacts.planets;
 asteroids = artifacts.asteroids;
 stations = artifacts.stations;
 
+visited = [];
+
 if (planets) {
   for (let i = 0; i < planets.length; ++i) {
     let coordinate = planets[i].Planet.coords;
@@ -51,36 +53,36 @@ document.onkeydown = function(e) {
     if (e.keyCode == 39) {
       //right
       moveSpacecraft(90, 1);
-      9;      
+      9;
       currentCell = retrieveCell();
-      if(isArtifact((currentCell.x + "," + currentCell.y))){
+      if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
-        moveSpacecraft(270,1);
+        moveSpacecraft(270, 1);
       }
     } else if (e.keyCode == 37) {
       //left
       moveSpacecraft(270, 1);
       currentCell = retrieveCell();
-      if(isArtifact((currentCell.x + "," + currentCell.y))){
+      if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
-        moveSpacecraft(90,1);
-      }      
+        moveSpacecraft(90, 1);
+      }
     } else if (e.keyCode == 38) {
       //up
       moveSpacecraft(0, 1);
       currentCell = retrieveCell();
-      if(isArtifact((currentCell.x + "," + currentCell.y))){
+      if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
-        moveSpacecraft(180,1);
+        moveSpacecraft(180, 1);
       }
     } else if (e.keyCode == 40) {
       //down
       moveSpacecraft(180, 1);
       currentCell = retrieveCell();
-      if(isArtifact((currentCell.x + "," + currentCell.y))){
+      if (isArtifact(currentCell.x + "," + currentCell.y)) {
         //Move back to previous CP
-        moveSpacecraft(0,1);
-      }      
+        moveSpacecraft(0, 1);
+      }
     }
     document
       .getElementById("ship")
@@ -119,6 +121,7 @@ function retrieveCell() {
 function updateShip(x, y, lastCell) {
   saveNode = document.getElementById("ship");
   let elem = getElement(x, y);
+  visited.push(elem.classList[1]);
   elem.setAttribute("id", "ship");
   saveCell.id = lastCell.id;
   document.getElementById("yCoord").value = x;
@@ -126,6 +129,7 @@ function updateShip(x, y, lastCell) {
   if (saveNode !== null) {
     saveNode.id = `${lastCell.x + "," + lastCell.y}`;
   }
+  document.getElementById("log").textContent += elem.classList[1] + "\n";
 }
 
 function updateCell(x, y, cellId) {
