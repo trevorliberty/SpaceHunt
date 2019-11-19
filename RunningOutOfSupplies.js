@@ -11,12 +11,11 @@ function checkSupplies() {
       alert("Attention! Your Supplies almost done!");
         
     }
-    else if (localStorage.getItem("dies")){
-        if(supplies <= 0 ||
-           docSupplies.value <= 0 ||
-           localStorage.getItem("supplies") <= 0) {
-            
-      alert("Your Supplies is done! Game Over!"); // game ends
+    else if (supplies <= 0 ||
+             docSupplies.value <= 0 ||
+             localStorage.getItem("supplies") <= 0)){
+        if(localStorage.getItem("dies")） {
+           alert("Your Supplies is done! Game Over!"); // game ends
             
         }
     }
