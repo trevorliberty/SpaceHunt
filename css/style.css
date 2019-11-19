@@ -100,6 +100,12 @@ body {
   background-color: transparent;
 }
 
+.sensor{
+  border-radius: 30px;
+  color: #4e4b4b;
+  background-color: #ff0000ad;
+}
+
 /*
             Stylized background borrowed from Nazar The Vis Azhar, via https://codepen.io/NazarTheVis/pen/zqXMqP
          */
