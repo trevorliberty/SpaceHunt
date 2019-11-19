@@ -1,6 +1,4 @@
 function moveSpacecraft(angle, distance) {
-  checkEnergy();
-  checkSupplies();
   let obj = retrieveCell();
   let x = obj.x;
   let y = obj.y;
@@ -43,7 +41,9 @@ function moveSpacecraft(angle, distance) {
     updateEnergy(-(distance * 10));
     updateSupplies(-2);
   }
-
+  checkEnergy();
+  checkSupplies();
+  return;
   //0 is east
   //90 north
   //180 west
