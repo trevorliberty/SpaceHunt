@@ -42,7 +42,7 @@ function placePlanets(artifact) {
     planet.setAttribute("src", "planet.png");
     planet.style.width = "100%";
     planet.style.visibility = "hidden";
-    container.appendChild(planet).className = `artifact`;
+    container.appendChild(planet).className = `artifact`+id;
     artifactIds.push(id);
 }
 
@@ -56,7 +56,7 @@ function placeAsteriods(artifact) {
     asteriod.setAttribute("src", "asteriod.png");
     asteriod.style.width = "100%";
     asteriod.style.visibility = "hidden";
-    container.appendChild(asteriod).className = `artifact`;
+    container.appendChild(asteriod).className = `artifact`+id;
     artifactIds.push(id);
 }
 
@@ -70,7 +70,7 @@ function placeStations(artifact) {
     station.setAttribute("src", "station.png");
     station.style.width = "100%";
     station.style.visibility = "hidden";
-    container.appendChild(station).className = `artifact`;
+    container.appendChild(station).className = `artifact`+id;
     artifactIds.push(id);
 }
 
@@ -113,6 +113,7 @@ function isArtifact(shipId){
  	});
  	return returnValue;
 }
+
 var sensorPaused = true;
 setInterval(sensor, 500);
 function sensorOnOff(){
@@ -129,30 +130,92 @@ function sensorOnOff(){
 	}
 }
 
-
 function sensor(){
 	currentCell = retrieveCell();
-
-	$.each(artifactIds, function( key, ids ) {
-		if(!sensorPaused){
-			console.log("sensor active");
-			if((currentCell.x + "," + (currentCell.y+1)) == ids){$(".artifact").css({"visibility": "visible"});}
-			if((currentCell.x + "," + (currentCell.y+2)) == ids){$(".artifact").css({"visibility": "visible"});}
-			if((currentCell.x + "," + (currentCell.y-1)) == ids){$(".artifact").css({"visibility": "visible"});}
-			if((currentCell.x + "," + (currentCell.y-2)) == ids){$(".artifact").css({"visibility": "visible"});}
-
-			if(((currentCell.x+1) + "," + currentCell.y) == ids){$(".artifact").css({"visibility": "visible"});}
-			if(((currentCell.x+2) + "," + currentCell.y) == ids){$(".artifact").css({"visibility": "visible"});}
-			if(((currentCell.x-1) + "," + currentCell.y) == ids){$(".artifact").css({"visibility": "visible"});}
-			if(((currentCell.x-2) + "," + currentCell.y) == ids){$(".artifact").css({"visibility": "visible"});}
-
-			if(((currentCell.x+1) + "," + (currentCell.y+1)) == ids){$(".artifact").css({"visibility": "visible"});}
-			if(((currentCell.x+1) + "," + (currentCell.y-1)) == ids){$(".artifact").css({"visibility": "visible"});}
-			if(((currentCell.x-1) + "," + (currentCell.y+1)) == ids){$(".artifact").css({"visibility": "visible"});}
-			if(((currentCell.x-1) + "," + (currentCell.y-1)) == ids){$(".artifact").css({"visibility": "visible"});}
-		}else if(sensorPaused){
-			$(".artifact").css({"visibility": "hidden"});
-		}
-	});
+	shipId = (currentCell.x + "," + currentCell.y);
+	showArtifact(shipId);
 }
-//I can't seem to get this to work... when I change the class name to anything else it doesnt work.
+
+function showArtifact(shipId){
+	returnValue = false;
+ 	$.each(artifactsObj, function( key, value ) {
+  		if(key == "planets"){
+  			$.each(value, function(key1, value1){
+  				$.each(value1, function(key2, planet){
+  					var planetId = (planet.XCoord + "," + planet.YCoord);
+  					if(!sensorPaused){
+					//console.log("sensor active");
+						if((currentCell.x + "," + (currentCell.y+1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+						if((currentCell.x + "," + (currentCell.y+2)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+						if((currentCell.x + "," + (currentCell.y-1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+						if((currentCell.x + "," + (currentCell.y-2)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+
+						if(((currentCell.x+1) + "," + currentCell.y) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x+2) + "," + currentCell.y) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-1) + "," + currentCell.y) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-2) + "," + currentCell.y) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+
+						if(((currentCell.x+1) + "," + (currentCell.y+1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x+1) + "," + (currentCell.y-1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-1) + "," + (currentCell.y+1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-1) + "," + (currentCell.y-1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});}
+					}else if(sensorPaused){
+						$( "img[class*='"+planetId+"']" ).css({"visibility": "hidden"});
+					}
+  				});
+  			});
+  		}else if(key == "asteroids"){
+  			$.each(value, function(key1, value1){
+  				$.each(value1, function(key2, asteriod){
+					var asteriodId = (asteriod.XCoord + "," + asteriod.YCoord);
+					if(!sensorPaused){
+					//console.log("sensor active");
+						if((currentCell.x + "," + (currentCell.y+1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+						if((currentCell.x + "," + (currentCell.y+2)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+						if((currentCell.x + "," + (currentCell.y-1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+						if((currentCell.x + "," + (currentCell.y-2)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+
+						if(((currentCell.x+1) + "," + currentCell.y) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x+2) + "," + currentCell.y) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-1) + "," + currentCell.y) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-2) + "," + currentCell.y) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+
+						if(((currentCell.x+1) + "," + (currentCell.y+1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x+1) + "," + (currentCell.y-1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-1) + "," + (currentCell.y+1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-1) + "," + (currentCell.y-1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});}
+					}else if(sensorPaused){
+						$( "img[class*='"+asteriodId+"']" ).css({"visibility": "hidden"});
+					}
+  				});
+  			});
+  		}else if(key == "stations"){
+  			$.each(value, function(key1, value1){
+  				$.each(value1, function(key2, station){
+  					var stationId = (station.XCoord + "," + station.YCoord);
+  					if(!sensorPaused){
+					//console.log("sensor active");
+						if((currentCell.x + "," + (currentCell.y+1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+						if((currentCell.x + "," + (currentCell.y+2)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+						if((currentCell.x + "," + (currentCell.y-1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+						if((currentCell.x + "," + (currentCell.y-2)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+
+						if(((currentCell.x+1) + "," + currentCell.y) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x+2) + "," + currentCell.y) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-1) + "," + currentCell.y) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-2) + "," + currentCell.y) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+
+						if(((currentCell.x+1) + "," + (currentCell.y+1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x+1) + "," + (currentCell.y-1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-1) + "," + (currentCell.y+1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+						if(((currentCell.x-1) + "," + (currentCell.y-1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});}
+					}else if(sensorPaused){
+						$( "img[class*='"+stationId+"']" ).css({"visibility": "hidden"});
+					}
+
+  				});
+  			});
+
+		};
+ 	});
+}
