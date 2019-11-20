@@ -2,12 +2,19 @@ function moveSpacecraft(angle, distance) {
   let obj = retrieveCell();
   let x = obj.x;
   let y = obj.y;
+  check = JSON.parse(localStorage.getItem("wormholeFixed"));
 
   distance = parseInt(distance);
   if (angle === 0) {
     if (parseInt(x + distance) > size) {
       //fallen off the world
-      return teleportShip(0, y, obj, distance);
+      if(check) {
+        return teleportShip(0, y, obj, distance);
+      }
+      else {
+        return random(obj, distance);
+      }
+
     } else {
       x += distance;
     }
@@ -15,14 +22,24 @@ function moveSpacecraft(angle, distance) {
     if (parseInt(y + distance) > size) {
       //fallen off the world
       //wormhole options
-      return teleportShip(x, 0, obj, distance);
+      if(check) {
+        return teleportShip(x, 0, obj, distance);
+      }
+      else {
+        return random(obj, distance);
+      }
     } else {
       y += distance;
     }
   } else if (angle === 180) {
     if (parseInt(x - distance) < 0) {
       //fallen off the world
-      return teleportShip(size, y, obj, distance);
+      if(check) {
+        return teleportShip(size, y, obj, distance);
+      }
+      else {
+        return random(obj, distance);
+      }
     } else {
       x -= distance;
     }
@@ -30,7 +47,12 @@ function moveSpacecraft(angle, distance) {
     //angle is 270
     if (parseInt(y - distance) < 0) {
       //fallen off the world
-      return teleportShip(x, size, obj, distance);
+      if(check) {
+        return teleportShip(x, size, obj, distance);
+      }
+      else {
+        return random(obj, distance);
+      }
     } else {
       y -= distance;
     }
@@ -48,6 +70,14 @@ function moveSpacecraft(angle, distance) {
   //90 north
   //180 west
   //270 south
+}
+
+function random(obj, distance) {
+  var size = JSON.parse(localStorage.getItem("xSize"));   //Size of current board for constraining random numbers generated
+  var x = Math.floor(Math.random() * (size + 1));
+  var y = Math.floor(Math.random() * (size + 1));
+
+  return teleportShip(x, y, obj, distance);
 }
 function teleportShip(x, y, obj, distance) {
   updateShip(x, y, obj);
