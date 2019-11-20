@@ -21,15 +21,15 @@ function checkSupplies() {
     }
   }*/
     //otherwise, nodie game type
-    /*if(localStorage.getItem("dies"))
+    if(localStorage.getItem("dies"))
     {
         if(supplies <= 0||
-           document/getElementById("supplies") <= 0||
-           LocalStorage.getItem("supplies") <= 0){
+           document.getElementById("supplies") <= 0||
+           localStorage.getItem("supplies") <= 0){
             alert("Your Supplies run out! Game is over!");
             window.location.href = "index.html";
         }
-    }*/
-    alert("gg");
+    }
+    //alert("gg");
   
 }
