@@ -24,7 +24,7 @@ function checkSupplies() {
     if(localStorage.getItem("dies"))
     {
         if(supplies <= 0||
-           document.getElementById("supplies") <= 0||
+           document.getElementById("supplies").value <= 0||
            localStorage.getItem("supplies") <= 0){
             alert("Your Supplies run out! Game is over!");
             window.location.href = "index.html";
