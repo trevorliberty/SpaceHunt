@@ -1,6 +1,6 @@
 function checkEnergy() {
   check = JSON.parse(localStorage.getItem("dies"));
-  if (check) {      //If check is true, player dies and game ends, else continues 
+  if (check) {      //If check is true, player dies and game ends, else continues
     if (
       energy <= 0 ||
       document.getElementById("energy").value <= 0 ||
