@@ -2,7 +2,7 @@ function checkSupplies() {
 //  var gameType = document.UI.gameType.value;
 //  if (gameType == 0) {
     //regular game type
-    var docSupplies = document.getElementById("supplies");
+    //var docSupplies = document.getElementById("supplies");
       
     /*if (supplies == 2 ||
         docSupplies.value == 2 ||
