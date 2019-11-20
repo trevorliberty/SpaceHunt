@@ -171,7 +171,7 @@ function updateEnergy(amount) {
 function updateSupplies(amount) {
   let elem = document.getElementById("supplies");
   elem.value = parseInt(elem.value) + amount + "%";
-  supplies += amount;
+  //supplies += amount;
 }
 function load() {
   configObj = JSON.parse(localStorage.getItem("config"));
