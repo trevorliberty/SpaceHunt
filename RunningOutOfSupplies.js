@@ -21,7 +21,7 @@ function checkSupplies() {
     }
   }*/
     //otherwise, nodie game type
-    if(localStorage.getItem("dies"))
+    /*if(localStorage.getItem("dies"))
     {
         if(supplies <= 0||
            document/getElementById("supplies") <= 0||
@@ -29,6 +29,7 @@ function checkSupplies() {
             alert("Your Supplies run out! Game is over!");
             window.location.href = "index.html";
         }
-    }
+    }*/
+    alert("gg");
   
 }
