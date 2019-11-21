@@ -62,21 +62,6 @@
             id="navbardrop"
             data-toggle="dropdown"
           >
-            Save
-          </a>
-          <div class="dropdown-menu">
-            Save File Name:
-            <input class="dropdown-item" id="savestate-name"></input>
-            <input type="submit" value="Save" onClick="saveState()">
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbardrop"
-            data-toggle="dropdown"
-          >
            Dashboard 
           </a>
           <div class="dropdown-menu" id="inventory">
@@ -156,6 +141,9 @@
           </div>
         </li>
       </ul>
+      <button id="save" onClick="saveState()">
+          Save
+        </button>
       <button class="sensor" value="off" onclick="sensorOnOff()">Sensor</button>
     </nav>
     <div class="stars twinkling">
