@@ -103,7 +103,17 @@ function isArtifact(shipId){
   					var stationId = (station.XCoord + "," + station.YCoord);
   					if(shipId == stationId){
   						returnValue = true;
-  						alert("You have collided with a space station!");
+  						if(prompt("Would you like to dock with this space station? Y or N") == 'Y'){
+  							if($("#energy").val() < 1000){
+  								updateEnergy(Math.abs($("#energy").val() - 1010));
+  							}else{
+  								updateEnergy(500);
+  							}
+  							console.log($("#supplies").val());
+  							updateSupplies(100);
+  							
+  							alert("You have docked at the space station and have gained energy and supplies");
+  						}
   					}
 
   				});
