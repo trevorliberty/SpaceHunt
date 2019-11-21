@@ -106,6 +106,13 @@ body {
   background-color: #ff0000ad;
 }
 
+#save{
+  border-radius: 30px;
+  color: #4e4b4b;
+  background-color: #ec660dad;
+  margin: 5px;
+}
+
 /*
             Stylized background borrowed from Nazar The Vis Azhar, via https://codepen.io/NazarTheVis/pen/zqXMqP
          */

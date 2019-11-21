@@ -6,7 +6,7 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="bootstrap.min.js"></script>
 
     <script src="configuration.js"></script>
     <script src="trevorliberty.js"></script>
@@ -52,21 +52,6 @@
           </a>
           <div class="dropdown-menu">
             <input class="dropdown-item" id="supplies" disabled="true"><!--value = 0 >-->
-          </input>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbardrop"
-            data-toggle="dropdown"
-          >
-            Save
-          </a>
-          <div class="dropdown-menu">
-            Name:
-            <input class="dropdown-item" id="savestate-name" value = "" >
           </input>
           </div>
         </li>
@@ -147,11 +132,18 @@
           <br>
           <span>Captain's Log</span>
           <textarea id="log" disabled="true"></textarea>
+          <input type="text" value="" id="credits">
+          <input type="text" value="" id="maxSize">
+          <input type="text" value="" id="wormholeFixed">
+          <input type="text" value="" id="dies">
         </p>
       </form>
           </div>
         </li>
       </ul>
+      <button id="save" onClick="saveState()">
+          Save
+        </button>
       <button class="sensor" value="off" onclick="sensorOnOff()">Sensor</button>
     </nav>
     <div class="stars twinkling">
