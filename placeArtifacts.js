@@ -101,19 +101,27 @@ function isArtifact(shipId){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
   					var stationId = (station.XCoord + "," + station.YCoord);
-  					if(shipId == stationId){
-  						returnValue = true;
+  					if(shipId == stationId){  						
   						if(prompt("Would you like to dock with this space station? Y or N") == 'Y'){
   							if($("#energy").val() < 1000){
   								updateEnergy(Math.abs($("#energy").val() - 1010));
   							}else{
   								updateEnergy(500);
   							}
-  							console.log($("#supplies").val());
   							updateSupplies(100);
-  							
   							alert("You have docked at the space station and have gained energy and supplies");
+  							if(prompt("Would you like to play a game of chance to gain some credits?") == 'Y'){
+  								var ranNum = Math.floor(Math.random() * 15);
+  								if(ranNum >= 8){
+  									var credits = $("#credits").val();
+  									$("#credits").val("100"+ credits);
+  									alert("Congrats! You earned 100 credits.");
+  								}else{
+  									alert("You did not win this game of chance.");
+  								}
+  							}
   						}
+  						returnValue = true;
   					}
 
   				});
