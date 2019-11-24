@@ -101,20 +101,19 @@ function isArtifact(shipId){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
   					var stationId = (station.XCoord + "," + station.YCoord);
-  					if(shipId == stationId){  						
+  					if(shipId == stationId){
+  						//Dock at the space station  						
   						if(prompt("Would you like to dock with this space station? Y or N") == 'Y'){
-  							if($("#energy").val() < 1000){
-  								updateEnergy(Math.abs($("#energy").val() - 1010));
-  							}else{
-  								updateEnergy(500);
-  							}
-  							updateSupplies(100);
+							updateEnergy(Math.abs($("#energy").val() - 1010));
+  							var supplies = $("#supplies").val(); 
+  							updateSupplies(100 - supplies + 2);
   							alert("You have docked at the space station and have gained energy and supplies");
-  							if(prompt("Would you like to play a game of chance to gain some credits?") == 'Y'){
+  							//Game of chance -- picks a random number between 1 and 15, if it is higher than 7, you win
+  							if(prompt("Would you like to play a game of chance to gain some credits? Y or N") == 'Y'){
   								var ranNum = Math.floor(Math.random() * 15);
   								if(ranNum >= 8){
   									var credits = $("#credits").val();
-  									$("#credits").val("100"+ credits);
+  									$("#credits").val(100+ credits);
   									alert("Congrats! You earned 100 credits.");
   								}else{
   									alert("You did not win this game of chance.");
