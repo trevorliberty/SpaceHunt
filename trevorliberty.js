@@ -170,7 +170,7 @@ function updateEnergy(amount) {
 }
 function updateSupplies(amount) {
   let elem = document.getElementById("supplies");
-  elem.value = parseInt(elem.value) + amount + "%";
+  elem.value = parseInt(elem.value) + amount;
   supplies += amount;
 }
 function load() {
