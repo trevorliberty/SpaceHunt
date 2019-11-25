@@ -83,7 +83,9 @@ function isArtifact(shipId){
   					var planetId = (planet.XCoord + "," + planet.YCoord);
   					if(shipId == planetId){
   						returnValue = true;
-  						alert("You have collided with a planet!");
+  						alert("You have collided with a planet and have taken damage!");
+  						updateEnergy(-20);
+  						updateSupplies(-10);
   					}
   				});
   			});
@@ -93,7 +95,9 @@ function isArtifact(shipId){
 					var asteriodId = (asteriod.XCoord + "," + asteriod.YCoord);
   					if(shipId == asteriodId){
   						returnValue = true;
-  						alert("You have collided with an asteriod!");
+  						alert("You have collided with an asteriod and have taken damage!");
+  						updateEnergy(-20);
+  						updateSupplies(-10);
   					}
   				});
   			});
@@ -101,7 +105,7 @@ function isArtifact(shipId){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
   					var stationId = (station.XCoord + "," + station.YCoord);
-  					if(shipId == stationId){
+  					if(shipId == stationId && $("#distance").val() == 1){
   						//Dock at the space station  						
   						if(prompt("Would you like to dock with this space station? Y or N") == 'Y'){
 							updateEnergy(Math.abs($("#energy").val() - 1010));
@@ -120,6 +124,11 @@ function isArtifact(shipId){
   								}
   							}
   						}
+  						returnValue = true;
+  					}else if(shipId == stationId && $("#distance").val() > 1){
+  						alert("You have collided with a Space Sation and have taken some damage!");
+  						updateEnergy(-10);
+  						updateSupplies(-10);
   						returnValue = true;
   					}
 
