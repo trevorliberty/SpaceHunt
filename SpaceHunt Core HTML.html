@@ -29,63 +29,26 @@
       </a>
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbardrop"
-            data-toggle="dropdown"
-          >
-            Energy
-          </a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Energy</a>
           <div class="dropdown-menu">
             <input class="dropdown-item" type="number"id="energy" disabled="true"></input>
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbardrop"
-            data-toggle="dropdown"
-          >
-            Supplies
-          </a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Supplies</a>
           <div class="dropdown-menu">
             <input class="dropdown-item" id="supplies" disabled="true"><!--value = 0 >-->
           </input>
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbardrop"
-            data-toggle="dropdown"
-          >
-           Dashboard 
-          </a>
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Dashboard</a>
           <div class="dropdown-menu" id="inventory">
       <form name="UI">
-        <p>
-          Current Location: 
-          <br>X
-          <input
-            id="xCoord"
-            style="color:black"
-            type="text"
-            name="xValue"
-            size="4"
-            value="0"
-          />
-          Y
-          <input
-            id="yCoord"
-            style="color:black"
-            type="text"
-            name="yValue"
-            size="4"
-            value="0"
-          />
+        <p>Current Location: 
+          <br>
+          X <input id="xCoord" style="color:black" type="text" name="xValue" size="4" value="0"/>
+          Y <input id="yCoord" style="color:black" type="text" name="yValue" size="4" value="0"/>
         </p>
 
         <p>
@@ -96,39 +59,14 @@
         MAKE A MOVE
         <p>
           Distance
-          <input
-            style="color:black"
-            type="number"
-            name="distance"
-            size="4"
-            value=""
-          />
+          <input style="color:black" type="number" id="distance" size="4" value="1"/>
         </p>
         <p>
-          <input
-            style="color:black"
-            type="button"
-            value="0"
-            onclick="moveSpacecraft(0,distance.value)"
-          />
-          <input
-            style="color:black"
-            type="button"
-            value="90"
-            onclick="moveSpacecraft(90,distance.value)"
-          />
-          <input
-            style="color:black"
-            type="button"
-            value="180"
-            onclick="moveSpacecraft(180,distance.value)"
-          />
-          <input
-            style="color:black"
-            type="button"
-            value="270"
-            onclick="moveSpacecraft(270,distance.value)"
-          />
+          <input style="color:black" class="movement" type="button" value="Up"/>
+          <input style="color:black" class="movement" type="button" value="Down"/>
+          <input style="color:black" class="movement" type="button" value="Left"/>
+          <input style="color:black" class="movement" type="button" value="Right"/>
+          
           <br>
           <span>Captain's Log</span>
           <textarea id="log" disabled="true"></textarea>
