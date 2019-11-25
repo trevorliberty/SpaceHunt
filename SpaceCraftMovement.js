@@ -85,6 +85,8 @@ function teleportShip(x, y, obj, distance) {
   updateSupplies(-2);
 }
 
+
+//Buttons in dashboard dropdown
 $("document").ready(function(){
   $('.movement').on("click", function(){
       var dis = $("#distance").val();
@@ -111,6 +113,7 @@ $("document").ready(function(){
   })
 });
 
+//Function for the onkeydown (arrow keys)
 function moveMore(angle, dis){
       if(angle == "Up"){
         angle = 0;
