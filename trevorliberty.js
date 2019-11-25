@@ -43,7 +43,10 @@ saveCell = {
   yCoord: 0,
   id: "0,0"
 };
+
+
 document.onkeydown = function(e) {
+  var distance = $("#distance").val();
   if (
     e.keyCode === 39 ||
     e.keyCode === 38 ||
@@ -52,8 +55,12 @@ document.onkeydown = function(e) {
   ) {
     if (e.keyCode == 39) {
       //right
-
-      moveSpacecraft(90, 1);
+      if(distance > 1){
+        moveMore(90, distance);
+      }else{
+        moveSpacecraft(90, 1);
+      }
+      
       if(!sensorPaused){
         sensor();
       }else{
@@ -68,7 +75,11 @@ document.onkeydown = function(e) {
       }
     } else if (e.keyCode == 37) {
       //left
-      moveSpacecraft(270, 1);
+      if(distance > 1){
+        moveMore(270, distance);
+      }else{
+        moveSpacecraft(270, 1);
+      }
       if(!sensorPaused){
         sensor();
       }else{
@@ -82,7 +93,11 @@ document.onkeydown = function(e) {
       }
     } else if (e.keyCode == 38) {
       //up
-      moveSpacecraft(0, 1);
+      if(distance > 1){
+        moveMore(0, distance);
+      }else{
+        moveSpacecraft(0, 1);
+      }
       if(!sensorPaused){
         sensor();
       }else{
@@ -96,7 +111,11 @@ document.onkeydown = function(e) {
       }
     } else if (e.keyCode == 40) {
       //down
-      moveSpacecraft(180, 1);
+      if(distance > 1){
+        moveMore(180, distance);
+      }else{
+        moveSpacecraft(180, 1);
+      }
       if(!sensorPaused){
         sensor();
       }else{
