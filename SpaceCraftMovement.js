@@ -84,3 +84,49 @@ function teleportShip(x, y, obj, distance) {
   updateEnergy(-(distance * 10));
   updateSupplies(-2);
 }
+
+$("document").ready(function(){
+  $('.movement').on("click", function(){
+      var dis = $("#distance").val();
+      var angle = $(this).val();
+      console.log("Angle: " + angle);
+      if(angle == "Up"){
+        angle = 0;
+      }else if(angle == "Down"){
+        angle = 180;
+      }else if(angle == "Left"){
+        angle = 270;
+      }else if(angle == "Right"){
+        angle = 90;
+      }
+
+      if(dis > 1){
+        for(var i = 0; i <= dis; ++i){
+          var currentCell = retrieveCell();
+          moveSpacecraft(angle,1);
+          isArtifact(currentCell.x + "," + currentCell.y);
+        }
+      }
+      
+  })
+});
+
+function moveMore(angle, dis){
+      if(angle == "Up"){
+        angle = 0;
+      }else if(angle == "Down"){
+        angle = 180;
+      }else if(angle == "Left"){
+        angle = 270;
+      }else if(angle == "Right"){
+        angle = 90;
+      }
+
+      if(dis > 1){
+        for(var i = 0; i <= dis; ++i){
+          var currentCell = retrieveCell();
+          moveSpacecraft(angle,1);
+          isArtifact(currentCell.x + "," + currentCell.y);
+        }
+      }
+}
