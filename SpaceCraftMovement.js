@@ -1,3 +1,7 @@
+function moveMax() {
+  let prevX = villain.xCoord;
+  let prevY = villain.yCoord;
+}
 function moveSpacecraft(angle, distance) {
   let obj = retrieveCell();
   let x = obj.x;
@@ -8,13 +12,11 @@ function moveSpacecraft(angle, distance) {
   if (angle === 0) {
     if (parseInt(x + distance) > size) {
       //fallen off the world
-      if(check) {
+      if (check) {
         return teleportShip(0, y, obj, distance);
-      }
-      else {
+      } else {
         return random(obj, distance);
       }
-
     } else {
       x += distance;
     }
@@ -22,10 +24,9 @@ function moveSpacecraft(angle, distance) {
     if (parseInt(y + distance) > size) {
       //fallen off the world
       //wormhole options
-      if(check) {
+      if (check) {
         return teleportShip(x, 0, obj, distance);
-      }
-      else {
+      } else {
         return random(obj, distance);
       }
     } else {
@@ -34,10 +35,9 @@ function moveSpacecraft(angle, distance) {
   } else if (angle === 180) {
     if (parseInt(x - distance) < 0) {
       //fallen off the world
-      if(check) {
+      if (check) {
         return teleportShip(size, y, obj, distance);
-      }
-      else {
+      } else {
         return random(obj, distance);
       }
     } else {
@@ -47,10 +47,9 @@ function moveSpacecraft(angle, distance) {
     //angle is 270
     if (parseInt(y - distance) < 0) {
       //fallen off the world
-      if(check) {
+      if (check) {
         return teleportShip(x, size, obj, distance);
-      }
-      else {
+      } else {
         return random(obj, distance);
       }
     } else {
@@ -73,7 +72,7 @@ function moveSpacecraft(angle, distance) {
 }
 
 function random(obj, distance) {
-  var size = JSON.parse(localStorage.getItem("xSize"));   //Size of current board for constraining random numbers generated
+  var size = JSON.parse(localStorage.getItem("xSize")); //Size of current board for constraining random numbers generated
   var x = Math.floor(Math.random() * (size + 1));
   var y = Math.floor(Math.random() * (size + 1));
 
@@ -85,51 +84,49 @@ function teleportShip(x, y, obj, distance) {
   updateSupplies(-2);
 }
 
-
 //Buttons in dashboard dropdown
-$("document").ready(function(){
-  $('.movement').on("click", function(){
-      var dis = $("#distance").val();
-      var angle = $(this).val();
-      console.log("Angle: " + angle);
-      if(angle == "Up"){
-        angle = 0;
-      }else if(angle == "Down"){
-        angle = 180;
-      }else if(angle == "Left"){
-        angle = 270;
-      }else if(angle == "Right"){
-        angle = 90;
-      }
+$("document").ready(function() {
+  $(".movement").on("click", function() {
+    var dis = $("#distance").val();
+    var angle = $(this).val();
+    console.log("Angle: " + angle);
+    if (angle == "Up") {
+      angle = 0;
+    } else if (angle == "Down") {
+      angle = 180;
+    } else if (angle == "Left") {
+      angle = 270;
+    } else if (angle == "Right") {
+      angle = 90;
+    }
 
-      if(dis > 1){
-        for(var i = 0; i <= dis; ++i){
-          var currentCell = retrieveCell();
-          moveSpacecraft(angle,1);
-          isArtifact(currentCell.x + "," + currentCell.y);
-        }
+    if (dis > 1) {
+      for (var i = 0; i <= dis; ++i) {
+        var currentCell = retrieveCell();
+        moveSpacecraft(angle, 1);
+        isArtifact(currentCell.x + "," + currentCell.y);
       }
-      
-  })
+    }
+  });
 });
 
 //Function for the onkeydown (arrow keys)
-function moveMore(angle, dis){
-      if(angle == "Up"){
-        angle = 0;
-      }else if(angle == "Down"){
-        angle = 180;
-      }else if(angle == "Left"){
-        angle = 270;
-      }else if(angle == "Right"){
-        angle = 90;
-      }
+function moveMore(angle, dis) {
+  if (angle == "Up") {
+    angle = 0;
+  } else if (angle == "Down") {
+    angle = 180;
+  } else if (angle == "Left") {
+    angle = 270;
+  } else if (angle == "Right") {
+    angle = 90;
+  }
 
-      if(dis > 1){
-        for(var i = 0; i <= dis; ++i){
-          var currentCell = retrieveCell();
-          moveSpacecraft(angle,1);
-          isArtifact(currentCell.x + "," + currentCell.y);
-        }
-      }
+  if (dis > 1) {
+    for (var i = 0; i <= dis; ++i) {
+      var currentCell = retrieveCell();
+      moveSpacecraft(angle, 1);
+      isArtifact(currentCell.x + "," + currentCell.y);
+    }
+  }
 }
