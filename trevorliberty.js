@@ -6,10 +6,14 @@ locations = new Map();
 planets = artifacts.planets;
 asteroids = artifacts.asteroids;
 stations = artifacts.stations;
+<<<<<<< HEAD
 villain = {
   xCoord: size - 1,
   yCoord: size - 1
 };
+=======
+meteors = artifacts.meteors;
+>>>>>>> 17c646e988f7fbd4f26f4f5e1e86bfc0f35a8822
 
 visited = [];
 
@@ -30,6 +34,12 @@ if (stations) {
     let coordinate = stations[i].Station.coords;
     locations.set(coordinate, "station");
   }
+}
+if(meteors) {
+    for(let i = 0; i < meteors.length; ++i) {
+        let coordinate = meteors[i].Meteor.coords;
+        locations.set(coordinate, "meteor");
+    }
 }
 window.addEventListener("keydown", function(e) {
   if (

@@ -1,12 +1,14 @@
 var celestialArtifacts = {
   planets: [],
   asteroids: [],
-  stations: []
+  stations: [],
+  meteors: []
 };
 
 var planetArry = [];
 var asteroidArry = [];
 var stationArry = [];
+var meteorArry = [];
 
 //Save a planet to the array of planets//
 function savePlanet(id) {
@@ -81,6 +83,28 @@ function deleteStation(id) {
   stationArry.splice(id - 1, 1);
   console.log(stationArry);
 }
+//Save a meteor storm to the arry of meteors
+function saveMeteor(id) {
+    var meteor = {
+    Name: $("#new_meteor" + id).val(),
+    XCoord: parseInt($("#meteorXCoord_" + id).val()),
+    YCoord: parseInt($("#meteorYCoord_" + id).val())
+    };
+    var arrStr = {Meteor: meteor};
+    meteorArry.push(arrStr);
+    console.log(meteorArry);
+}
+
+//Remove a meteor storm from the array of meteor
+function deleteMeteor(id){
+    var meteor = {
+        Name: $("#new_meteor" + id).val(),
+        XCoord: parseInt($("#meteorXCoord_" + id).val()),
+        YCoord: parseInt($("#meteorYCoord_" + id).val())
+    };
+    meteorArry.splice(id - 1, 1);
+    console.log(meteorArry);
+}
 
 //Adds the planet input fields to the settings.html page//
 function addPlanet() {
@@ -141,7 +165,7 @@ function addAsteroid() {
   console.log("Added Asteroid" + newAsteroidNum);
 }
 
-//Removes the planet input fields to the settings.html page//
+//Removes the asteorid input fields to the settings.html page//
 function removeAsteroid(id) {
   var lastAsteroidNum = parseInt(id);
   if (lastAsteroidNum >= 1) {
@@ -188,12 +212,48 @@ function removeStation(id) {
   }
 }
 
+//Adds the meteor input fields to the settings.html page
+function addMeteor() {
+    var newMeteorNum = parseInt($("#meteors").val()) + 1;
+    var newMeteorInput =
+    "<div class='new_meteor" +
+    newMeteorNum +
+    "'><input type='text' id='new_meteor" +
+    newMeteorNum +
+    "' style='margin:10px;' value='Meteor Storm " +
+    newMeteorNum +
+    "'><input type='text'id='meteorXCoord_" +
+    newMeteorNum +
+    "'style='margin:5px;' size='10' placeholder='X-Coordinate'><input type='text'id='meteorYCoord_" +
+    newMeteorNum +
+    "'style='margin:5px;'size='10' placeholder='Y-Coordinate'><a href='#' id='" +
+    newMeteorNum +
+    "' onclick='saveMeteor(this.id)'>Save</a><a href='#' id='" +
+    newMeteorNum +
+    "' onclick='removeMeteor(this.id)'>Remove</a></div>";
+    
+    $("#newMeteors").append(newMeteorInput);
+    $("#meteors").val(newMeteorNum);
+    console.log("Added Meteor" + newMeteorNum);
+}
+
+//Removes the meteor input fields to the settings.html page//
+function removeMeteor(id) {
+    var lastMeteorNum = parseInt(id);
+    if (lastMeteorNum >= 1) {
+        $(".new_meteor" + lastMeteorNum).remove();
+        $("#meteors").val(lastMeteorNum - 1);
+        deleteMeteor(id);
+        console.log("Removed Meteor" + lastMeteorNum);
+    }
+}
+
 //Saves the celertial artifacts to the local storage//
 function setArtifacts() {
   celestialArtifacts.planets = planetArry;
   celestialArtifacts.asteroids = asteroidArry;
   celestialArtifacts.stations = stationArry;
-
+  celestialArtifacts.meteors = meteorArry;
   localStorage.setItem(
     "celestialArtifacts",
     JSON.stringify(celestialArtifacts)
