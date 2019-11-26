@@ -30,7 +30,7 @@ function loadArtifacts(){
 
            }else if(key == "meteors"){
            $.each(value, function(key1,value1){
-                  $.each(value1, function(key2, meteor)){
+                  $.each(value1, function(key2, meteor){
                   placeMeteors(meteor);
                   });
             });
@@ -270,8 +270,7 @@ function showArtifact(shipId){
                   $( "img[class*='"+meteorId+"']" ).css({"visibility": "hidden"});
                   }
               });
-           });
-        }else if(key == "stations"){
+           }else if(key == "stations"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
   					var stationId = (station.XCoord + "," + station.YCoord);
