@@ -39,6 +39,9 @@ if (meteors) {
   }
 }
 window.addEventListener("keydown", function(e) {
+  document
+    .getElementById("ship")
+    .scrollIntoView({ behavior: "instant", block: "center" });
   if (
     (e.keyCode == 38 ||
       e.keyCode == 39 ||
