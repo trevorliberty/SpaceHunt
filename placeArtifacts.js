@@ -28,7 +28,13 @@ function loadArtifacts(){
   				});
   			});
 
-		};
+           }else if(key == "meteors"){
+           $.each(value, function(key1,value1){
+                  $.each(value1, function(key2, meteor)){
+                  placeMeteors(meteor);
+                  });
+            });
+        };
  	});
  }
 
@@ -74,6 +80,19 @@ function placeStations(artifact) {
     artifactIds.push(id);
 }
 
+//Places meteor storm on the mapp
+function placeMeteors(artifact) {
+    var id = (artifact.XCoord + "," + artifact.YCoord);
+    console.log("id: " = id);
+    const container = document.getElementById(id);
+    let meteor = document.createElement("img");
+    meteor.setAttribute("src", "meteor.png");
+    meteor.style.visibility = "hidden";
+    meteor.style.width = "100%";
+    container.appendChild(meteor).className = `artifact`+id;
+    artifactIds.push(id);
+}
+
 function isArtifact(shipId){
 	returnValue = false;
  	$.each(artifactsObj, function( key, value ) {
@@ -101,7 +120,19 @@ function isArtifact(shipId){
   					}
   				});
   			});
-  		}else if(key == "stations"){
+           }else if(key == "meteors") {
+           $.each(value, function(key1,value1){
+                  $.each(value1, function(key2,meteor){
+                         var meteorId = (meteor.XCoord + "," + meteor.YCoord);
+                         if(shipId == meteorId){
+                            returnValue = true;
+                            alert("You have been hit by a meteor storm and damaged!");
+                            updateEnergy(-20);
+                            updateSupplies(-10);
+                         }
+                    });
+                });
+           }else if(key == "stations"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
   					var stationId = (station.XCoord + "," + station.YCoord);
@@ -226,7 +257,30 @@ function showArtifact(shipId){
 					}
   				});
   			});
-  		}else if(key == "stations"){
+        }else if(key == "meteors"){
+           $.each(value,function(key1,value1){
+                  var meteorId = (meteor.XCoord + "," + meteor.YCoord);
+                  if(!sensorPaused){
+                  if((currentCell.x + "," + (currentCell.y+1)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  if((currentCell.x + "," + (currentCell.y+2)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  if((currentCell.x + "," + (currentCell.y-1)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  if((currentCell.x + "," + (currentCell.y-2)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  
+                  if(((currentCell.x+1) + "," + currentCell.y) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  if(((currentCell.x+2) + "," + currentCell.y) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  if(((currentCell.x-1) + "," + currentCell.y) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  if(((currentCell.x-2) + "," + currentCell.y) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  
+                  if(((currentCell.x+1) + "," + (currentCell.y+1)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  if(((currentCell.x+1) + "," + (currentCell.y-1)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  if(((currentCell.x-1) + "," + (currentCell.y+1)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  if(((currentCell.x-1) + "," + (currentCell.y-1)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  }else if(sensorPaused){
+                  $( "img[class*='"+meteorId+"']" ).css({"visibility": "hidden"});
+                  }
+              });
+           });
+        }else if(key == "stations"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
 					  var stationId = (station.XCoord + "," + station.YCoord);
