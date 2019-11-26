@@ -266,8 +266,11 @@ function showArtifact(shipId){
                   if(((currentCell.x+1) + "," + (currentCell.y-1)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
                   if(((currentCell.x-1) + "," + (currentCell.y+1)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
                   if(((currentCell.x-1) + "," + (currentCell.y-1)) == meteorId){$( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                  }else if(sensorPaused){
+                  $( "img[class*='"+meteorId+"']" ).css({"visibility": "hidden"});
                   }
-                  }
+              });
+           });
         }else if(key == "stations"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
