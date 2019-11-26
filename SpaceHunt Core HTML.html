@@ -15,14 +15,14 @@
 
     <script src="RunningOutOfSupplies.js"></script>
 
+    <script src="placeArtifacts.js"></script>
     <script src="RunningOutOfEnergy.js"></script>
 
     <script src="SpaceCraftMovement.js"></script>
-    <script src="placeArtifacts.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   
-  <body onload="load(), loadArtifacts()"class="stars">
+  <body onload="load()"class="stars">
     <nav class="navbar navbar-expand-sm  bg-custom-2 navbar-dark fixed-top"style="background-image: linear-gradient( 179deg,  rgba(109,19,132,1) 18.4%, rgba(245,135,75,1) 108.3% );">
       <a class="navbar-brand" href="#">
         <img src="spacehunt.png" width="300" height="30" alt="">
@@ -79,7 +79,7 @@
           </div>
         </li>
       </ul>
-      <button id="save" onClick="saveState()">
+      <button id="save" onclick="saveState()">
           Save
         </button>
       <button class="sensor" value="off" onclick="sensorOnOff()">Sensor</button>

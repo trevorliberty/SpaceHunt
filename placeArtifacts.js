@@ -81,7 +81,7 @@ function placeStations(artifact) {
 }
 
 //Places meteor storm on the mapp
-function placeMeteors(artifact) {
+/*function placeMeteors(artifact) {
     var id = (artifact.XCoord + "," + artifact.YCoord);
     console.log("id: " = id);
     const container = document.getElementById(id);
@@ -91,7 +91,7 @@ function placeMeteors(artifact) {
     meteor.style.width = "100%";
     container.appendChild(meteor).className = `artifact`+id;
     artifactIds.push(id);
-}
+}*/
 
 function isArtifact(shipId){
 	returnValue = false;
