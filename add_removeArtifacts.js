@@ -28,7 +28,8 @@ function deletePlanet(id) {
   var planet = {
     Name: $("#new_planet" + id).val(),
     XCoord: parseInt($("#planetXCoord_" + id).val()),
-    YCoord: parseInt($("#planetYCoord_" + id).val())
+    YCoord: parseInt($("#planetYCoord_" + id).val()),
+    seen: false
   };
 
   planetArry.splice(id - 1, 1);
@@ -40,7 +41,8 @@ function saveAsteroid(id) {
   var asteroid = {
     Name: $("#new_asteroid" + id).val(),
     XCoord: parseInt($("#asteroidXCoord_" + id).val()),
-    YCoord: parseInt($("#asteroidYCoord_" + id).val())
+    YCoord: parseInt($("#asteroidYCoord_" + id).val()),
+    seen: false
   };
 
   var arryStr = { Astroid: asteroid };
@@ -53,7 +55,8 @@ function deleteAsteroid(id) {
   var asteroid = {
     Name: $("#new_asteroid" + id).val(),
     XCoord: parseInt($("#asteroidXCoord_" + id).val()),
-    YCoord: parseInt($("#asteroidYCoord_" + id).val())
+    YCoord: parseInt($("#asteroidYCoord_" + id).val()),
+    seen: false
   };
 
   asteroidArry.splice(id - 1, 1);
@@ -65,7 +68,8 @@ function saveStation(id) {
   var station = {
     Name: $("#new_station" + id).val(),
     XCoord: parseInt($("#stationXCoord_" + id).val()),
-    YCoord: parseInt($("#stationYCoord_" + id).val())
+    YCoord: parseInt($("#stationYCoord_" + id).val()),
+    seen: false
   };
 
   var arryStr = { Station: station };
@@ -78,32 +82,35 @@ function deleteStation(id) {
   var station = {
     Name: $("#new_station" + id).val(),
     XCoord: parseInt($("#stationXCoord_" + id).val()),
-    YCoord: parseInt($("#stationYCoord_" + id).val())
+    YCoord: parseInt($("#stationYCoord_" + id).val()),
+    seen: false
   };
   stationArry.splice(id - 1, 1);
   console.log(stationArry);
 }
 //Save a meteor storm to the arry of meteors
 function saveMeteor(id) {
-    var meteor = {
+  var meteor = {
     Name: $("#new_meteor" + id).val(),
     XCoord: parseInt($("#meteorXCoord_" + id).val()),
-    YCoord: parseInt($("#meteorYCoord_" + id).val())
-    };
-    var arrStr = {Meteor: meteor};
-    meteorArry.push(arrStr);
-    console.log(meteorArry);
+    YCoord: parseInt($("#meteorYCoord_" + id).val()),
+    seen: false
+  };
+  var arrStr = { Meteor: meteor };
+  meteorArry.push(arrStr);
+  console.log(meteorArry);
 }
 
 //Remove a meteor storm from the array of meteor
-function deleteMeteor(id){
-    var meteor = {
-        Name: $("#new_meteor" + id).val(),
-        XCoord: parseInt($("#meteorXCoord_" + id).val()),
-        YCoord: parseInt($("#meteorYCoord_" + id).val())
-    };
-    meteorArry.splice(id - 1, 1);
-    console.log(meteorArry);
+function deleteMeteor(id) {
+  var meteor = {
+    Name: $("#new_meteor" + id).val(),
+    XCoord: parseInt($("#meteorXCoord_" + id).val()),
+    YCoord: parseInt($("#meteorYCoord_" + id).val()),
+    seen: false
+  };
+  meteorArry.splice(id - 1, 1);
+  console.log(meteorArry);
 }
 
 //Adds the planet input fields to the settings.html page//
@@ -214,8 +221,8 @@ function removeStation(id) {
 
 //Adds the meteor input fields to the settings.html page
 function addMeteor() {
-    var newMeteorNum = parseInt($("#meteors").val()) + 1;
-    var newMeteorInput =
+  var newMeteorNum = parseInt($("#meteors").val()) + 1;
+  var newMeteorInput =
     "<div class='new_meteor" +
     newMeteorNum +
     "'><input type='text' id='new_meteor" +
@@ -229,21 +236,21 @@ function addMeteor() {
     "' onclick='saveMeteor(this.id)'>Save</a><a href='#' id='" +
     newMeteorNum +
     "' onclick='removeMeteor(this.id)'>Remove</a></div>";
-    
-    $("#newMeteors").append(newMeteorInput);
-    $("#meteors").val(newMeteorNum);
-    console.log("Added Meteor" + newMeteorNum);
+
+  $("#newMeteors").append(newMeteorInput);
+  $("#meteors").val(newMeteorNum);
+  console.log("Added Meteor" + newMeteorNum);
 }
 
 //Removes the meteor input fields to the settings.html page//
 function removeMeteor(id) {
-    var lastMeteorNum = parseInt(id);
-    if (lastMeteorNum >= 1) {
-        $(".new_meteor" + lastMeteorNum).remove();
-        $("#meteors").val(lastMeteorNum - 1);
-        deleteMeteor(id);
-        console.log("Removed Meteor" + lastMeteorNum);
-    }
+  var lastMeteorNum = parseInt(id);
+  if (lastMeteorNum >= 1) {
+    $(".new_meteor" + lastMeteorNum).remove();
+    $("#meteors").val(lastMeteorNum - 1);
+    deleteMeteor(id);
+    console.log("Removed Meteor" + lastMeteorNum);
+  }
 }
 
 //Saves the celertial artifacts to the local storage//

@@ -193,7 +193,9 @@ function showArtifact(shipId){
 							return modifyCaptLog(`Found planet at ${planet.XCoord+','+planet.YCoord}`)
 						}
 					}else if(sensorPaused){
-						$( "img[class*='"+planetId+"']" ).css({"visibility": "hidden"});
+						if(planet.seen === false){
+							$( "img[class*='"+planetId+"']" ).css({"visibility": "hidden"});
+						}
 					}
   				});
   			});
@@ -222,7 +224,8 @@ function showArtifact(shipId){
 							return modifyCaptLog(`Found asteroid at ${asteriod.XCoord+','+asteriod.YCoord}`)
 						}
 					}else if(sensorPaused){
-						$( "img[class*='"+asteriodId+"']" ).css({"visibility": "hidden"});
+						if(asteriod.seen === false)
+							$( "img[class*='"+asteriodId+"']" ).css({"visibility": "hidden"});
 					}
   				});
   			});
@@ -251,7 +254,9 @@ function showArtifact(shipId){
 							return modifyCaptLog(`Found station at ${station.XCoord+','+station.YCoord}`)
 						}
 					}else if(sensorPaused){
-						$( "img[class*='"+stationId+"']" ).css({"visibility": "hidden"});
+						if(station.seen===false){
+							$( "img[class*='"+stationId+"']" ).css({"visibility": "hidden"});
+						}
 					}
 
   				});
