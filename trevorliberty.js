@@ -51,7 +51,6 @@ saveCell = {
   id: "0,0"
 };
 
-
 document.onkeydown = function(e) {
   var distance = $("#distance").val();
   if (
@@ -62,15 +61,15 @@ document.onkeydown = function(e) {
   ) {
     if (e.keyCode == 39) {
       //right
-      if(distance > 1){
+      if (distance > 1) {
         moveMore(90, distance);
-      }else{
+      } else {
         moveSpacecraft(90, 1);
       }
-      
-      if(!sensorPaused){
+
+      if (!sensorPaused) {
         sensor();
-      }else{
+      } else {
         sensorPaused = true;
         sensor();
       }
@@ -82,14 +81,14 @@ document.onkeydown = function(e) {
       }
     } else if (e.keyCode == 37) {
       //left
-      if(distance > 1){
+      if (distance > 1) {
         moveMore(270, distance);
-      }else{
+      } else {
         moveSpacecraft(270, 1);
       }
-      if(!sensorPaused){
+      if (!sensorPaused) {
         sensor();
-      }else{
+      } else {
         sensorPaused = true;
         sensor();
       }
@@ -100,14 +99,14 @@ document.onkeydown = function(e) {
       }
     } else if (e.keyCode == 38) {
       //up
-      if(distance > 1){
+      if (distance > 1) {
         moveMore(0, distance);
-      }else{
+      } else {
         moveSpacecraft(0, 1);
       }
-      if(!sensorPaused){
+      if (!sensorPaused) {
         sensor();
-      }else{
+      } else {
         sensorPaused = true;
         sensor();
       }
@@ -118,14 +117,14 @@ document.onkeydown = function(e) {
       }
     } else if (e.keyCode == 40) {
       //down
-      if(distance > 1){
+      if (distance > 1) {
         moveMore(180, distance);
-      }else{
+      } else {
         moveSpacecraft(180, 1);
       }
-      if(!sensorPaused){
+      if (!sensorPaused) {
         sensor();
-      }else{
+      } else {
         sensorPaused = true;
         sensor();
       }
@@ -179,9 +178,12 @@ function updateShip(x, y, lastCell) {
   if (saveNode !== null) {
     saveNode.id = `${lastCell.x + "," + lastCell.y}`;
   }
-  document.getElementById("log").textContent += elem.classList[1] + "\n";
+  return modifyCaptLog(elem.classList[1]);
 }
 
+function modifyCaptLog(str) {
+  document.getElementById("log").textContent += str + "\n";
+}
 function updateCell(x, y, cellId) {
   //send the id that you want to update the cell into here
   document.getElementById(`${x + "," + y}`);

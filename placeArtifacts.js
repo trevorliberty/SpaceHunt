@@ -201,23 +201,28 @@ function showArtifact(shipId){
   		if(key == "planets"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, planet){
-  					var planetId = (planet.XCoord + "," + planet.YCoord);
+					  var planetId = (planet.XCoord + "," + planet.YCoord);
+					  var flag=false;
   					if(!sensorPaused){
 					//console.log("sensor active");
-						if((currentCell.x + "," + (currentCell.y+1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if((currentCell.x + "," + (currentCell.y+2)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if((currentCell.x + "," + (currentCell.y-1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if((currentCell.x + "," + (currentCell.y-2)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y+1)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y+2)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y-1)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y-2)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2); }
 
-						if(((currentCell.x+1) + "," + currentCell.y) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x+2) + "," + currentCell.y) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-1) + "," + currentCell.y) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-2) + "," + currentCell.y) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + currentCell.y) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+2) + "," + currentCell.y) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-1) + "," + currentCell.y) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-2) + "," + currentCell.y) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 
-						if(((currentCell.x+1) + "," + (currentCell.y+1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x+1) + "," + (currentCell.y-1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-1) + "," + (currentCell.y+1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-1) + "," + (currentCell.y-1)) == planetId){$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + (currentCell.y+1)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + (currentCell.y-1)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-1) + "," + (currentCell.y+1)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-1) + "," + (currentCell.y-1)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+
+						if(flag === true){
+							return modifyCaptLog(`Found planet at ${planet.XCoord+','+planet.YCoord}`)
+						}
 					}else if(sensorPaused){
 						$( "img[class*='"+planetId+"']" ).css({"visibility": "hidden"});
 					}
@@ -227,22 +232,26 @@ function showArtifact(shipId){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, asteriod){
 					var asteriodId = (asteriod.XCoord + "," + asteriod.YCoord);
+					  var flag = false;
 					if(!sensorPaused){
 					//console.log("sensor active");
-						if((currentCell.x + "," + (currentCell.y+1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if((currentCell.x + "," + (currentCell.y+2)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if((currentCell.x + "," + (currentCell.y-1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if((currentCell.x + "," + (currentCell.y-2)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y+1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y+2)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y-1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y-2)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 
-						if(((currentCell.x+1) + "," + currentCell.y) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x+2) + "," + currentCell.y) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-1) + "," + currentCell.y) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-2) + "," + currentCell.y) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + currentCell.y) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+2) + "," + currentCell.y) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-1) + "," + currentCell.y) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-2) + "," + currentCell.y) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 
-						if(((currentCell.x+1) + "," + (currentCell.y+1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x+1) + "," + (currentCell.y-1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-1) + "," + (currentCell.y+1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-1) + "," + (currentCell.y-1)) == asteriodId){$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + (currentCell.y+1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + (currentCell.y-1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-1) + "," + (currentCell.y+1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-1) + "," + (currentCell.y-1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(flag === true){
+							return modifyCaptLog(`Found asteroid at ${asteriod.XCoord+','+asteriod.YCoord}`)
+						}
 					}else if(sensorPaused){
 						$( "img[class*='"+asteriodId+"']" ).css({"visibility": "hidden"});
 					}
@@ -274,23 +283,27 @@ function showArtifact(shipId){
         }else if(key == "stations"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
-  					var stationId = (station.XCoord + "," + station.YCoord);
+					  var stationId = (station.XCoord + "," + station.YCoord);
+					  var flag = false;
   					if(!sensorPaused){
 					//console.log("sensor active");
-						if((currentCell.x + "," + (currentCell.y+1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if((currentCell.x + "," + (currentCell.y+2)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if((currentCell.x + "," + (currentCell.y-1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if((currentCell.x + "," + (currentCell.y-2)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y+1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y+2)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y-1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if((currentCell.x + "," + (currentCell.y-2)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 
-						if(((currentCell.x+1) + "," + currentCell.y) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x+2) + "," + currentCell.y) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-1) + "," + currentCell.y) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-2) + "," + currentCell.y) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + currentCell.y) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+2) + "," + currentCell.y) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-1) + "," + currentCell.y) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-2) + "," + currentCell.y) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 
-						if(((currentCell.x+1) + "," + (currentCell.y+1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x+1) + "," + (currentCell.y-1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-1) + "," + (currentCell.y+1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x-1) + "," + (currentCell.y-1)) == stationId){$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + (currentCell.y+1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + (currentCell.y-1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-1) + "," + (currentCell.y+1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x-1) + "," + (currentCell.y-1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(flag === true){
+							return modifyCaptLog(`Found station at ${station.XCoord+','+station.YCoord}`)
+						}
 					}else if(sensorPaused){
 						$( "img[class*='"+stationId+"']" ).css({"visibility": "hidden"});
 					}
