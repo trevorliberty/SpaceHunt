@@ -14,9 +14,9 @@ function configure(name) {
     saveConfig.credits = document.getElementById('credits').value;
     saveConfig.xCoord = document.getElementById('xCoord').value;
     saveConfig.yCoord = document.getElementById('yCoord').value;
-    saveConfig.maxSize = document.getElementById('maxSize').value;
-    saveConfig.wormholeFixed = document.getElementById('wormholeFixed').value;
-    saveConfig.dies = document.getElementById('dies').value;
+    saveConfig.maxSize = parseInt(localStorage.getItem('maxSize'));
+    saveConfig.wormholeFixed = localStorage.getItem('wormholeFixed');
+    saveConfig.dies = localStorage.getItem('dies');
 
 
     localStorage.setItem(name, JSON.stringify(saveConfig));
@@ -24,9 +24,13 @@ function configure(name) {
 
 function loadSaveState() {
     name = prompt("Enter name to load:");
-    
+
+    localStorage.removeItem('config');
     configObj = JSON.parse(localStorage.getItem(name));
-  
+    localStorage.setItem('config', JSON.stringify(configObj));
+
+    window.location.href = "SpaceHunt Core HTML.html";
+
     localStorage.setItem("energy", configObj.energy);
     localStorage.setItem("supplies", configObj.supplies);
     localStorage.setItem("credits", configObj.credits);
@@ -39,8 +43,7 @@ function loadSaveState() {
     localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
   
     var maxSize = parseInt(localStorage.getItem("maxSize"));
-  
-    /*  
+
     document.getElementById("energy").value = parseInt(
       localStorage.getItem("energy")
     );
@@ -53,8 +56,8 @@ function loadSaveState() {
     document.getElementById("yCoord").value = parseInt(
       localStorage.getItem("yCoord")
     );
-    */
-  
+
+
     size = maxSize;
     makeboard(maxSize, maxSize + 1);
   
@@ -66,4 +69,6 @@ function loadSaveState() {
     document
       .getElementById("ship")
       .scrollIntoView({ behavior: "instant", block: "center" });
-  }
+
+    window.location.href = "SpaceHunt Core HTML.html";
+}

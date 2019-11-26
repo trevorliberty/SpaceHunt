@@ -234,6 +234,7 @@ function load() {
   document
     .getElementById("ship")
     .scrollIntoView({ behavior: "instant", block: "center" });
+
 }
 
 function shipInit() {
