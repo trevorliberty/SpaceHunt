@@ -90,7 +90,7 @@
             <button id="standard" type="reset" class="button" onClick="loadMap()">
               Standard</button
             ><br />
-            <button id="admin" type="reset" class="button" onClick="loadSettings()">
+            <button id="admin" type="reset" class="button" onClick="validate()">
               Administrator
             </button>  <br/>
 
@@ -122,6 +122,17 @@
       function loadSettings() {
         localStorage.setItem("userType", "administrator");
         window.location.href = "Settings.html";
+      }
+
+      function validate() {
+        var pwd = prompt("Enter 'Password': ");
+
+        if(pwd == "Password") {
+          loadSettings();
+        }
+        else {
+          alert("You shall not pass.");
+        }
       }
     </script>
   </body>

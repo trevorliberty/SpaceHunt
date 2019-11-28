@@ -123,16 +123,16 @@
       /><br /><br />
 
       Dying: <br />
-      <input type="checkbox" id="dying" value="true" /><br />
+      <input type="radio" id="dying" value="true" onclick="document.getElementById('godMode').checked = false" checked/><br />
 
       God Mode: <br />
-      <input type="checkbox" id="godMode" value="false" /><br />
+      <input type="radio" id="godMode" value="false" onclick="document.getElementById('dying').checked = false"/><br />
 
       Fixed Wormhole Behavior: <br />
-      <input type="checkbox" id="fixedWormhole" value="true" /><br />
+      <input type="radio" id="fixedWormhole" value="true" onclick="document.getElementById('randomWormhole').checked = false" checked/><br />
 
       Random Wormhole Behavior: <br />
-      <input type="checkbox" id="randomWormhole" value="false" /><br />
+      <input type="radio" id="randomWormhole" value="false" onclick="document.getElementById('fixedWormhole').checked = false"/><br />
 
       <button type="button" onclick="configure(), setArtifacts()">Submit</button>
     </form>

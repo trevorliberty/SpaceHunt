@@ -26,14 +26,14 @@ function configure() {
         if(document.getElementById('dying').checked) {
             config.dies = JSON.parse(document.getElementById('dying').value);
         }
-        else if (document.getElementById('godMode').checked) {
+        else {
             config.dies = JSON.parse(document.getElementById('godMode').value);
         }
 
         if(document.getElementById('fixedWormhole').checked) {
             config.wormholeFixed = JSON.parse(document.getElementById('fixedWormhole').value);
         }
-        else if (document.getElementById('randomWormhole')) {
+        else {
             config.wormholeFixed = JSON.parse(document.getElementById('randomWormhole').value);
         }
 
@@ -43,4 +43,5 @@ function configure() {
 
 
 }
+
 

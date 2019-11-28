@@ -7,18 +7,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="bootstrap.min.js"></script>
-
     <script src="configuration.js"></script>
     <script src="trevorliberty.js"></script>
-
     <script src="micahblasko.js"></script>
-
     <script src="RunningOutOfSupplies.js"></script>
-
     <script src="RunningOutOfEnergy.js"></script>
-
     <script src="SpaceCraftMovement.js"></script>
     <script src="placeArtifacts.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   
@@ -79,10 +75,16 @@
           </div>
         </li>
       </ul>
+
       <button id="save" onClick="saveState()">
           Save
-        </button>
-      <button class="sensor" value="off" onclick="sensorOnOff()">Sensor</button>
+      </button>
+      <button id="sensor" value="off" onclick="sensorOnOff()">
+          Sensor
+      </button>
+      <button id="quit" value="off" onclick="quit()">
+          Quit
+      </button>
     </nav>
     <div class="stars twinkling">
       <br>
@@ -100,5 +102,12 @@
         </div>
       </div>
     </div>
+    <script>
+      function quit() {
+        if(confirm("Would you like to exit the game?")) {
+          window.location.href = "index.html";
+        }
+      }
+    </script>
   </body>
 </html>

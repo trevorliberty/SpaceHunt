@@ -3,7 +3,9 @@ function saveState(){
     configure(prompt("Enter Save Name:"));
 }
 function configure(name) {
+
     var saveConfig = {};
+
     saveConfig.energy = document.getElementById('energy').value;
     saveConfig.supplies = document.getElementById('supplies').value;
     saveConfig.credits = document.getElementById('credits').value;
@@ -12,10 +14,13 @@ function configure(name) {
     saveConfig.maxSize = parseInt(localStorage.getItem('maxSize'));
     saveConfig.wormholeFixed = localStorage.getItem('wormholeFixed');
     saveConfig.dies = localStorage.getItem('dies');
+
     localStorage.setItem(name, JSON.stringify(saveConfig));
 }
 function loadSaveState() {
+
     name = prompt("Enter name to load:");
+
     localStorage.removeItem('config');
     configObj = JSON.parse(localStorage.getItem(name));
     localStorage.setItem('config', JSON.stringify(configObj));
@@ -31,11 +36,15 @@ function loadSaveState() {
     var wormholeFixed = configObj.wormholeFixed;
     localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
     var maxSize = parseInt(localStorage.getItem("maxSize"));
+
     document.getElementById("energy").value = parseInt(
         localStorage.getItem("energy")
     );
     document.getElementById("supplies").value = parseInt(
         localStorage.getItem("supplies")
+    );
+    document.getElementById("credits").value = parseInt(
+        localStorage.getItem("credits")
     );
     document.getElementById("xCoord").value = parseInt(
         localStorage.getItem("xCoord")
@@ -43,12 +52,16 @@ function loadSaveState() {
     document.getElementById("yCoord").value = parseInt(
         localStorage.getItem("yCoord")
     );
+
     size = maxSize;
     makeboard(maxSize, maxSize + 1);
+
     saveCell.id = "0,0";
+
     energy = parseInt(localStorage.getItem("energy"));
     supplies = parseInt(localStorage.getItem("supplies"));
-    //credit = parseInt(localStorage.getItem("credits"));
+    credits = parseInt(localStorage.getItem("credits"));
+
     shipInit();
     document
         .getElementById("ship")
