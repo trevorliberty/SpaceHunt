@@ -3,6 +3,7 @@
   <audio autoplay>
     <source src="space.mp3" type="audio/mpeg" />
   </audio>
+    <script src="add_removeArtifacts.js"></script>
 </head>
 <html>
   <style>
@@ -51,7 +52,7 @@
       z-index: 1;
       text-align: center;
       opacity: 0.90;
-      color: #005fff;
+      color: #187dff;
       font-size: 135px;
       font-family: starnext;
       text-effect: outline;
@@ -129,7 +130,7 @@
 
         <div class="container" id="options">
 
-            <button id="standard" type="reset" class="button" onClick="loadMap()">
+            <button id="standard" type="reset" class="button" onClick="setArtifacts(), loadMap()">
               <p>new game</p>
             </button> <br/>
 
