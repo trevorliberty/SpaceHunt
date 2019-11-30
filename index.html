@@ -50,10 +50,11 @@
     #title {
       z-index: 1;
       text-align: center;
-      color: blue;
-      font-size: 120px;
+      opacity: 0.90;
+      color: #005fff;
+      font-size: 135px;
       font-family: starnext;
-      text-effect: outline ;
+      text-effect: outline;
     }
 
     html,
@@ -70,13 +71,11 @@
     }
 
     .container button {
-      background-color: rgba(0, 0, 225, 0.5);
+      background-color: rgba(0, 0, 225, 0.75);
     }
 
     .button {
       padding-top: 20px;
-      border: rounded;
-      border-style: double;
       width: 550px;
       height: 40px;
       transform: skew(-20deg);
@@ -97,7 +96,8 @@
     }
 
     .container button:hover {
-      background-color: blue;
+      background-color: #297eff;
+        opacity: 0.8;
     }
 
     .container button p:hover {
@@ -121,7 +121,7 @@
   </style>
 
   <body>
-  <script src="micahblasko.js"></script>
+  <script src="loadGame.js"></script>
   <div class="stars">
       <div class="twinkling">
 
@@ -175,7 +175,7 @@
           loadSettings();
         }
         else {
-          alert("You shall not pass.");
+          alert("Incorrect password. Please try again or don't.");
         }
       }
     </script>
