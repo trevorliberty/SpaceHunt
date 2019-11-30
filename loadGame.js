@@ -14,6 +14,7 @@ function configure(name) {
     saveConfig.maxSize = parseInt(localStorage.getItem('maxSize'));
     saveConfig.wormholeFixed = localStorage.getItem('wormholeFixed');
     saveConfig.dies = localStorage.getItem('dies');
+    saveConfig.celestialArtifacts = JSON.parse(localStorage.getItem("celestialArtifacts"));
 
     localStorage.setItem(name, JSON.stringify(saveConfig));
 }
@@ -21,7 +22,10 @@ function loadSaveState() {
 
     name = prompt("Enter name to load:");
 
-    if(!localStorage.getItem(name)) {
+    if(name == 'null') {
+        return;
+    }
+    else if(!localStorage.getItem(name)) {
         alert(name + " could be found.")
         return;
     } else {
@@ -39,6 +43,7 @@ function loadSaveState() {
         var wormholeFixed = configObj.wormholeFixed;
         localStorage.setItem("wormholeFixed", JSON.stringify(wormholeFixed));
         var maxSize = parseInt(localStorage.getItem("maxSize"));
+        localStorage.setItem("celestialArtifacts", JSON.stringify(configObj.celestialArtifacts));
 
         window.location.href = "SpaceHunt Core HTML.html";
 

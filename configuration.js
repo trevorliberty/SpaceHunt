@@ -7,6 +7,7 @@ var config = {
     dies : true,
     wormholeFixed : true,
     maxSize : "128",
+    celestialArtifacts: {},
 };
 
 function configure() {
@@ -19,7 +20,8 @@ function configure() {
     config.maxSize = parseInt(document.getElementById("maxSize").value);
 
 
-    if((!document.getElementById('dying').checked && !document.getElementById('godMode').checked) || (!document.getElementById('fixedWormhole').checked && !document.getElementById('randomWormhole').checked)) {
+    if((!document.getElementById('dying').checked && !document.getElementById('godMode').checked) ||
+        (!document.getElementById('fixedWormhole').checked && !document.getElementById('randomWormhole').checked)) {
         alert("Please select which player mode && wormhole behavior");
     }
     else {
