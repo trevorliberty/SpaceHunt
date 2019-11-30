@@ -1,4 +1,5 @@
 <head>
+  <script type="text/javascript" src="http://livejs.com/live.js"></script>
   <audio autoplay>
     <source src="space.mp3" type="audio/mpeg" />
   </audio>
@@ -34,7 +35,7 @@
       z-index: 1;
       background: transparent url("https://image.ibb.co/ir1DE8/twinkling.png")
         repeat top center;
-      animation: move-twink-back 100s linear infinite;
+      animation: move-twink-back 250s linear infinite;
     }
 
     @keyframes move-twink-back {
@@ -47,10 +48,12 @@
     }
 
     #title {
-      z-index: -1;
+      z-index: 1;
       text-align: center;
-      color: white;
-      font-size: 80px;
+      color: blue;
+      font-size: 120px;
+      font-family: starnext;
+      text-effect: outline ;
     }
 
     html,
@@ -60,22 +63,60 @@
       overflow: hidden;
     }
 
+    .container{
+      text-align: center;
+      margin: auto;
+
+    }
+
+    .container button {
+      background-color: rgba(0, 0, 225, 0.5);
+    }
+
     .button {
-      background-color: #3d3d5c;
-      padding: 20px 60px;
+      padding-top: 20px;
       border: rounded;
       border-style: double;
+      width: 550px;
+      height: 40px;
+      transform: skew(-20deg);
+      padding-bottom: 60px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      cursor: pointer;
+    }
+
+    .container button p {
       text-align: center;
-      width: 200px;
-      padding-bottom: 25px;
-      margin-bottom: 50px;
+      transform: skew(20deg);
+      color: white;
+      font-family: arcade;
+      font-size: 35px;
+      margin: 0 0 0 0;
+      transition: color 0.3s;
+    }
+
+    .container button:hover {
+      background-color: blue;
+    }
+
+    .container button p:hover {
+      color: black;
     }
 
     #options {
       text-align: center;
     }
 
+    @font-face {
+      font-family: 'starnext';
+      src: url('starnext.ttf') format('truetype');
+    }
 
+    @font-face {
+      font-family: 'arcade';
+      src: url('arcade.ttf') format('truetype');
+    }
 
   </style>
 
@@ -83,22 +124,25 @@
   <script src="micahblasko.js"></script>
   <div class="stars">
       <div class="twinkling">
-        <h1 id="title">Space Hunt Adventure</h1>
+
+        <h1 id="title">Space Hunt<br/>Adventure</h1>
 
         <div class="container" id="options">
-          <form>
+
             <button id="standard" type="reset" class="button" onClick="loadMap()">
-              Standard</button
-            ><br />
+              <p>new game</p>
+            </button> <br/>
+
             <button id="admin" type="reset" class="button" onClick="validate()">
-              Administrator
+              <p>dev mode</p>
             </button>  <br/>
 
             <button id="load" type="reset" class="button" onClick="loadSaveState()">
-              Load State
+              <p>load game</p>
             </button>
-           </form>
+
         </div>
+
       </div>
     </div>
 
