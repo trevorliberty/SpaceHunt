@@ -143,8 +143,8 @@ function makeboard(rows, cols) {
       let cell = document.createElement("tr");
       container.appendChild(cell).className = `grid-item ${id}`;
       cell.setAttribute("id", id);
-      cell.style.width = "100px";
-      cell.style.height = "100px";
+      cell.style.width = "50px";
+      cell.style.height = "50px";
     }
   }
 }
@@ -215,6 +215,9 @@ function load() {
   );
   document.getElementById("supplies").value = parseInt(
     localStorage.getItem("supplies")
+  );
+  document.getElementById("credits").value = parseInt(
+    localStorage.getItem("credits")
   );
   document.getElementById("xCoord").value = parseInt(
     localStorage.getItem("xCoord")
