@@ -79,6 +79,7 @@ function random(obj, distance) {
 
   return teleportShip(x, y, obj, distance);
 }
+
 function teleportShip(x, y, obj, distance) {
   updateShip(x, y, obj);
   updateEnergy(-(distance * 10));
@@ -108,8 +109,10 @@ $("document").ready(function(){
           moveSpacecraft(angle,1);
           isArtifact(currentCell.x + "," + currentCell.y);
         }
+      }else{
+          moveSpacecraft(angle,1);
       }
-      
+      document.getElementById("ship").scrollIntoView({ behavior: "instant", block: "center" });
   })
 });
 
