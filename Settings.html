@@ -8,7 +8,7 @@
     <script>
       /*$(document).ready(function(){
 		var storage = window.localStorage;
-		var role = storage.getItem('role');
+		var role = localStorage.getItem('role');
 		if(role !== Admin){
 			console.log("Not Admin");
 			alert("Only Admins can access the settings page");
@@ -30,6 +30,71 @@
         margin: 5px;
       }
 
+      @import "susy";
+      @import "compass/reset";
+
+      .stars,
+      .twinkling,
+      .clouds {
+        position: absolute;
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        color: white;
+      }
+
+      .stars {
+        z-index: 0;
+        background: #000 url("https://image.ibb.co/mjnygo/stars.png") repeat top
+        center;
+      }
+
+      .twinkling {
+        z-index: 1;
+        background: transparent url("https://image.ibb.co/ir1DE8/twinkling.png")
+        repeat top center;
+        animation: move-twink-back 250s linear infinite;
+      }
+
+      @keyframes move-twink-back {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: -10000px 5000px;
+        }
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+
+
+      #title {
+        font-family: starnext;
+        text-align: center;
+        font-size: 100px;
+        color: white;
+        margin-top: 40px;
+        margin-bottom: 40px;
+
+      }
+
+      #box {
+        margin-right: 25%;
+        margin-left: 25%;
+        background-color: rgba(245, 245, 255, 0.1);
+        border-radius: 30px;
+        padding-bottom: 30px;
+      }
+
       a:hover,
       .removePlanet:hover,
       button {
@@ -45,13 +110,117 @@
         background-color: LightGrey;
       }
 
-      h1 {
-        text-align: center;
-      }
-
       form[name="settings"] {
         text-align: center;
       }
+
+      @font-face {
+        font-family: 'starnext';
+        src: url('starnext.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'arcade';
+        src: url('arcade.ttf') format('truetype');
+      }
+
+      h4#celestial {
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+      }
+
+      h4 {
+        background-color: rgba(225, 182, 211, 0.3);
+        font-family: arcade;
+        font-size: larger;
+        color: white;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        margin-bottom: 0px;
+        text-align: center;
+      }
+
+      div.even {
+        background-color: rgba(225, 182, 211, 0.1);
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      div.odd {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      span {
+        font-family: arcade;
+        font-size: small;
+      }
+
+      input {
+        padding: 10px;
+        font-family: arcade;
+        width: 100px;
+        border-radius: 10px;
+      }
+
+      .usettings {
+        margin-left: 50px;
+      }
+
+      #supspan {
+        position: relative;
+        right: 10px;
+      }
+
+      #supbox {
+        position: relative;
+        right: 12px;
+      }
+
+      #credbox {
+        position: relative;
+        right: 8px;
+      }
+
+      #gamsets {
+        margin-top: 0px;
+      }
+
+      #coords {
+        margin-top: 10px;
+      }
+
+      .radio {
+        width: 20px;
+        margin-left: 5px;
+        margin-right: 20px;
+      }
+
+      .buts {
+        margin: 10px;
+      }
+
+      #thebutton {
+        padding: 10px;
+        font-size: 20px;
+        font-family: arcade;
+        color: black;
+        background-color: white;
+        border-radius: 20px;
+      }
+
+      #thebutton:hover {
+        color: blue;
+        background-color: lightblue;
+      }
+
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+
     </style>
     <audio autoplay>
       <source src="space.mp3" type="audio/mpeg" />
@@ -59,82 +228,96 @@
   </head>
 
   <body>
-    <h1>Settings</h1>
-    <form name="settings">
-      <h4>Celestial Artifacts</h4>
 
-      <!--------------------PLANETS-------------------------------->
-      <button type="button" class="addPlanet" onclick="addPlanet()">Add Planet</button>
+    <div class="stars">
+      <div class="twinkling">
 
-      <div id="newPlanets"></div>
-      <input type="hidden" value="0" id="planets" />
+        <div id="wrapper"><h1 id="title">Settings</h1></div>
 
-      <!-------------------ASTEROIDS--------------------------------->
-      <button type="button" class="addAsteroid" onclick="addAsteroid()">Add Asteroid</button>
+        <div id="box">
+          <form name="settings">
+            <h4 id="celestial">Celestial Artifacts</h4>
 
-      <div id="newAsteroids"></div>
-      <input type="hidden" value="0" id="asteroids" />
+            <!--------------------PLANETS-------------------------------->
+            <button type="button" class="addPlanet" onclick="addPlanet()">Add Planet</button>
 
-      <!-------------------SPACE STATIONS--------------------------->
-      <button type="button" class="addSatation" onclick="addStation()">Add Space Station</button>
+            <div id="newPlanets"></div>
+            <input type="hidden" value="0" id="planets" />
 
-      <div id="newStations"></div>
-      <input type="hidden" value="0" id="stations" />
+            <!-------------------ASTEROIDS--------------------------------->
+            <button type="button" class="addAsteroid" onclick="addAsteroid()">Add Asteroid</button>
+
+            <div id="newAsteroids"></div>
+            <input type="hidden" value="0" id="asteroids" />
+
+            <!-------------------SPACE STATIONS--------------------------->
+            <button type="button" class="addSatation" onclick="addStation()">Add Space Station</button>
+
+            <div id="newStations"></div>
+            <input type="hidden" value="0" id="stations" />
 
 
-      <!--------------------USER SETTINGS-------------------------------->
-      <h4>User Settings</h4>
+            <!--------------------USER SETTINGS-------------------------------->
+            <h4>User Settings</h4>
 
-      Energy:
-      <input type="number" id="energy" value="1000" min="1" required /><br />
+            <div class="even">
+              <span>Energy:</span>
+              <input class="usettings" type="number" id="energy" value="1000" min="1" required /><br />
+            </div>
 
-      Supplies:
-      <input type="number" id="supplies" value="100" min="0" required /><br />
+            <div class="odd">
+              <span id="supspan">Supplies:</span>
+              <input id="supbox" class="usettings" type="number" value="100" min="0" required /><br />
+            </div>
 
-      Credits: <input type="number" id="credits" value="100" required /><br />
+            <div class="even">
+              <span>Credits:</span>
+              <input id="credbox" class="usettings" type="number" value="100" required /><br />
+            </div>
 
-      Location: <br />
-      x:
-      <input
-        type="number"
-        id="x"
-        value="0"
-        style="width:50px"
-        min="0"
-        required
-      /><br />
-      y:
-      <input
-        type="number"
-        id="y"
-        value="0"
-        style="width:50px"
-        min="0"
-        required
-      /><br /> <br />
-      Board Size:
-      <input
-        type="number"
-        id="maxSize"
-        value="128"
-        style="width:50px"
-        min="1"
-        required
-      /><br /><br />
+            <div id="location" class="odd">
+              <span id="loc">Starting Location:</span>
+              <div id="coords">
+                <span>X:</span>
+                <input type="number" id="x" value="0" style="width:50px" min="0" required/>
+                <span>Y:</span>
+                <input type="number" id="y" value="0" style="width:50px" min="0" required/>
+              </div>
+            </div>
 
-      Dying: <br />
-      <input type="radio" id="dying" value="true" onclick="document.getElementById('godMode').checked = false" checked/><br />
+            <h4 id="gamsets">Game Settings</h4>
 
-      God Mode: <br />
-      <input type="radio" id="godMode" value="false" onclick="document.getElementById('dying').checked = false"/><br />
+            <div class="even" style="padding-bottom: 0px">
+              <span>Board Size:</span>
+              <input type="number" id="maxSize" value="128" style="width:80px" style="padding-bottom: 0px" min="1" required/> <br/><br/>
+            </div>
 
-      Fixed Wormhole Behavior: <br />
-      <input type="radio" id="fixedWormhole" value="true" onclick="document.getElementById('randomWormhole').checked = false" checked/><br />
+            <div class="odd">
 
-      Random Wormhole Behavior: <br />
-      <input type="radio" id="randomWormhole" value="false" onclick="document.getElementById('fixedWormhole').checked = false"/><br />
+              <span style="font-size: 15px">Play Style:</span>
+              <div class="buts">
+              <span>Mortal</span>
+                <input class="radio" type="radio" id="dying" value="true" onclick="document.getElementById('godMode').checked = false" checked/>
 
-      <button type="button" onclick="configure(), setArtifacts()">Submit</button>
-    </form>
+
+                <span>God Mode</span>
+                <input class="radio" type="radio" id="godMode" value="false" onclick="document.getElementById('dying').checked = false"/><br />
+              </div>
+
+              <span style="font-size: 15px">Wormhole Behavior:</span>
+              <div class="buts">
+                <span>Fixed</span>
+                <input class="radio" type="radio" id="fixedWormhole" value="true" onclick="document.getElementById('randomWormhole').checked = false" checked/>
+
+                <span>Random</span>
+                <input class="radio" type="radio" id="randomWormhole" value="false" onclick="document.getElementById('fixedWormhole').checked = false"/><br />
+              </div>
+            </div>
+
+            <button id="thebutton" type="button" onclick="configure(), setArtifacts()">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
