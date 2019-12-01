@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="configuration.js"></script>
+    <script src="trevorliberty.js"></script>
+    <script src="loadGame.js"></script>
+    <script src="RunningOutOfSupplies.js"></script>
+    <script src="RunningOutOfEnergy.js"></script>
+    <script src="SpaceCraftMovement.js"></script>
+    <script src="placeArtifacts.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  
+  <body onload="load(), loadArtifacts()"class="stars">
+    <nav class="navbar navbar-expand-sm  bg-custom-2 navbar-dark fixed-top"style="background-image: linear-gradient( 179deg,  rgba(109,19,132,1) 18.4%, rgba(245,135,75,1) 108.3% );">
+      <a class="navbar-brand" href="#">
+        <img src="spacehunt.png" width="300" height="30" alt="">
+      </a>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Energy</a>
+          <div class="dropdown-menu">
+            <input class="dropdown-item" type="number"id="energy" disabled="true"></input>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Supplies</a>
+          <div class="dropdown-menu">
+            <input class="dropdown-item" id="supplies" disabled="true"><!--value = 0 >-->
+          </input>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Dashboard</a>
+          <div class="dropdown-menu" id="inventory">
+      <form name="UI">
+        <p>Current Location: 
+          <br>
+          X <input id="xCoord" style="color:black" type="text" name="xValue" size="4" value="0"/>
+          Y <input id="yCoord" style="color:black" type="text" name="yValue" size="4" value="0"/>
+        </p>
+
+        <p>
+          GameType (0-Regular, 1-Never Dies)
+          <input style="color:black" type="text" name="gameType" size="1" />
+        </p>
+        <hr />
+        MAKE A MOVE
+        <p>
+          Distance
+          <input style="color:black" type="number" id="distance" size="4" value="1"/>
+        </p>
+        <p>
+          <input style="color:black" class="movement" type="button" value="Up"/>
+          <input style="color:black" class="movement" type="button" value="Down"/>
+          <input style="color:black" class="movement" type="button" value="Left"/>
+          <input style="color:black" class="movement" type="button" value="Right"/>
+          
+          <br>
+          <span>Captain's Log</span>
+          <textarea id="log" disabled="true"></textarea>
+          <input type="text" id="credits">
+          <input type="text" id="maxSize">
+          <input type="text" id="wormholeFixed">
+          <input type="text" id="dies">
+        </p>
+      </form>
+          </div>
+        </li>
+      </ul>
+
+      <button id="save" onClick="saveState()">
+          Save
+      </button>
+      <button id="sensor" value="off" onclick="sensorOnOff()">
+          Sensor
+      </button>
+      <button id="quit" value="off" onclick="quit()">
+          Quit
+      </button>
+    </nav>
+    <div class="stars twinkling">
+      <br>
+
+      <div class="container h-100 style=background-color:transparent ">
+        <div
+          class="row align-items-center h-100"
+          style="background-color: transparent;"
+        >
+          <div class="col-6 mx-auto" style="background-color: transparent;">
+            <div class="jumbotron" style="background-color:transparent">
+              <table id="container"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function quit() {
+        if(confirm("Would you like to exit the game?")) {
+          window.location.href = "index.html";
+        }
+      }
+    </script>
+  </body>
+</html>

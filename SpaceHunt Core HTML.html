@@ -16,92 +16,115 @@
     <script src="placeArtifacts.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+
   </head>
+  <style>
+    @font-face {
+      font-family: 'starnext';
+      src: url('starnext.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'arcade';
+      src: url('arcade.ttf') format('truetype');
+    }
+  </style>
   
-  <body onload="load(), loadArtifacts()"class="stars">
-    <nav class="navbar navbar-expand-sm  bg-custom-2 navbar-dark fixed-top"style="background-image: linear-gradient( 179deg,  rgba(109,19,132,1) 18.4%, rgba(245,135,75,1) 108.3% );">
-      <a class="navbar-brand" href="#">
-        <img src="spacehunt.png" width="300" height="30" alt="">
-      </a>
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Energy</a>
-          <div class="dropdown-menu">
-            <input class="dropdown-item" type="number"id="energy" disabled="true"></input>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Supplies</a>
-          <div class="dropdown-menu">
-            <input class="dropdown-item" id="supplies" disabled="true"><!--value = 0 >-->
-          </input>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Dashboard</a>
-          <div class="dropdown-menu" id="inventory">
-      <form name="UI">
-        <p>Current Location: 
-          <br>
-          X <input id="xCoord" style="color:black" type="text" name="xValue" size="4" value="0"/>
-          Y <input id="yCoord" style="color:black" type="text" name="yValue" size="4" value="0"/>
-        </p>
-
-        <p>
-          GameType (0-Regular, 1-Never Dies)
-          <input style="color:black" type="text" name="gameType" size="1" />
-        </p>
-        <hr />
-        MAKE A MOVE
-        <p>
-          Distance
-          <input style="color:black" type="number" id="distance" size="4" value="1"/>
-        </p>
-        <p>
-          <input style="color:black" class="movement" type="button" value="Up"/>
-          <input style="color:black" class="movement" type="button" value="Down"/>
-          <input style="color:black" class="movement" type="button" value="Left"/>
-          <input style="color:black" class="movement" type="button" value="Right"/>
-          
-          <br>
-          <span>Captain's Log</span>
-          <textarea id="log" disabled="true"></textarea>
-          <input type="text" id="credits">
-          <input type="text" id="maxSize">
-          <input type="text" id="wormholeFixed">
-          <input type="text" id="dies">
-        </p>
-      </form>
-          </div>
-        </li>
-      </ul>
-
-      <button id="save" onClick="saveState()">
-          Save
-      </button>
-      <button id="sensor" value="off" onclick="sensorOnOff()">
-          Sensor
-      </button>
-      <button id="quit" value="off" onclick="quit()">
-          Quit
-      </button>
-    </nav>
-    <div class="stars twinkling">
-      <br>
-
-      <div class="container h-100 style=background-color:transparent ">
-        <div
-          class="row align-items-center h-100"
-          style="background-color: transparent;"
-        >
-          <div class="col-6 mx-auto" style="background-color: transparent;">
-            <div class="jumbotron" style="background-color:transparent">
-              <table id="container"></table>
-            </div>
-          </div>
-        </div>
+  <body onload="load(), loadArtifacts()"class="stars"> 
+    <div class="header">  
+      <div class="head words">
+        <button id="save" onClick="saveState()">Save</button>        
+        <button id="quit" value="off" onclick="quit()">Quit</button>  
       </div>
     </div>
+      
+<!--Left panel -->
+<div class=lPanel>
+  <span id="space">Space Hunt</span>
+  <br>
+  <span class="words">Captain's Log
+    <textarea id="log" disabled="true"></textarea>
+    <br><br>
+    <button id="sensor" value="off" onclick="sensorOnOff()">Sensor</button>
+  </span>
+</div>
+
+
+<!--Right panel --> 
+<div class="rPanel">  
+  <br><br>
+<!-- 
+        <h5>GameType (0-Regular, 1-Never Dies)</h5>
+        <input style="color:black" type="text" name="gameType" size="1" />
+-->
+
+  <span class="words">Distance per move<br><br>
+  <input class="sups" type="number" id="distance" size="4" value="1"/>
+  </span>
+  <br>      
+  <!--Up button -->
+    <div class="moveButtons">          
+      <div class="btn">
+        <div class="btn-inner">
+          <input type="button" class="movement" value="Up"/>
+        </div>
+      </div><br>
+  <!--Left button -->
+      <div class="btn btn-green">
+        <div class="btn-green-inner">
+          <input type="button" class="movement" value="Left"/>
+        </div>
+      </div>
+  <!--Right button -->
+      <div class="btn btn-green">
+        <div class="btn-green-inner">
+          <input type="button" class="movement" value="Right"/>
+        </div>
+      </div>
+  <!--Down button -->
+      <div class="btn">
+        <div class="btn-inner">
+          <input type="button" class="movement" value="Down"/>
+        </div>
+      </div>
+      <br>
+    </div>
+
+    <span class="words">Current Location: <br><br>     
+  X: <input class="sups" id="xCoord" type="text" name="xValue" size="4" value="0"/>
+  Y: <input class="sups" id="yCoord" type="text" name="yValue" size="4" value="0"/>
+  </span>
+  </div>
+</div>
+
+
+
+
+<!-- Game board -->
+<div class="board">
+  <div class="stars twinkling">
+    <div class="container h-100" style="background-color:transparent">
+        <div class="row align-items-center h-100" style="background-color: transparent;">
+            <div class="" style="background-color:transparent">
+              <table id="container"></table>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="footer">  
+  <div class="foot">       
+    <!-- <input type="text" id="maxSize"/>
+    <input type="text" id="wormholeFixed"/>
+    <input type="text" id="dies"/> -->
+    <span class="words">Energy: <input class="sups" type="number"id="energy" disabled="true"/></span>
+    <span class="words">Supplies: <input class="sups" id="supplies" disabled="true"/></span>
+    <span class="words">Credits: <input class="sups" type="number" id="credits"/></span>
+  </div>
+</div>
+    
     <script>
       function quit() {
         if(confirm("Would you like to exit the game?")) {
