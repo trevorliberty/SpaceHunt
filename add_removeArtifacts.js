@@ -2,13 +2,15 @@ var celestialArtifacts = {
   planets: [],
   asteroids: [],
   stations: [],
-  meteors: []
+  meteors: [],
+  receip: []
 };
 
 var planetArry = [];
 var asteroidArry = [];
 var stationArry = [];
 var meteorArry = [];
+var recipeArry = [];
 
 //Save a planet to the array of planets//
 function savePlanet(id) {
@@ -268,6 +270,19 @@ function randomYCoord(){
   return y;
 }
 
+function setRecipe(){
+    var recipe = {
+      Name: "Koca Kola recipe",
+      XCoord: parseInt(randomXCoord()),
+      YCoord: parseInt(randomYCoord()),
+      seen: false
+  };
+
+  var arryStr = { Recipe: recipe };
+  recipeArry.push(arryStr);
+  console.log(recipe);
+}
+
 function randomArtifacts(){
   //To determine how many of each artifacts should be placed into the game
   var randomNum = Math.floor(Math.random() * 10) + 1;
@@ -308,7 +323,7 @@ function randomArtifacts(){
       counter++;
     }
 
-
+    setRecipe();
 }
 
 //Saves the celertial artifacts to the local storage//
@@ -318,6 +333,7 @@ function setArtifacts() {
   celestialArtifacts.asteroids = asteroidArry;
   celestialArtifacts.stations = stationArry;
   celestialArtifacts.meteors = meteorArry;
+  celestialArtifacts.recipe = recipeArry;
   localStorage.setItem(
     "celestialArtifacts",
     JSON.stringify(celestialArtifacts)

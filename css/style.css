@@ -43,6 +43,7 @@
   max-width: 100%;
   max-height: 100%;
 }
+
 #station {
   background-image: url(../station.png);
   background-repeat: no-repeat;
@@ -50,6 +51,7 @@
   max-width: 100%;
   max-height: 100%;
 }
+
 #planet {
   background-image: url(../planet.png);
   background-repeat: no-repeat;
@@ -57,6 +59,15 @@
   max-width: 100%;
   max-height: 100%;
 }
+
+#recipe{
+  background-image: url(../recipe.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 100%;
+  max-height: 100%;  
+}
+
 .modal {
   display: none;
   position: fixed;
