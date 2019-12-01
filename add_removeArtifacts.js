@@ -15,7 +15,8 @@ function savePlanet(id) {
   var planet = {
     Name: $("#new_planet" + id).val(),
     XCoord: parseInt($("#planetXCoord_" + id).val()),
-    YCoord: parseInt($("#planetYCoord_" + id).val())
+    YCoord: parseInt($("#planetYCoord_" + id).val()),
+    seen: false
   };
 
   var arryStr = { Planet: planet };
@@ -253,8 +254,66 @@ function removeMeteor(id) {
   }
 }
 
+function randomXCoord(){
+  configObj = JSON.parse(localStorage.getItem("config"));
+  var x = Math.floor(Math.random() * configObj.maxSize) + 1; 
+  console.log("X: ", + x);
+  return x;
+}
+
+function randomYCoord(){
+  configObj = JSON.parse(localStorage.getItem("config"));
+  var y = Math.floor(Math.random() * configObj.maxSize) + 1;
+  console.log("Y: " + y);
+  return y;
+}
+
+function randomArtifacts(){
+  //To determine how many of each artifacts should be placed into the game
+  var randomNum = Math.floor(Math.random() * 10) + 1;
+  console.log("Random number of artifacts: " + randomNum);
+  var counter = 1;
+  var i;
+    for(i = 1; i <= randomNum; i++) {
+      var planet = {
+        Name: "Planet" + counter,
+        XCoord: parseInt(randomXCoord()),
+        YCoord: parseInt(randomYCoord()),
+      };
+
+      var arryStr = { Planet: planet };
+      planetArry.push(arryStr);
+      console.log(planetArry);
+
+      var asteroid = {
+        Name: "Asteroid" + counter,
+        XCoord: parseInt(randomXCoord()),
+        YCoord: parseInt(randomYCoord()),
+      };
+
+      var arryStr = { Astroid: asteroid };
+      asteroidArry.push(arryStr);
+      console.log(asteroidArry);
+
+      var station = {
+        Name: "Station" + counter,
+        XCoord: parseInt(randomXCoord()),
+        YCoord: parseInt(randomYCoord()),
+      };
+
+      var arryStr = { Station: station };
+      stationArry.push(arryStr);
+      console.log(stationArry);
+
+      counter++;
+    }
+
+
+}
+
 //Saves the celertial artifacts to the local storage//
 function setArtifacts() {
+  randomArtifacts();
   celestialArtifacts.planets = planetArry;
   celestialArtifacts.asteroids = asteroidArry;
   celestialArtifacts.stations = stationArry;

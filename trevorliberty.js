@@ -64,7 +64,6 @@ document.onkeydown = function(e) {
         sensor();
       } else {
         sensorPaused = true;
-        sensor();
       }
       9;
       currentCell = retrieveCell();
@@ -83,7 +82,6 @@ document.onkeydown = function(e) {
         sensor();
       } else {
         sensorPaused = true;
-        sensor();
       }
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
@@ -101,7 +99,6 @@ document.onkeydown = function(e) {
         sensor();
       } else {
         sensorPaused = true;
-        sensor();
       }
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {
@@ -119,7 +116,6 @@ document.onkeydown = function(e) {
         sensor();
       } else {
         sensorPaused = true;
-        sensor();
       }
       currentCell = retrieveCell();
       if (isArtifact(currentCell.x + "," + currentCell.y)) {

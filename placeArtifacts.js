@@ -35,7 +35,7 @@ function loadArtifacts(){
 //Places planets on the map//
 function placePlanets(artifact) {
 	var id = (artifact.XCoord + "," + artifact.YCoord);
-	console.log("id: " + id);
+	console.log("Artifact: " + artifact.Name + " id: " + id);
 
  	const container = document.getElementById(id);
 	let planet = document.createElement("img");
@@ -49,7 +49,7 @@ function placePlanets(artifact) {
 //Places asteriods on the map//
 function placeAsteriods(artifact) {
 	var id = (artifact.XCoord + "," + artifact.YCoord);
-	console.log("id: " + id);
+	console.log("Artifact: " + artifact.Name + " id: " + id);
 
  	const container = document.getElementById(id);
 	let asteriod = document.createElement("img");
@@ -63,7 +63,7 @@ function placeAsteriods(artifact) {
 //Places space stations on the map//
 function placeStations(artifact) {
 	var id = (artifact.XCoord + "," + artifact.YCoord);
-	console.log("id: " + id);
+	console.log("Artifact: " + artifact.Name + " id: " + id);
 
  	const container = document.getElementById(id);
 	let station = document.createElement("img");
@@ -116,8 +116,8 @@ function isArtifact(shipId){
   							if(prompt("Would you like to play a game of chance to gain some credits? Y or N") == 'Y'){
   								var ranNum = Math.floor(Math.random() * 15);
   								if(ranNum >= 8){
-  									var credits = $("#credits").val();
-  									$("#credits").val(100+ credits);
+  									var credits = parseInt($("#credits").val()) + 100;
+  									$("#credits").val(credits);
   									alert("Congrats! You earned 100 credits.");
   								}else{
   									alert("You did not win this game of chance.");
@@ -154,7 +154,7 @@ function sensorOnOff(){
 		$("#sensor").val("off");
 		//console.log("button value: " + $("#sensor").val());
 		sensorPaused = true;
-		sensor();
+		//sensor();
 	}
 }
 
@@ -190,12 +190,15 @@ function showArtifact(shipId){
 						if(((currentCell.x-1) + "," + (currentCell.y-1)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 
 						if(flag === true){
+              $( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});
 							return modifyCaptLog(`Found planet at ${planet.XCoord+','+planet.YCoord}`)
 						}
 					}else if(sensorPaused){
 						if(planet.seen === false){
 							$( "img[class*='"+planetId+"']" ).css({"visibility": "hidden"});
-						}
+						}else{
+              $( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});
+            }
 					}
   				});
   			});
@@ -221,6 +224,7 @@ function showArtifact(shipId){
 						if(((currentCell.x-1) + "," + (currentCell.y+1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(((currentCell.x-1) + "," + (currentCell.y-1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(flag === true){
+              $( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});
 							return modifyCaptLog(`Found asteroid at ${asteriod.XCoord+','+asteriod.YCoord}`)
 						}
 					}else if(sensorPaused){
@@ -251,6 +255,7 @@ function showArtifact(shipId){
 						if(((currentCell.x-1) + "," + (currentCell.y+1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(((currentCell.x-1) + "," + (currentCell.y-1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(flag === true){
+              $( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});
 							return modifyCaptLog(`Found station at ${station.XCoord+','+station.YCoord}`)
 						}
 					}else if(sensorPaused){
