@@ -59,7 +59,13 @@
   max-width: 100%;
   max-height: 100%;
 }
-
+#meteor {
+    background-image: url(../meteor.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
+    max-height: 100%;
+}
 #recipe{
   background-image: url(../recipe.png);
   background-repeat: no-repeat;
