@@ -171,6 +171,8 @@ function updateShip(x, y, lastCell) {
 }
 
 function modifyCaptLog(str) {
+  var textarea = document.getElementById('log');
+  textarea.scrollTop = textarea.scrollHeight;
   document.getElementById("log").textContent += str + "\n";
 }
 function updateCell(x, y, cellId) {
