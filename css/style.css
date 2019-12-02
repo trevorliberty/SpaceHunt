@@ -136,14 +136,14 @@ body {
 #save{
    border-radius: 30px;
    color: #fff;
-   background-color: #ec660dad;
+   background-color: rgba(0, 161, 236, 0.68);
    margin: 5px;
  }
 
 #quit{
   border-radius: 30px;
   color: #fff;
-  background-color: rgba(0, 161, 236, 0.68);
+  background-color: #ec660dad;
   margin: 5px;
 }
 
