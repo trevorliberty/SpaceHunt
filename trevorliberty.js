@@ -6,7 +6,7 @@ locations = new Map();
 planets = artifacts.planets;
 asteroids = artifacts.asteroids;
 stations = artifacts.stations;
-
+meteors = artifacts.meteors;
 visited = [];
 
 if (planets) {
@@ -26,6 +26,12 @@ if (stations) {
     let coordinate = stations[i].Station.coords;
     locations.set(coordinate, "station");
   }
+}
+if (meteors) {
+    for (let i = 0; i < meteors.length; ++i) {
+        let coordinate = meteors[i].Meteor.coords;
+        locations.set(coordinate, "meteor");
+    }
 }
 window.addEventListener("keydown", function(e) {
   if (
