@@ -217,7 +217,7 @@ function showArtifact(shipId){
 						if(((currentCell.x-2) + "," + currentCell.y) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 
 						if(((currentCell.x+1) + "," + (currentCell.y+1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
-						if(((currentCell.x+1) + "," + (currentCell.y-1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+						if(((currentCell.x+1) + "," + (currentCell.y-1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']") 	.css({"visibility": "visible"});updateSupplies(-2);}
 						if(((currentCell.x-1) + "," + (currentCell.y+1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(((currentCell.x-1) + "," + (currentCell.y-1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(flag === true){
