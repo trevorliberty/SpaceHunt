@@ -24,6 +24,7 @@ function savePlanet(id) {
   var arryStr = { Planet: planet };
   planetArry.push(arryStr);
   console.log(planetArry);
+  removePlanet(id);
 }
 
 //Remove a planet from the array of planets//
@@ -51,6 +52,7 @@ function saveAsteroid(id) {
   var arryStr = { Astroid: asteroid };
   asteroidArry.push(arryStr);
   console.log(asteroidArry);
+  removeAsteroid(id);
 }
 
 //Remove a asteriod from the array of asteriod//
@@ -78,6 +80,7 @@ function saveStation(id) {
   var arryStr = { Station: station };
   stationArry.push(arryStr);
   console.log(stationArry);
+  removeStation(id);
 }
 
 //Remove a space station from the array of stations//
@@ -130,9 +133,7 @@ function addPlanet() {
     newPlanetNum +
     "'style='margin:5px;'size='10' placeholder='Y-Coordinate'><a href='#' id='" +
     newPlanetNum +
-    "' onclick='savePlanet(this.id)'>Save</a><a href='#' id='" +
-    newPlanetNum +
-    "' onclick='removePlanet(this.id)'>Remove</a></div>";
+    "' onclick='savePlanet(this.id)'>Save</a></div>";
 
   $("#newPlanets").append(newPlanetInput);
   $("#planets").val(newPlanetNum);
@@ -142,12 +143,13 @@ function addPlanet() {
 //Removes the planet input fields to the settings.html page//
 function removePlanet(id) {
   var lastPlanetNum = parseInt(id);
-  if (lastPlanetNum >= 1) {
+  $(".new_planet" + lastPlanetNum).remove();
+  /*if (lastPlanetNum >= 1) {
     $(".new_planet" + lastPlanetNum).remove();
     $("#planets").val(lastPlanetNum - 1);
     deletePlanet(id);
     console.log("Removed Planet" + lastPlanetNum);
-  }
+  }*/
 }
 
 //Adds the asteriod input fields to the settings.html page//
@@ -166,9 +168,7 @@ function addAsteroid() {
     newAsteroidNum +
     "'style='margin:5px;'size='10' placeholder='Y-Coordinate'><a href='#' id='" +
     newAsteroidNum +
-    "' onclick='saveAsteroid(this.id)'>Save</a><a href='#' id='" +
-    newAsteroidNum +
-    "' onclick='removeAsteroid(this.id)'>Remove</a></div>";
+    "' onclick='saveAsteroid(this.id)'>Save</a></div>";
 
   $("#newAsteroids").append(newAsteroidInput);
   $("#asteroids").val(newAsteroidNum);
@@ -178,12 +178,13 @@ function addAsteroid() {
 //Removes the asteorid input fields to the settings.html page//
 function removeAsteroid(id) {
   var lastAsteroidNum = parseInt(id);
-  if (lastAsteroidNum >= 1) {
+  $(".new_asteroid" + lastAsteroidNum).remove();
+/*  if (lastAsteroidNum >= 1) {
     $(".new_asteroid" + lastAsteroidNum).remove();
     $("#asteroids").val(lastAsteroidNum - 1);
     deleteAsteroid(id);
     console.log("Removed Asteroid" + lastAsteroidNum);
-  }
+  }*/
 }
 
 //Adds the space station input fields to the settings.html page//
@@ -202,9 +203,7 @@ function addStation() {
     newStationNum +
     "'style='margin:5px;'size='10' placeholder='Y-Coordinate'><a href='#' id='" +
     newStationNum +
-    "' onclick='saveStation(this.id)'>Save</a><a href='#' id='" +
-    newStationNum +
-    "' onclick='removeStation(this.id)'>Remove</a></div>";
+    "' onclick='saveStation(this.id)'>Save</a></div>";
 
   $("#newStations").append(newStationInput);
   $("#stations").val(newStationNum);
@@ -214,12 +213,13 @@ function addStation() {
 //Removes the planet input fields to the settings.html page//
 function removeStation(id) {
   var lastStationNum = parseInt(id);
-  if (lastStationNum >= 1) {
+  $(".new_station" + lastStationNum).remove();
+  /*if (lastStationNum >= 1) {
     $(".new_station" + lastStationNum).remove();
     $("#stations").val(lastStationNum - 1);
     deleteStation(id);
     console.log("Removed Station" + lastStationNum);
-  }
+  }*/
 }
 
 //Adds the meteor input fields to the settings.html page

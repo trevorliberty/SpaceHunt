@@ -129,7 +129,7 @@ function moveMore(angle, dis){
       }
 
       if(dis > 1){
-        for(var i = 0; i <= dis; ++i){
+        for(var i = 0; i < dis; ++i){
           var currentCell = retrieveCell();
           moveSpacecraft(angle,1);
           isArtifact(currentCell.x + "," + currentCell.y);
