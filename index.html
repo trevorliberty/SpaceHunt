@@ -1,9 +1,12 @@
+<html>
 <head>
+  <script type="text/javascript" src="http://livejs.com/live.js"></script>
   <audio autoplay>
     <source src="space.mp3" type="audio/mpeg" />
   </audio>
+    <script src="add_removeArtifacts.js"></script>
 </head>
-<html>
+
   <style>
     /*
             Stylized background borrowed from Nazar The Vis Azhar, via https://codepen.io/NazarTheVis/pen/zqXMqP
@@ -34,7 +37,7 @@
       z-index: 1;
       background: transparent url("https://image.ibb.co/ir1DE8/twinkling.png")
         repeat top center;
-      animation: move-twink-back 100s linear infinite;
+      animation: move-twink-back 250s linear infinite;
     }
 
     @keyframes move-twink-back {
@@ -47,10 +50,13 @@
     }
 
     #title {
-      z-index: -1;
+      z-index: 1;
       text-align: center;
-      color: white;
-      font-size: 80px;
+      opacity: 0.90;
+      color: #187dff;
+      font-size: 135px;
+      font-family: starnext;
+      text-effect: outline;
     }
 
     html,
@@ -60,44 +66,85 @@
       overflow: hidden;
     }
 
-    .button {
-      background-color: #3d3d5c;
-      padding: 20px 60px;
-      border: rounded;
-      border-style: double;
+    .container{
       text-align: center;
-      width: 200px;
-      padding-bottom: 25px;
-      margin-bottom: 50px;
+      margin: auto;
+
+    }
+
+    .container button {
+      background-color: rgba(0, 0, 225, 0.75);
+    }
+
+    .button {
+      padding-top: 20px;
+      width: 550px;
+      height: 40px;
+      transform: skew(-40deg);
+      padding-bottom: 60px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      cursor: pointer;
+    }
+
+    .container button p {
+      text-align: center;
+      transform: skew(40deg);
+      color: white;
+      font-family: arcade;
+      font-size: 35px;
+      margin: 0 0 0 0;
+      transition: color 0.3s;
+    }
+
+    .container button:hover {
+      background-color: #3695ff;
+        opacity: 0.8;
+    }
+
+    .container button p:hover {
+      color: black;
     }
 
     #options {
       text-align: center;
     }
 
+    @font-face {
+      font-family: 'starnext';
+      src: url('starnext.ttf') format('truetype');
+    }
 
+    @font-face {
+      font-family: 'arcade';
+      src: url('arcade.ttf') format('truetype');
+    }
 
   </style>
 
   <body>
-    <div class="stars">
+  <script src="loadGame.js"></script>
+  <div class="stars">
       <div class="twinkling">
-        <h1 id="title">Space Hunt Adventure</h1>
+
+        <h1 id="title">Space Hunt<br/>Adventure</h1>
 
         <div class="container" id="options">
-          <form>
-            <button id="standard" type="reset" class="button" onClick="loadMap()">
-              Standard</button
-            ><br />
-            <button id="admin" type="reset" class="button" onClick="loadSettings()">
-              Administrator
-            </button>  <br/>
+
+            <button id="standard" type="reset" class="button" onClick="setArtifacts(), loadMap()">
+              <p>new game</p>
+            </button> <br/>
 
             <button id="load" type="reset" class="button" onClick="loadSaveState()">
-              Load State
+              <p>load game</p>
+            </button> <br/>
+
+            <button id="admin" type="reset" class="button" onClick="validate()">
+              <p>dev mode</p>
             </button>
-           </form>
+
         </div>
+
       </div>
     </div>
 
@@ -121,6 +168,17 @@
       function loadSettings() {
         localStorage.setItem("userType", "administrator");
         window.location.href = "Settings.html";
+      }
+
+      function validate() {
+        var pwd = prompt("Enter 'Password': ");
+
+        if(pwd == "Password") {
+          loadSettings();
+        }
+        else {
+          alert("Incorrect password. Please try again or don't.");
+        }
       }
     </script>
   </body>

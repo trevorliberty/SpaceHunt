@@ -27,15 +27,21 @@ function loadArtifacts(){
 					//console.log("Name: " + station.Name + " xCoord: " + station.XCoord + " yCoord: " + station.YCoord);
   				});
   			});
-
-		};
- 	});
- }
+		  }else if(key == "recipe"){
+        console.log("KEY: " + key);
+        $.each(value, function(key1, value1){
+          $.each(value1, function(key2, recipe){
+            placeRecipe(recipe);
+          });
+ 	      });
+      }
+  });
+}
 
 //Places planets on the map//
 function placePlanets(artifact) {
 	var id = (artifact.XCoord + "," + artifact.YCoord);
-	console.log("id: " + id);
+	console.log("Artifact: " + artifact.Name + " id: " + id);
 
  	const container = document.getElementById(id);
 	let planet = document.createElement("img");
@@ -49,7 +55,7 @@ function placePlanets(artifact) {
 //Places asteriods on the map//
 function placeAsteriods(artifact) {
 	var id = (artifact.XCoord + "," + artifact.YCoord);
-	console.log("id: " + id);
+	console.log("Artifact: " + artifact.Name + " id: " + id);
 
  	const container = document.getElementById(id);
 	let asteriod = document.createElement("img");
@@ -63,7 +69,7 @@ function placeAsteriods(artifact) {
 //Places space stations on the map//
 function placeStations(artifact) {
 	var id = (artifact.XCoord + "," + artifact.YCoord);
-	console.log("id: " + id);
+	console.log("Artifact: " + artifact.Name + " id: " + id);
 
  	const container = document.getElementById(id);
 	let station = document.createElement("img");
@@ -71,6 +77,20 @@ function placeStations(artifact) {
     station.style.width = "100%";
     station.style.visibility = "hidden";
     container.appendChild(station).className = `artifact`+id;
+    artifactIds.push(id);
+}
+
+//Places space stations on the map//
+function placeRecipe(artifact) {
+  var id = (artifact.XCoord + "," + artifact.YCoord);
+  console.log("Artifact: " + artifact.Name + " id: " + id);
+
+  const container = document.getElementById(id);
+  let recipe = document.createElement("img");
+    recipe.setAttribute("src", "recipe.png");
+    recipe.style.width = "100%";
+    recipe.style.visibility = "hidden";
+    container.appendChild(recipe).className = `artifact`+id;
     artifactIds.push(id);
 }
 
@@ -116,8 +136,8 @@ function isArtifact(shipId){
   							if(prompt("Would you like to play a game of chance to gain some credits? Y or N") == 'Y'){
   								var ranNum = Math.floor(Math.random() * 15);
   								if(ranNum >= 8){
-  									var credits = $("#credits").val();
-  									$("#credits").val(100+ credits);
+  									var credits = parseInt($("#credits").val()) + 100;
+  									$("#credits").val(credits);
   									alert("Congrats! You earned 100 credits.");
   								}else{
   									alert("You did not win this game of chance.");
@@ -135,7 +155,19 @@ function isArtifact(shipId){
   				});
   			});
 
-		};
+		}else if(key == "recipe"){
+        $.each(value, function(key1, value1){
+          $.each(value1, function(key2, recipe){
+            var recipeId = (recipe.XCoord + "," + recipe.YCoord);
+            if(shipId == recipeId && $("#distance").val() == 1){
+              //Pick up the recipe            
+              alert("Congratulations!"+ "\n" + "You have found the recipe and have won the game!");
+              //game ends
+              window.location.href = "index.html";
+            }
+          });
+        });
+    };
  	});
  	return returnValue;
 }
@@ -143,18 +175,18 @@ function isArtifact(shipId){
 sensorPaused = true;
 //setInterval(sensor, 500);
 function sensorOnOff(){
-	if($(".sensor").val() == "off"){
-		$(".sensor").css({"background-color": "green"});
-		$(".sensor").val("on");
-		console.log("button value: " + $(".sensor").val());
+	if($("#sensor").val() == "off"){
+		$("#sensor").css({"background-color": "green"});
+		$("#sensor").val("on");
+		//console.log("button value: " + $("#sensor").val());
 		sensorPaused = false;
 		sensor();
-	}else if($(".sensor").val() == "on"){
-		$(".sensor").css({"background-color": "red"});
-		$(".sensor").val("off");
-		console.log("button value: " + $(".sensor").val());
+	}else if($("#sensor").val() == "on"){
+		$("#sensor").css({"background-color": "red"});
+		$("#sensor").val("off");
+		//console.log("button value: " + $("#sensor").val());
 		sensorPaused = true;
-		sensor();
+		//sensor();
 	}
 }
 
@@ -190,12 +222,15 @@ function showArtifact(shipId){
 						if(((currentCell.x-1) + "," + (currentCell.y-1)) == planetId){flag = true;$( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 
 						if(flag === true){
+              $( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});
 							return modifyCaptLog(`Found planet at ${planet.XCoord+','+planet.YCoord}`)
 						}
 					}else if(sensorPaused){
 						if(planet.seen === false){
 							$( "img[class*='"+planetId+"']" ).css({"visibility": "hidden"});
-						}
+						}else{
+              $( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});
+            }
 					}
   				});
   			});
@@ -221,6 +256,7 @@ function showArtifact(shipId){
 						if(((currentCell.x-1) + "," + (currentCell.y+1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(((currentCell.x-1) + "," + (currentCell.y-1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(flag === true){
+              $( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});
 							return modifyCaptLog(`Found asteroid at ${asteriod.XCoord+','+asteriod.YCoord}`)
 						}
 					}else if(sensorPaused){
@@ -251,6 +287,7 @@ function showArtifact(shipId){
 						if(((currentCell.x-1) + "," + (currentCell.y+1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(((currentCell.x-1) + "," + (currentCell.y-1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(flag === true){
+              $( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});
 							return modifyCaptLog(`Found station at ${station.XCoord+','+station.YCoord}`)
 						}
 					}else if(sensorPaused){
@@ -262,6 +299,39 @@ function showArtifact(shipId){
   				});
   			});
 
-		};
+		  }else if(key == "recipe"){
+        $.each(value, function(key1, value1){
+          $.each(value1, function(key2, recipe){
+            var recipeId = (recipe.XCoord + "," + recipe.YCoord);
+            var flag = false;
+            if(!sensorPaused){
+              //console.log("sensor active");
+            if((currentCell.x + "," + (currentCell.y+1)) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+            if((currentCell.x + "," + (currentCell.y+2)) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+            if((currentCell.x + "," + (currentCell.y-1)) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+            if((currentCell.x + "," + (currentCell.y-2)) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+
+            if(((currentCell.x+1) + "," + currentCell.y) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+            if(((currentCell.x+2) + "," + currentCell.y) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+            if(((currentCell.x-1) + "," + currentCell.y) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+            if(((currentCell.x-2) + "," + currentCell.y) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+
+            if(((currentCell.x+1) + "," + (currentCell.y+1)) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+            if(((currentCell.x+1) + "," + (currentCell.y-1)) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+            if(((currentCell.x-1) + "," + (currentCell.y+1)) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+            if(((currentCell.x-1) + "," + (currentCell.y-1)) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                if(flag === true){
+                  $( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});
+                  return modifyCaptLog(`Found Recipe at ${recipe.XCoord+','+recipe.YCoord}`)
+                }
+            }else if(sensorPaused){
+              if(recipe.seen===false){
+                $( "img[class*='"+recipeId+"']" ).css({"visibility": "hidden"});
+              }
+            }
+
+          });
+        });
+      };
  	});
 }

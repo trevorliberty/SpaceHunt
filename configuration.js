@@ -7,6 +7,7 @@ var config = {
     dies : true,
     wormholeFixed : true,
     maxSize : "128",
+    celestialArtifacts: {},
 };
 
 function configure() {
@@ -19,21 +20,22 @@ function configure() {
     config.maxSize = parseInt(document.getElementById("maxSize").value);
 
 
-    if((!document.getElementById('dying').checked && !document.getElementById('godMode').checked) || (!document.getElementById('fixedWormhole').checked && !document.getElementById('randomWormhole').checked)) {
+    if((!document.getElementById('dying').checked && !document.getElementById('godMode').checked) ||
+        (!document.getElementById('fixedWormhole').checked && !document.getElementById('randomWormhole').checked)) {
         alert("Please select which player mode && wormhole behavior");
     }
     else {
         if(document.getElementById('dying').checked) {
             config.dies = JSON.parse(document.getElementById('dying').value);
         }
-        else if (document.getElementById('godMode').checked) {
+        else {
             config.dies = JSON.parse(document.getElementById('godMode').value);
         }
 
         if(document.getElementById('fixedWormhole').checked) {
             config.wormholeFixed = JSON.parse(document.getElementById('fixedWormhole').value);
         }
-        else if (document.getElementById('randomWormhole')) {
+        else {
             config.wormholeFixed = JSON.parse(document.getElementById('randomWormhole').value);
         }
 
@@ -43,4 +45,5 @@ function configure() {
 
 
 }
+
 
