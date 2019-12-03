@@ -61,10 +61,6 @@ function moveSpacecraft(angle, distance) {
   checkEnergy();
   checkSupplies();
   return;
-  //0 is east
-  //90 north
-  //180 west
-  //270 south
 }
 
 function random(obj, distance) {

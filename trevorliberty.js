@@ -8,6 +8,14 @@ planets = artifacts.planets;
 asteroids = artifacts.asteroids;
 stations = artifacts.stations;
 meteors = artifacts.meteors;
+shipCell = {
+  x: 0,
+  y: 0
+};
+badMax = {
+  x: Math.floor((Math.random() * 15) % size),
+  y: Math.floor((Math.random() * 15) % size)
+};
 visited = [];
 
 if (planets) {
@@ -167,6 +175,8 @@ function retrieveCell() {
 function updateShip(x, y, lastCell) {
   saveNode = document.getElementById("ship");
   let elem = getElement(x, y);
+  shipCell.x = x;
+  shipCell.y = y;
   let str = elem.classList[1];
   rev = str
     .split(",")
@@ -182,6 +192,34 @@ function updateShip(x, y, lastCell) {
   return modifyCaptLog(rev);
 }
 
+function moveBadMax() {
+  const pX = badMax.x;
+  const pY = badMax.y;
+  if (badMax.x == shipCell.x && badMax.y === shipCell.y) {
+    alert("ya been got ho");
+  }
+  if (badMax.x != shipCell.x) {
+    if (badMax.x < shipCell.x) {
+      badMax.x += 1;
+    } else if (badMax.x > shipCell.x) {
+      badMax.x -= 1;
+    }
+  }
+  if (badMax.y != shipCell.y) {
+    if (badMax.y < shipCell.y) {
+      badMax.y += 1;
+    } else if (badMax.y > shipCell.y) {
+      badMax.y -= 1;
+    }
+  }
+
+  getElement(pX, pY).setAttribute("id", `${pX + "," + pY}`);
+  getElement(badMax.x, badMax.y).setAttribute("id", "badMax");
+}
+
+const maxInterval = intervalAmt => {
+  return setInterval(moveBadMax, intervalAmt);
+};
 function modifyCaptLog(str) {
   if (!set.has(str)) {
     var textarea = document.getElementById("log");
@@ -250,6 +288,7 @@ function load() {
   document
     .getElementById("ship")
     .scrollIntoView({ behavior: "instant", block: "center" });
+  maxInterval(1000);
 }
 
 function shipInit() {
