@@ -1,5 +1,4 @@
 set = new Set();
-hashset = {};
 size = 20;
 supplies = 0;
 energy = 0;
@@ -60,7 +59,7 @@ document.onkeydown = function(e) {
     e.keyCode === 37 ||
     e.keyCode === 40
   ) {
-    if (e.keyCode == 39) {
+    if (e.keyCode == 38) {
       //right
       if (distance > 1) {
         moveMore(90, distance);
@@ -79,7 +78,7 @@ document.onkeydown = function(e) {
         //Move back to previous CP
         moveSpacecraft(270, 1);
       }
-    } else if (e.keyCode == 37) {
+    } else if (e.keyCode == 40) {
       //left
       if (distance > 1) {
         moveMore(270, distance);
@@ -96,7 +95,7 @@ document.onkeydown = function(e) {
         //Move back to previous CP
         moveSpacecraft(90, 1);
       }
-    } else if (e.keyCode == 38) {
+    } else if (e.keyCode == 39) {
       //up
       if (distance > 1) {
         moveMore(0, distance);
@@ -113,7 +112,7 @@ document.onkeydown = function(e) {
         //Move back to previous CP
         moveSpacecraft(180, 1);
       }
-    } else if (e.keyCode == 40) {
+    } else if (e.keyCode == 37) {
       //down
       if (distance > 1) {
         moveMore(180, distance);
@@ -191,7 +190,7 @@ function updateCell(x, y, cellId) {
   document.getElementById(`${x + "," + y}`);
 }
 function getElement(x, y) {
-  return document.getElementsByClassName(`${x + "," + y}`)[0];
+  return document.getElementsByClassName(`${y + "," + x}`)[0];
 }
 
 function updateEnergy(amount) {
