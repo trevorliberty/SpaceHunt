@@ -196,7 +196,7 @@ function moveBadMax() {
   const pX = badMax.x;
   const pY = badMax.y;
   if (badMax.x == shipCell.x && badMax.y === shipCell.y) {
-    alert("ya been got ho");
+    alert("You have been destroyed by bad Max");
   }
   if (badMax.x != shipCell.x) {
     if (badMax.x < shipCell.x) {
