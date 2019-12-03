@@ -169,9 +169,9 @@ function updateShip(x, y, lastCell) {
   let elem = getElement(x, y);
   let str = elem.classList[1];
   rev = str
-    .split("")
+    .split(",")
     .reverse()
-    .join("");
+    .join(",");
   elem.setAttribute("id", "ship");
   saveCell.id = lastCell.id;
   document.getElementById("yCoord").value = x;
