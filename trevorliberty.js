@@ -1,4 +1,5 @@
 set = new Set();
+henchmenSet = new Set();
 size = 20;
 supplies = 0;
 energy = 0;
@@ -215,9 +216,14 @@ function moveBadMax() {
     }
   }
 
-  getElement(pX, pY).setAttribute("id", `${pX + "," + pY}`);
+  if (henchmenSet.has(`${pX + "," + pY}`)) {
+    getElement(pX, pY).setAttribute("id", "henchman");
+  } else {
+    getElement(pX, pY).setAttribute("id", `${pX + "," + pY}`);
+  }
   getElement(badMax.x, badMax.y).setAttribute("id", "badMax");
-  return moveHenchmen(shipCell.x, shipCell.y);
+  moveHenchmen(shipCell.x, shipCell.y);
+  getElement(pX, pY).setAttribute("id", `${pX + "," + pY}`);
 }
 function moveHenchmen(x, y) {
   henchmen.forEach(obj => {
@@ -240,8 +246,14 @@ function moveHenchmen(x, y) {
         obj.y -= 1;
       }
     }
-    getElement(pX, pY).setAttribute("id", `${pX + "," + pY}`);
+    if (obj.x === badMax.x && obj.y === badMax.y) {
+      getElement(pX, pY).setAttribute("id", "badMax");
+    } else {
+      getElement(pX, pY).setAttribute("id", `${pX + "," + pY}`);
+    }
+    henchmenSet.delete(`${pX + "," + pY}`);
     getElement(obj.x, obj.y).setAttribute("id", "henchman");
+    henchmenSet.add(`${obj.x + "," + obj.y}`);
   });
 }
 
