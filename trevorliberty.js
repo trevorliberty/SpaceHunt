@@ -1,3 +1,5 @@
+set = new Set();
+hashset = {};
 size = 20;
 supplies = 0;
 energy = 0;
@@ -28,10 +30,10 @@ if (stations) {
   }
 }
 if (meteors) {
-    for (let i = 0; i < meteors.length; ++i) {
-        let coordinate = meteors[i].Meteor.coords;
-        locations.set(coordinate, "meteor");
-    }
+  for (let i = 0; i < meteors.length; ++i) {
+    let coordinate = meteors[i].Meteor.coords;
+    locations.set(coordinate, "meteor");
+  }
 }
 window.addEventListener("keydown", function(e) {
   if (
@@ -177,9 +179,12 @@ function updateShip(x, y, lastCell) {
 }
 
 function modifyCaptLog(str) {
-  var textarea = document.getElementById('log');
-  textarea.scrollTop = textarea.scrollHeight;
-  document.getElementById("log").textContent += str + "\n";
+  if (!set.has(str)) {
+    var textarea = document.getElementById("log");
+    textarea.scrollTop = textarea.scrollHeight;
+    document.getElementById("log").textContent += str + "\n";
+    set.add(str);
+  }
 }
 function updateCell(x, y, cellId) {
   //send the id that you want to update the cell into here
