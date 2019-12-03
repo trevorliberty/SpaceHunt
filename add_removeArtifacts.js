@@ -96,29 +96,29 @@ function deleteStation(id) {
 }
 //Save a meteor storm to the arry of meteors
 function saveMeteor(id) {
-    var meteor = {
+  var meteor = {
     Name: $("#new_meteor" + id).val(),
     XCoord: parseInt($("#meteorXCoord_" + id).val()),
     YCoord: parseInt($("#meteorYCoord_" + id).val()),
     seen: false
-    };
-    
-    var arryStr = { Meteor: meteor };
-    meteorArry.push(arryStr);
-    console.log(meteorArry);
-    removeMeteor(id);
+  };
+
+  var arryStr = { Meteor: meteor };
+  meteorArry.push(arryStr);
+  console.log(meteorArry);
+  removeMeteor(id);
 }
 
 //Remove a meteor storm from the array of meteor
 function deleteMeteor(id) {
-    var meteor = {
+  var meteor = {
     Name: $("#new_meteor" + id).val(),
     XCoord: parseInt($("#meteorXCoord_" + id).val()),
     YCoord: parseInt($("#meteorYCoord_" + id).val()),
     seen: false
-    };
-    meteorArry.splice(id - 1, 1);
-    console.log(meteorArry);
+  };
+  meteorArry.splice(id - 1, 1);
+  console.log(meteorArry);
 }
 
 //Adds the planet input fields to the settings.html page//
@@ -181,7 +181,7 @@ function addAsteroid() {
 function removeAsteroid(id) {
   var lastAsteroidNum = parseInt(id);
   $(".new_asteroid" + lastAsteroidNum).remove();
-/*  if (lastAsteroidNum >= 1) {
+  /*  if (lastAsteroidNum >= 1) {
     $(".new_asteroid" + lastAsteroidNum).remove();
     $("#asteroids").val(lastAsteroidNum - 1);
     deleteAsteroid(id);
@@ -226,8 +226,8 @@ function removeStation(id) {
 
 //Adds the meteor input fields to the settings.html page
 function addMeteor() {
-    var newMeteorNum = parseInt($("#meteors").val()) + 1;
-    var newMeteorInput =
+  var newMeteorNum = parseInt($("#meteors").val()) + 1;
+  var newMeteorInput =
     "<div class='new_meteor" +
     newMeteorNum +
     "'><input type='text' id='new_meteor" +
@@ -243,16 +243,16 @@ function addMeteor() {
     "' onclick='saveMeteor(this.id)'>Save</a><a href='#' id='" +
     newMeteorNum +
     "' onclick='removeMeteor(this.id)'>Remove</a></div>";
-    
-    $("#newMeteors").append(newMeteorInput);
-    $("#meteors").val(newMeteorNum);
-    console.log("Added Meteor" + newMeteorNum);
+
+  $("#newMeteors").append(newMeteorInput);
+  $("#meteors").val(newMeteorNum);
+  console.log("Added Meteor" + newMeteorNum);
 }
 //Removes the meteor input fields to the settings.html page//
 function removeMeteor(id) {
-    var lastMeteorNum = parseInt(id);
-    $(".new_meteor" + lastMeteorNum).remove();
-/*    if (lastMeteorNum >= 1) {
+  var lastMeteorNum = parseInt(id);
+  $(".new_meteor" + lastMeteorNum).remove();
+  /*    if (lastMeteorNum >= 1) {
         $(".new_meteor" + lastMeteorNum).remove();
         $("#meteors").val(lastMeteorNum - 1);
         deleteMeteor(id);
@@ -260,26 +260,26 @@ function removeMeteor(id) {
     }*/
 }
 
-function randomXCoord(){
+function randomXCoord() {
   configObj = JSON.parse(localStorage.getItem("config"));
-  var x = Math.floor(Math.random() * configObj.maxSize) + 1; 
-  console.log("X: ", + x);
+  var x = Math.floor(Math.random() * configObj.maxSize) + 1;
+  console.log("X: ", +x);
   return x;
 }
 
-function randomYCoord(){
+function randomYCoord() {
   configObj = JSON.parse(localStorage.getItem("config"));
   var y = Math.floor(Math.random() * configObj.maxSize) + 1;
   console.log("Y: " + y);
   return y;
 }
 
-function setRecipe(){
-    var recipe = {
-      Name: "Koca Kola recipe",
-      XCoord: parseInt(randomXCoord()),
-      YCoord: parseInt(randomYCoord()),
-      seen: false
+function setRecipe() {
+  var recipe = {
+    Name: "Koca Kola recipe",
+    YCoord: parseInt(randomYCoord()),
+    XCoord: parseInt(randomXCoord()),
+    seen: false
   };
 
   var arryStr = { Recipe: recipe };
@@ -287,58 +287,57 @@ function setRecipe(){
   console.log(recipe);
 }
 
-function randomArtifacts(){
+function randomArtifacts() {
   //To determine how many of each artifacts should be placed into the game
   var randomNum = Math.floor(Math.random() * 10) + 1;
   console.log("Random number of artifacts: " + randomNum);
   var counter = 1;
   var i;
-    for(i = 1; i <= randomNum; i++) {
-      var planet = {
-        Name: "Planet" + counter,
-        XCoord: parseInt(randomXCoord()),
-        YCoord: parseInt(randomYCoord()),
-      };
+  for (i = 1; i <= randomNum; i++) {
+    var planet = {
+      Name: "Planet" + counter,
+      XCoord: parseInt(randomXCoord()),
+      YCoord: parseInt(randomYCoord())
+    };
 
-      var arryStr = { Planet: planet };
-      planetArry.push(arryStr);
-      console.log(planetArry);
+    var arryStr = { Planet: planet };
+    planetArry.push(arryStr);
+    console.log(planetArry);
 
-      var asteroid = {
-        Name: "Asteroid" + counter,
-        XCoord: parseInt(randomXCoord()),
-        YCoord: parseInt(randomYCoord()),
-      };
+    var asteroid = {
+      Name: "Asteroid" + counter,
+      XCoord: parseInt(randomXCoord()),
+      YCoord: parseInt(randomYCoord())
+    };
 
-      var arryStr = { Astroid: asteroid };
-      asteroidArry.push(arryStr);
-      console.log(asteroidArry);
-        
+    var arryStr = { Astroid: asteroid };
+    asteroidArry.push(arryStr);
+    console.log(asteroidArry);
 
-      var station = {
-        Name: "Station" + counter,
-        XCoord: parseInt(randomXCoord()),
-        YCoord: parseInt(randomYCoord()),
-      };
+    var station = {
+      Name: "Station" + counter,
+      XCoord: parseInt(randomXCoord()),
+      YCoord: parseInt(randomYCoord())
+    };
 
-      var arryStr = { Station: station };
-      stationArry.push(arryStr);
-      console.log(stationArry);
-        
-      var meteor = {
-        Name: "Meteor" + counter,
-        XCoord: parseInt(randomXCoord()),
-        YCoord: parseInt(randomYCoord()),
-      };
-        
-        var arryStr = { Meteor: meteor };
-        meteorArry.push(arryStr);
-        console.log(meteorArry);
-        
-      counter++;
-    }
+    var arryStr = { Station: station };
+    stationArry.push(arryStr);
+    console.log(stationArry);
 
-    setRecipe();
+    var meteor = {
+      Name: "Meteor" + counter,
+      XCoord: parseInt(randomXCoord()),
+      YCoord: parseInt(randomYCoord())
+    };
+
+    var arryStr = { Meteor: meteor };
+    meteorArry.push(arryStr);
+    console.log(meteorArry);
+
+    counter++;
+  }
+
+  setRecipe();
 }
 
 //Saves the celertial artifacts to the local storage//

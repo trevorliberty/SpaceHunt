@@ -47,7 +47,11 @@ function loadArtifacts(){
 //Places planets on the map//
 function placePlanets(artifact) {
 	var id = (artifact.XCoord + "," + artifact.YCoord);
-	console.log("Artifact: " + artifact.Name + " id: " + id);
+  rev = id 
+    .split(",")
+    .reverse()
+    .join(",");
+	console.log("Artifact: " + artifact.Name + " id: " + rev);
 
  	const container = document.getElementById(id);
 	let planet = document.createElement("img");
@@ -61,7 +65,11 @@ function placePlanets(artifact) {
 //Places asteriods on the map//
 function placeAsteriods(artifact) {
 	var id = (artifact.XCoord + "," + artifact.YCoord);
-	console.log("Artifact: " + artifact.Name + " id: " + id);
+  rev = id 
+    .split(",")
+    .reverse()
+    .join(",");
+	console.log("Artifact: " + artifact.Name + " id: " + rev);
 
  	const container = document.getElementById(id);
 	let asteriod = document.createElement("img");
@@ -75,7 +83,11 @@ function placeAsteriods(artifact) {
 //Places space stations on the map//
 function placeStations(artifact) {
 	var id = (artifact.XCoord + "," + artifact.YCoord);
-	console.log("Artifact: " + artifact.Name + " id: " + id);
+  rev = id 
+    .split(",")
+    .reverse()
+    .join(",");
+	console.log("Artifact: " + artifact.Name + " id: " + rev);
 
  	const container = document.getElementById(id);
 	let station = document.createElement("img");
@@ -89,7 +101,11 @@ function placeStations(artifact) {
 //Places space stations on the map//
 function placeRecipe(artifact) {
   var id = (artifact.XCoord + "," + artifact.YCoord);
-  console.log("Artifact: " + artifact.Name + " id: " + id);
+  rev = id 
+    .split(",")
+    .reverse()
+    .join(",");
+  console.log("Artifact: " + artifact.Name + " id: " + rev);
 
   const container = document.getElementById(id);
   let recipe = document.createElement("img");
@@ -103,7 +119,11 @@ function placeRecipe(artifact) {
 //Places Meteor Storm on the map
 function placeMeteors(artifact) {
     var id = (artifact.XCoord + "," + artifact.YCoord);
-    console.log("Artifact: " + artifact.Name + " id: " + id);
+  rev = id 
+    .split(",")
+    .reverse()
+    .join(",");
+    console.log("Artifact: " + artifact.Name + " id: " + rev);
     
     const container = document.getElementById(id);
     let meteor = document.createElement("img");
