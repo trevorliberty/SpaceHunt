@@ -339,7 +339,7 @@ function load() {
       y: Math.floor((Math.random() * 15) % size) + i
     };
   }
-  maxInterval(3000);
+  maxInterval(1500);
 }
 
 function shipInit() {
