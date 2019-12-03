@@ -255,7 +255,7 @@ function showArtifact(shipId){
 
 						if(flag === true){
               $( "img[class*='"+planetId+"']" ).css({"visibility": "visible"});
-							return modifyCaptLog(`Found planet at ${planet.XCoord+','+planet.YCoord}`)
+							return modifyCaptLog(`Found planet at ${planet.YCoord+','+planet.XCoord}`)
 						}
 					}else if(sensorPaused){
 						if(planet.seen === false){
@@ -289,7 +289,7 @@ function showArtifact(shipId){
 						if(((currentCell.x-1) + "," + (currentCell.y-1)) == asteriodId){flag = true;$( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(flag === true){
               $( "img[class*='"+asteriodId+"']" ).css({"visibility": "visible"});
-							return modifyCaptLog(`Found asteroid at ${asteriod.XCoord+','+asteriod.YCoord}`)
+							return modifyCaptLog(`Found asteroid at ${asteriod.YCoord+','+asteriod.XCoord}`)
 						}
 					}else if(sensorPaused){
 						if(asteriod.seen === false)
@@ -320,7 +320,7 @@ function showArtifact(shipId){
 						if(((currentCell.x-1) + "," + (currentCell.y-1)) == stationId){flag = true;$( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
 						if(flag === true){
                             $( "img[class*='"+stationId+"']" ).css({"visibility": "visible"});
-							return modifyCaptLog(`Found station at ${station.XCoord+','+station.YCoord}`)
+							return modifyCaptLog(`Found station at ${station.YCoord+','+station.XCoord}`)
 						}
 					}else if(sensorPaused){
 						if(station.seen===false){
@@ -354,7 +354,7 @@ function showArtifact(shipId){
                          if(((currentCell.x-1) + "," + (currentCell.y-1)) == meteorId){flag = true;$( "img[class*='"+meteorId+"']").css({"visibility": "visible"});updateSupplies(-2);}
                          if(flag === true){
                             $( "img[class*='"+meteorId+"']" ).css({"visibility": "visible"});
-                            return modifyCaptLog(`Found meteor at ${meteor.XCoord+','+meteor.YCoord}`)
+                            return modifyCaptLog(`Found meteor at ${meteor.YCoord+','+meteor.XCoord}`)
                             }
                         }else if(sensorPaused){
                             if(meteor.seen === false){
@@ -386,7 +386,7 @@ function showArtifact(shipId){
             if(((currentCell.x-1) + "," + (currentCell.y-1)) == recipeId){flag = true;$( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
                 if(flag === true){
                   $( "img[class*='"+recipeId+"']" ).css({"visibility": "visible"});
-                  return modifyCaptLog(`Found Recipe at ${recipe.XCoord+','+recipe.YCoord}`)
+                  return modifyCaptLog(`Found Recipe at ${recipe.YCoord+','+recipe.XCoord}`)
                 }
             }else if(sensorPaused){
               if(recipe.seen===false){

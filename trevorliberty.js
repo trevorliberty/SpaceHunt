@@ -59,7 +59,7 @@ document.onkeydown = function(e) {
     e.keyCode === 37 ||
     e.keyCode === 40
   ) {
-    if (e.keyCode == 38) {
+    if (e.keyCode == 39) {
       //right
       if (distance > 1) {
         moveMore(90, distance);
@@ -78,7 +78,7 @@ document.onkeydown = function(e) {
         //Move back to previous CP
         moveSpacecraft(270, 1);
       }
-    } else if (e.keyCode == 40) {
+    } else if (e.keyCode == 37) {
       //left
       if (distance > 1) {
         moveMore(270, distance);
@@ -95,7 +95,7 @@ document.onkeydown = function(e) {
         //Move back to previous CP
         moveSpacecraft(90, 1);
       }
-    } else if (e.keyCode == 39) {
+    } else if (e.keyCode == 38) {
       //up
       if (distance > 1) {
         moveMore(0, distance);
@@ -112,7 +112,7 @@ document.onkeydown = function(e) {
         //Move back to previous CP
         moveSpacecraft(180, 1);
       }
-    } else if (e.keyCode == 37) {
+    } else if (e.keyCode == 40) {
       //down
       if (distance > 1) {
         moveMore(180, distance);
@@ -167,6 +167,11 @@ function retrieveCell() {
 function updateShip(x, y, lastCell) {
   saveNode = document.getElementById("ship");
   let elem = getElement(x, y);
+  let str = elem.classList[1];
+  rev = str
+    .split("")
+    .reverse()
+    .join("");
   elem.setAttribute("id", "ship");
   saveCell.id = lastCell.id;
   document.getElementById("yCoord").value = x;
@@ -174,7 +179,7 @@ function updateShip(x, y, lastCell) {
   if (saveNode !== null) {
     saveNode.id = `${lastCell.x + "," + lastCell.y}`;
   }
-  return modifyCaptLog(elem.classList[1]);
+  return modifyCaptLog(rev);
 }
 
 function modifyCaptLog(str) {
@@ -190,7 +195,7 @@ function updateCell(x, y, cellId) {
   document.getElementById(`${x + "," + y}`);
 }
 function getElement(x, y) {
-  return document.getElementsByClassName(`${y + "," + x}`)[0];
+  return document.getElementsByClassName(`${x + "," + y}`)[0];
 }
 
 function updateEnergy(amount) {
