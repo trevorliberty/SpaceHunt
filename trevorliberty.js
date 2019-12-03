@@ -230,7 +230,7 @@ function moveHenchmen(x, y) {
     const pX = obj.x;
     const pY = obj.y;
     if (obj.x == shipCell.x && obj.y === shipCell.y) {
-      alert("You have been destroyed by bad Max's henchman");
+      updateSupplies(-10);
     }
     if (obj.x != shipCell.x) {
       if (obj.x < shipCell.x) {
