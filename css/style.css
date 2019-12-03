@@ -281,8 +281,6 @@ body {
 /*
             Stylized background borrowed from Nazar The Vis Azhar, via https://codepen.io/NazarTheVis/pen/zqXMqP
          */
-@import "susy";
-@import "compass/reset";
 
 .stars,
 .twinkling,
