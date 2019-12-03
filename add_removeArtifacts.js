@@ -183,15 +183,15 @@ function removePlanet(id) {
 }
 
 function addFreighter() {
-  var newFreighterNum = parseInt($("#planets").val()) + 1;
+  var newFreighterNum = parseInt($("#freighters").val()) + 1;
   var newFreighterInput =
-    "<div class='new_planet" +
+    "<div class='new_freighter" +
     newFreighterNum +
-    "'><input type='text' id='new_planet" +
+    "'><input type='text' id='new_freighter" +
     newFreighterNum +
-    "' style='margin:10px;' placeholder='Freighter Name'><input type='text'id='planetXCoord_" +
+    "' style='margin:10px;' placeholder='Freighter Name'><input type='text'id='freighterXCoord_" +
     newFreighterNum +
-    "'style='margin:5px;' size='10' placeholder='X-Coordinate'><input type='text'id='planetYCoord_" +
+    "'style='margin:5px;' size='10' placeholder='X-Coordinate'><input type='text'id='freighterYCoord_" +
     newFreighterNum +
     "'style='margin:5px;'size='10' placeholder='Y-Coordinate'><a href='#' id='" +
     newFreighterNum +

@@ -164,12 +164,22 @@ function isArtifact(shipId){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, planet){
   					var planetId = (planet.XCoord + "," + planet.YCoord);
-  					if(shipId == planetId){
+  					if(shipId == planetId && $("#distance").val()==1){
+  						//Dock at the space station  						
+  						if(prompt("Would you like to land on this planet? Y or N") == 'Y'){
+							updateEnergy(Math.abs($("#energy").val() - 1010));
+  							var supplies = $("#supplies").val(); 
+  							updateSupplies(100 - supplies + 2);
+							  alert("You have landed on at the planet and have gained energy and supplies");
+
   						returnValue = true;
-  						alert("You have collided with a planet and have taken damage!");
-  						updateEnergy(-20);
+					  }
+					}else if(shipId == planetId&& $("#distance").val() > 1){
+  						alert("You have collided with a planet and have taken some damage!");
+  						updateEnergy(-10);
   						updateSupplies(-10);
-  					}
+  						returnValue = true;
+					}
   				});
   			});
   		}else if(key == "asteroids"){
@@ -235,12 +245,16 @@ function isArtifact(shipId){
   				$.each(value1, function(key2, freighter){
   					var freighterId = (freighter.XCoord + "," + freighter.YCoord);
   					if(shipId == freighterId && $("#distance").val() == 1){
-  						//Dock at the space freighter  						
-  						if(prompt("Would you to harvest this space freighter? Y or N") == 'Y'){
+						  //Dock at the space freighter  						
+						  if("harvested" in freighter){
+							  alert("You have already harvested this freighter");
+						  }
+  						else if(prompt("Would you to harvest this space freighter? Y or N") == 'Y'){
 							updateEnergy(Math.abs($("#energy").val() - 1010));
   							var supplies = $("#supplies").val(); 
   							updateSupplies(100 - supplies + 2);
-  							alert("You have harvested the freighter and have gained energy and supplies");
+							  alert("You have harvested the freighter and have gained energy and supplies");
+							  freighter.harvested =true;
   						}
   						returnValue = true;
   					}else if(shipId == freighterId && $("#distance").val() > 1){
