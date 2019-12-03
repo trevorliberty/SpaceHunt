@@ -16,6 +16,8 @@ badMax = {
   x: Math.floor((Math.random() * 15) % size),
   y: Math.floor((Math.random() * 15) % size)
 };
+henchmenAmt = 0;
+henchmen = [];
 visited = [];
 
 if (planets) {
@@ -215,6 +217,32 @@ function moveBadMax() {
 
   getElement(pX, pY).setAttribute("id", `${pX + "," + pY}`);
   getElement(badMax.x, badMax.y).setAttribute("id", "badMax");
+  return moveHenchmen(shipCell.x, shipCell.y);
+}
+function moveHenchmen(x, y) {
+  henchmen.forEach(obj => {
+    const pX = obj.x;
+    const pY = obj.y;
+    if (obj.x == shipCell.x && obj.y === shipCell.y) {
+      alert("You have been destroyed by bad Max's henchman");
+    }
+    if (obj.x != shipCell.x) {
+      if (obj.x < shipCell.x) {
+        obj.x += 1;
+      } else if (obj.x > shipCell.x) {
+        obj.x -= 1;
+      }
+    }
+    if (obj.y != shipCell.y) {
+      if (obj.y < shipCell.y) {
+        obj.y += 1;
+      } else if (obj.y > shipCell.y) {
+        obj.y -= 1;
+      }
+    }
+    getElement(pX, pY).setAttribute("id", `${pX + "," + pY}`);
+    getElement(obj.x, obj.y).setAttribute("id", "henchman");
+  });
 }
 
 const maxInterval = intervalAmt => {
@@ -288,6 +316,14 @@ function load() {
   document
     .getElementById("ship")
     .scrollIntoView({ behavior: "instant", block: "center" });
+  //update to be read in from game settings
+  henchmenAmt = 3;
+  for (let i = 0; i < henchmenAmt; ++i) {
+    henchmen[i] = {
+      x: Math.floor((Math.random() * 15) % size) + i,
+      y: Math.floor((Math.random() * 15) % size) + i
+    };
+  }
   maxInterval(1000);
 }
 
