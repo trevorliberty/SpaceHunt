@@ -334,6 +334,32 @@ function setRecipe() {
   console.log(recipe);
 }
 
+function setStaticPlanets() {
+  var celeron = {
+    Name: "Celeron",
+    YCoord: parseInt(randomYCoord()),
+    XCoord: parseInt(randomXCoord()),
+    seen: false
+  };
+  var xeon = {
+    Name: "Xeon",
+    YCoord: parseInt(randomYCoord()),
+    XCoord: parseInt(randomXCoord()),
+    seen: false
+  };
+  var ryzen = {
+    Name: "Ryzen",
+    YCoord: parseInt(randomYCoord()),
+    XCoord: parseInt(randomXCoord()),
+    seen: false
+  };
+  var celer = { Planet: celeron };
+  var xeo = { Planet: xeon };
+  var ryz = { Planet: ryzen };
+  planetArry.push(xeo);
+  planetArry.push(celer);
+  planetArry.push(ryz);
+}
 function randomArtifacts() {
   //To determine how many of each artifacts should be placed into the game
   var randomNum = Math.floor(Math.random() * 10) + 1;
@@ -394,6 +420,7 @@ function randomArtifacts() {
   }
 
   setRecipe();
+  setStaticPlanets();
 }
 
 //Saves the celertial artifacts to the local storage//

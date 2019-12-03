@@ -200,6 +200,8 @@ function moveBadMax() {
   const pY = badMax.y;
   if (badMax.x == shipCell.x && badMax.y === shipCell.y) {
     alert("You have been destroyed by bad Max");
+    window.location.href = "./index.html";
+    return;
   }
   if (badMax.x != shipCell.x) {
     if (badMax.x < shipCell.x) {
@@ -337,7 +339,7 @@ function load() {
       y: Math.floor((Math.random() * 15) % size) + i
     };
   }
-  maxInterval(1000);
+  maxInterval(3000);
 }
 
 function shipInit() {
