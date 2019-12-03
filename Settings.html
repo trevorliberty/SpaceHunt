@@ -50,13 +50,13 @@
       .stars {
         z-index: 0;
         background: #000 url("https://image.ibb.co/mjnygo/stars.png") repeat top
-        center;
+          center;
       }
 
       .twinkling {
         z-index: 1;
         background: transparent url("https://image.ibb.co/ir1DE8/twinkling.png")
-        repeat top center;
+          repeat top center;
         animation: move-twink-back 250s linear infinite;
       }
 
@@ -76,7 +76,6 @@
         /*overflow: hidden;*/
       }
 
-
       #title {
         font-family: starnext;
         text-align: center;
@@ -84,7 +83,6 @@
         color: white;
         margin-top: 40px;
         margin-bottom: 40px;
-
       }
 
       #box {
@@ -102,8 +100,9 @@
         color: #000;
       }
 
-      button, input{
-      	margin: 5px;
+      button,
+      input {
+        margin: 5px;
       }
 
       body {
@@ -115,13 +114,13 @@
       }
 
       @font-face {
-        font-family: 'starnext';
-        src: url('starnext.ttf') format('truetype');
+        font-family: "starnext";
+        src: url("starnext.ttf") format("truetype");
       }
 
       @font-face {
-        font-family: 'arcade';
-        src: url('arcade.ttf') format('truetype');
+        font-family: "arcade";
+        src: url("arcade.ttf") format("truetype");
       }
 
       h4#celestial {
@@ -214,13 +213,11 @@
         background-color: lightblue;
       }
 
-      input[type=number]::-webkit-inner-spin-button,
-      input[type=number]::-webkit-outer-spin-button {
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
       }
-
-
     </style>
     <audio autoplay>
       <source src="space.mp3" type="audio/mpeg" />
@@ -228,10 +225,8 @@
   </head>
 
   <body>
-
     <div class="stars">
       <div class="twinkling">
-
         <div id="wrapper"><h1 id="title">Settings</h1></div>
 
         <div id="box">
@@ -239,26 +234,42 @@
             <h4 id="celestial">Celestial Artifacts</h4>
 
             <!--------------------PLANETS-------------------------------->
-            <button type="button" class="addPlanet" onclick="addPlanet()">Add Planet</button>
+            <button type="button" class="addPlanet" onclick="addPlanet()">
+              Add Planet
+            </button>
 
             <div id="newPlanets"></div>
             <input type="hidden" value="0" id="planets" />
 
             <!-------------------ASTEROIDS--------------------------------->
-            <button type="button" class="addAsteroid" onclick="addAsteroid()">Add Asteroid</button>
+            <button type="button" class="addAsteroid" onclick="addAsteroid()">
+              Add Asteroid
+            </button>
 
             <div id="newAsteroids"></div>
             <input type="hidden" value="0" id="asteroids" />
 
+            <!-------------------FREIGHTERS--------------------------------->
+            <button type="button" class="addFreighter" onclick="addFreighter()">
+              Add Freighter
+            </button>
+
+            <div id="newFreighters"></div>
+
+            <input type="hidden" value="0" id="freighters" />
             <!-------------------SPACE STATIONS--------------------------->
-            <button type="button" class="addSatation" onclick="addStation()">Add Space Station</button>
+            <button type="button" class="addSatation" onclick="addStation()">
+              Add Space Station
+            </button>
 
             <div id="newStations"></div>
             <input type="hidden" value="0" id="stations" />
-            
+
             <!-------------------METEOR STORM--------------------------->
-            <button type="button" class="addMeteor" onclick="addMeteor()">Add Meteor Storm</button>
-            
+            <button type="button" class="addMeteor" onclick="addMeteor()">
+              Add Meteor Storm
+            </button>
+
             <div id="newMeteors"></div>
             <input type="hidden" value="0" id="meteors" />
 
@@ -267,26 +278,60 @@
 
             <div class="even">
               <span>Energy:</span>
-              <input class="usettings" type="number" id="energy" value="1000" min="1" required /><br />
+              <input
+                class="usettings"
+                type="number"
+                id="energy"
+                value="1000"
+                min="1"
+                required
+              /><br />
             </div>
 
             <div class="odd">
               <span id="supspan">Supplies:</span>
-              <input id="supplies" class="usettings" type="number" value="100" min="0" required /><br />
+              <input
+                id="supplies"
+                class="usettings"
+                type="number"
+                value="100"
+                min="0"
+                required
+              /><br />
             </div>
 
             <div class="even">
               <span>Credits:</span>
-              <input id="credits" class="usettings" type="number" value="100" required /><br />
+              <input
+                id="credits"
+                class="usettings"
+                type="number"
+                value="100"
+                required
+              /><br />
             </div>
 
             <div id="location" class="odd">
               <span id="loc">Starting Location:</span>
               <div id="coords">
                 <span>X:</span>
-                <input type="number" id="x" value="0" style="width:50px" min="0" required/>
+                <input
+                  type="number"
+                  id="x"
+                  value="0"
+                  style="width:50px"
+                  min="0"
+                  required
+                />
                 <span>Y:</span>
-                <input type="number" id="y" value="0" style="width:50px" min="0" required/>
+                <input
+                  type="number"
+                  id="y"
+                  value="0"
+                  style="width:50px"
+                  min="0"
+                  required
+                />
               </div>
             </div>
 
@@ -294,32 +339,71 @@
 
             <div class="even" style="padding-bottom: 0px">
               <span>Board Size:</span>
-              <input type="number" id="maxSize" value="128" style="width:80px" style="padding-bottom: 0px" min="1" required/> <br/><br/>
+              <input
+                type="number"
+                id="maxSize"
+                value="128"
+                style="width:80px"
+                style="padding-bottom: 0px"
+                min="1"
+                required
+              />
+              <br /><br />
             </div>
 
             <div class="odd">
-
               <span style="font-size: 15px">Play Style:</span>
               <div class="buts">
-              <span>Mortal</span>
-                <input class="radio" type="radio" id="dying" value="true" onclick="document.getElementById('godMode').checked = false" checked/>
-
+                <span>Mortal</span>
+                <input
+                  class="radio"
+                  type="radio"
+                  id="dying"
+                  value="true"
+                  onclick="document.getElementById('godMode').checked = false"
+                  checked
+                />
 
                 <span>God Mode</span>
-                <input class="radio" type="radio" id="godMode" value="false" onclick="document.getElementById('dying').checked = false"/><br />
+                <input
+                  class="radio"
+                  type="radio"
+                  id="godMode"
+                  value="false"
+                  onclick="document.getElementById('dying').checked = false"
+                /><br />
               </div>
 
               <span style="font-size: 15px">Wormhole Behavior:</span>
               <div class="buts">
                 <span>Fixed</span>
-                <input class="radio" type="radio" id="fixedWormhole" value="true" onclick="document.getElementById('randomWormhole').checked = false" checked/>
+                <input
+                  class="radio"
+                  type="radio"
+                  id="fixedWormhole"
+                  value="true"
+                  onclick="document.getElementById('randomWormhole').checked = false"
+                  checked
+                />
 
                 <span>Random</span>
-                <input class="radio" type="radio" id="randomWormhole" value="false" onclick="document.getElementById('fixedWormhole').checked = false"/><br />
+                <input
+                  class="radio"
+                  type="radio"
+                  id="randomWormhole"
+                  value="false"
+                  onclick="document.getElementById('fixedWormhole').checked = false"
+                /><br />
               </div>
             </div>
 
-            <button id="thebutton" type="button" onclick="configure(), setArtifacts()">Submit</button>
+            <button
+              id="thebutton"
+              type="button"
+              onclick="configure(), setArtifacts()"
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>

@@ -3,7 +3,8 @@ var celestialArtifacts = {
   asteroids: [],
   stations: [],
   meteors: [],
-  receip: []
+  receip: [],
+  freighters: []
 };
 
 var planetArry = [];
@@ -11,6 +12,7 @@ var asteroidArry = [];
 var stationArry = [];
 var meteorArry = [];
 var recipeArry = [];
+var freighterArry = [];
 
 //Save a planet to the array of planets//
 function savePlanet(id) {
@@ -121,6 +123,32 @@ function deleteMeteor(id) {
   console.log(meteorArry);
 }
 
+function saveFreighter(id) {
+  var freighter = {
+    Name: $("#new_freighter" + id).val(),
+    XCoord: parseInt($("#freighterXCoord_" + id).val()),
+    YCoord: parseInt($("#freighterYCoord_" + id).val()),
+    seen: false
+  };
+
+  var arryStr = { Freighter: freighter };
+  freighterArry.push(arryStr);
+  console.log(freighterArry);
+  removeFreighter(id);
+}
+
+//Remove a planet from the array of planets//
+function deleteFreighter(id) {
+  var freighter = {
+    Name: $("#new_freighter" + id).val(),
+    XCoord: parseInt($("#freighterXCoord_" + id).val()),
+    YCoord: parseInt($("#freighterYCoord_" + id).val()),
+    seen: false
+  };
+
+  freighterArry.splice(id - 1, 1);
+  console.log(freighterArry);
+}
 //Adds the planet input fields to the settings.html page//
 function addPlanet() {
   var newPlanetNum = parseInt($("#planets").val()) + 1;
@@ -154,6 +182,31 @@ function removePlanet(id) {
   }*/
 }
 
+function addFreighter() {
+  var newFreighterNum = parseInt($("#planets").val()) + 1;
+  var newFreighterInput =
+    "<div class='new_planet" +
+    newFreighterNum +
+    "'><input type='text' id='new_planet" +
+    newFreighterNum +
+    "' style='margin:10px;' placeholder='Freighter Name'><input type='text'id='planetXCoord_" +
+    newFreighterNum +
+    "'style='margin:5px;' size='10' placeholder='X-Coordinate'><input type='text'id='planetYCoord_" +
+    newFreighterNum +
+    "'style='margin:5px;'size='10' placeholder='Y-Coordinate'><a href='#' id='" +
+    newFreighterNum +
+    "' onclick='saveFreighter(this.id)'>Save</a></div>";
+
+  $("#newFreighters").append(newFreighterInput);
+  $("#freighters").val(newFreighterNum);
+  console.log("Added Freighter" + newFreighterNum);
+}
+
+//Removes the freighter input fields to the settings.html page//
+function removeFreighter(id) {
+  var lastFreighterNum = parseInt(id);
+  $(".new_freighter" + lastFreighterNum).remove();
+}
 //Adds the asteriod input fields to the settings.html page//
 function addAsteroid() {
   var newAsteroidNum = parseInt($("#asteroids").val()) + 1;
@@ -181,12 +234,6 @@ function addAsteroid() {
 function removeAsteroid(id) {
   var lastAsteroidNum = parseInt(id);
   $(".new_asteroid" + lastAsteroidNum).remove();
-  /*  if (lastAsteroidNum >= 1) {
-    $(".new_asteroid" + lastAsteroidNum).remove();
-    $("#asteroids").val(lastAsteroidNum - 1);
-    deleteAsteroid(id);
-    console.log("Removed Asteroid" + lastAsteroidNum);
-  }*/
 }
 
 //Adds the space station input fields to the settings.html page//
@@ -334,6 +381,15 @@ function randomArtifacts() {
     meteorArry.push(arryStr);
     console.log(meteorArry);
 
+    var freighter = {
+      Name: "freighter" + counter,
+      XCoord: parseInt(randomXCoord()),
+      YCoord: parseInt(randomYCoord())
+    };
+
+    var arryStr = { Freighter: freighter };
+    freighterArry.push(arryStr);
+    console.log(freighterArry);
     counter++;
   }
 
@@ -348,6 +404,7 @@ function setArtifacts() {
   celestialArtifacts.stations = stationArry;
   celestialArtifacts.meteors = meteorArry;
   celestialArtifacts.recipe = recipeArry;
+  celestialArtifacts.freighters = freighterArry;
   localStorage.setItem(
     "celestialArtifacts",
     JSON.stringify(celestialArtifacts)

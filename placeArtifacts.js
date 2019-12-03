@@ -40,6 +40,13 @@ function loadArtifacts(){
                          placeMeteors(meteor);
                          });
                   });
+           ;
+           }else if(key == "freighters"){
+           $.each(value, function(key1, value1){
+                  $.each(value1, function(key2, freighter){
+                         placeFreighters(freighter);
+                         });
+                  });
            };
   });
 }
@@ -133,6 +140,22 @@ function placeMeteors(artifact) {
     container.appendChild(meteor).className = `artifact`+id;
     artifactIds.push(id);
 }
+function placeFreighters(artifact) {
+    var id = (artifact.XCoord + "," + artifact.YCoord);
+  rev = id 
+    .split(",")
+    .reverse()
+    .join(",");
+    console.log("Artifact: " + artifact.Name + " id: " + rev);
+    
+    const container = document.getElementById(id);
+    let freighter = document.createElement("img");
+    freighter.setAttribute("src", "freighter.png");
+    freighter.style.width = "100%";
+    freighter.style.visibility = "hidden";
+    container.appendChild(freighter).className = `artifact`+id;
+    artifactIds.push(id);
+}
 
 function isArtifact(shipId){
 	returnValue = false;
@@ -207,6 +230,28 @@ function isArtifact(shipId){
   				});
   			});
 
+           }else if(key == "freighters"){
+  			$.each(value, function(key1, value1){
+  				$.each(value1, function(key2, freighter){
+  					var freighterId = (freighter.XCoord + "," + freighter.YCoord);
+  					if(shipId == freighterId && $("#distance").val() == 1){
+  						//Dock at the space freighter  						
+  						if(prompt("Would you to harvest this space freighter? Y or N") == 'Y'){
+							updateEnergy(Math.abs($("#energy").val() - 1010));
+  							var supplies = $("#supplies").val(); 
+  							updateSupplies(100 - supplies + 2);
+  							alert("You have harvested the freighter and have gained energy and supplies");
+  						}
+  						returnValue = true;
+  					}else if(shipId == freighterId && $("#distance").val() > 1){
+  						alert("You have collided with a freighter and have taken some damage!");
+  						updateEnergy(-10);
+  						updateSupplies(-10);
+  						returnValue = true;
+  					}
+
+  				});
+  			});
 		}else if(key == "recipe"){
         $.each(value, function(key1, value1){
           $.each(value1, function(key2, recipe){
@@ -379,6 +424,38 @@ function showArtifact(shipId){
                         }else if(sensorPaused){
                             if(meteor.seen === false){
                                     $( "img[class*='"+meteorId+"']" ).css({"visibility": "hidden"});
+                                }
+                            }
+                         });
+                  });
+           }else if(key == "freighters"){
+           $.each(value, function(key1, value1){
+                  $.each(value1, function(key2, freighter){
+                         var freighterId = (freighter.XCoord + "," + freighter.YCoord);
+                         var flag = false;
+                         if(!sensorPaused){
+                         //console.log("sensor active");
+                         if((currentCell.x + "," + (currentCell.y+1)) == freighterId){flag = true;$( "img[class*='"+freighterId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                         if((currentCell.x + "," + (currentCell.y+2)) == freighterId){flag = true;$( "img[class*='"+freighterId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                         if((currentCell.x + "," + (currentCell.y-1)) == freighterId){flag = true;$( "img[class*='"+freighterId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                         if((currentCell.x + "," + (currentCell.y-2)) == freighterId){flag = true;$( "img[class*='"+freighterId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                         
+                         if(((currentCell.x+1) + "," + currentCell.y) == freighterId){flag = true;$( "img[class*='"+freighterId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                         if(((currentCell.x+2) + "," + currentCell.y) == freighterId){flag = true;$( "img[class*='"+freighterId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                         if(((currentCell.x-1) + "," + currentCell.y) == freighterId){flag = true;$( "img[class*='"+freighterId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                         if(((currentCell.x-2) + "," + currentCell.y) == freighterId){flag = true;$( "img[class*='"+freighterId+"']" ).css({"visibility": "visible"});updateSupplies(-2);}
+                         
+                         if(((currentCell.x+1) + "," + (currentCell.y+1)) == freighterId){flag = true;$( "img[class*='"+freighterId+"']").css({"visibility": "visible"});updateSupplies(-2);}
+                         if(((currentCell.x+1) + "," + (currentCell.y-1)) == freighterId){flag = true;$( "img[class*='"+freighterId+"']").css({"visibility": "visible"});updateSupplies(-2);}
+                         if(((currentCell.x-1) + "," + (currentCell.y+1)) == freighterId){flag = true;$( "img[class*='"+freighterId+"']").css({"visibility": "visible"});updateSupplies(-2);}
+                         if(((currentCell.x-1) + "," + (currentCell.y-1)) == freighterId){flag = true;$( "img[class*='"+freighterId+"']").css({"visibility": "visible"});updateSupplies(-2);}
+                         if(flag === true){
+                            $( "img[class*='"+freighterId+"']" ).css({"visibility": "visible"});
+                            return modifyCaptLog(`Found freighter at ${freighter.YCoord+','+freighter.XCoord}`)
+                            }
+                        }else if(sensorPaused){
+                            if(freighter.seen === false){
+                                    $( "img[class*='"+freighterId+"']" ).css({"visibility": "hidden"});
                                 }
                             }
                          });
