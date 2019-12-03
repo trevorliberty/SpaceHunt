@@ -1,11 +1,11 @@
 <html>
-<head>
-  <script type="text/javascript" src="http://livejs.com/live.js"></script>
-  <audio autoplay>
-    <source src="space.mp3" type="audio/mpeg" />
-  </audio>
+  <head>
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
+    <audio autoplay>
+      <source src="space.mp3" type="audio/mpeg" />
+    </audio>
     <script src="add_removeArtifacts.js"></script>
-</head>
+  </head>
 
   <style>
     /*
@@ -52,11 +52,10 @@
     #title {
       z-index: 1;
       text-align: center;
-      opacity: 0.90;
+      opacity: 0.9;
       color: #187dff;
       font-size: 135px;
       font-family: starnext;
-      text-effect: outline;
     }
 
     html,
@@ -66,10 +65,9 @@
       overflow: hidden;
     }
 
-    .container{
+    .container {
       text-align: center;
       margin: auto;
-
     }
 
     .container button {
@@ -98,7 +96,7 @@
 
     .container button:hover {
       background-color: #3695ff;
-        opacity: 0.8;
+      opacity: 0.8;
     }
 
     .container button p:hover {
@@ -110,40 +108,47 @@
     }
 
     @font-face {
-      font-family: 'starnext';
-      src: url('starnext.ttf') format('truetype');
+      font-family: "starnext";
+      src: url("starnext.ttf") format("truetype");
     }
 
     @font-face {
-      font-family: 'arcade';
-      src: url('arcade.ttf') format('truetype');
+      font-family: "arcade";
+      src: url("arcade.ttf") format("truetype");
     }
-
   </style>
 
   <body>
-  <script src="loadGame.js"></script>
-  <div class="stars">
+    <script src="loadGame.js"></script>
+    <div class="stars">
       <div class="twinkling">
-
-        <h1 id="title">Space Hunt<br/>Adventure</h1>
+        <h1 id="title">Space Hunt<br />Adventure</h1>
 
         <div class="container" id="options">
+          <button
+            id="standard"
+            type="reset"
+            class="button"
+            onClick="setArtifacts(), loadMap()"
+          >
+            <p>new game</p>
+          </button>
+          <br />
 
-            <button id="standard" type="reset" class="button" onClick="setArtifacts(), loadMap()">
-              <p>new game</p>
-            </button> <br/>
+          <button
+            id="load"
+            type="reset"
+            class="button"
+            onClick="loadSaveState()"
+          >
+            <p>load game</p>
+          </button>
+          <br />
 
-            <button id="load" type="reset" class="button" onClick="loadSaveState()">
-              <p>load game</p>
-            </button> <br/>
-
-            <button id="admin" type="reset" class="button" onClick="validate()">
-              <p>dev mode</p>
-            </button>
-
+          <button id="admin" type="reset" class="button" onClick="validate()">
+            <p>dev mode</p>
+          </button>
         </div>
-
       </div>
     </div>
 
@@ -158,7 +163,7 @@
           yCoord: "0",
           dies: true,
           wormholeFixed: true,
-          maxSize : "128",
+          maxSize: "128"
         };
         localStorage.setItem("config", JSON.stringify(defaulConfig));
         window.location.href = "SpaceHunt Core HTML.html";
@@ -172,10 +177,9 @@
       function validate() {
         var pwd = prompt("Enter 'Password': ");
 
-        if(pwd == "Password") {
+        if (pwd == "Password") {
           loadSettings();
-        }
-        else {
+        } else {
           alert("Incorrect password. Please try again or don't.");
         }
       }

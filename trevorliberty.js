@@ -231,6 +231,7 @@ function moveHenchmen(x, y) {
     const pY = obj.y;
     if (obj.x == shipCell.x && obj.y === shipCell.y) {
       updateSupplies(-10);
+      t;
     }
     if (obj.x != shipCell.x) {
       if (obj.x < shipCell.x) {

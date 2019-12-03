@@ -1,4 +1,110 @@
-:root {
+@import "susy";
+@import "compass/reset";
+
+.stars,
+.twinkling,
+.clouds {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stars {
+  z-index: 0;
+  background: #000 url("https://image.ibb.co/mjnygo/stars.png") repeat top
+    center;
+}
+
+.twinkling {
+  z-index: 1;
+  background: transparent url("https://image.ibb.co/ir1DE8/twinkling.png")
+    repeat top center;
+  animation: move-twink-back 250s linear infinite;
+}
+
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+#title {
+  z-index: 1;
+  text-align: center;
+  opacity: 0.9;
+  color: #187dff;
+  font-size: 135px;
+  font-family: starnext;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  margin: auto;
+}
+
+.container button {
+  background-color: rgba(0, 0, 225, 0.75);
+}
+
+.button {
+  padding-top: 20px;
+  width: 550px;
+  height: 40px;
+  transform: skew(-40deg);
+  padding-bottom: 60px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+.container button p {
+  text-align: center;
+  transform: skew(40deg);
+  color: white;
+  font-family: arcade;
+  font-size: 35px;
+  margin: 0 0 0 0;
+  transition: color 0.3s;
+}
+
+.container button:hover {
+  background-color: #3695ff;
+  opacity: 0.8;
+}
+
+.container button p:hover {
+  color: black;
+}
+
+#options {
+  text-align: center;
+}
+
+@font-face {
+  font-family: "starnext";
+  src: url("starnext.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "arcade";
+  src: url("arcade.ttf") format("truetype");
+}
+
+root {
   --grid-cols: 1;
   --grid-rows: 1;
 }
