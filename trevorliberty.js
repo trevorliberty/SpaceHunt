@@ -264,10 +264,27 @@ const maxInterval = intervalAmt => {
   return setInterval(moveBadMax, intervalAmt);
 };
 function modifyCaptLog(str) {
+  var user = localStorage.getItem("userType");
+  if(user == "administrator"){
+      if (!set.has(str)) {
+        var textarea = document.getElementById("log");
+        textarea.scrollTop = textarea.scrollHeight;
+        document.getElementById("log").textContent += str + "\n";
+        set.add(str);
+      }
+  }else{
+    if (!set.has(str)) {
+      var textarea = document.getElementById("log2");
+      textarea.scrollTop = textarea.scrollHeight;
+      document.getElementById("log2").textContent += str + "\n";
+      set.add(str);
+    }
+  }
+}
+function modifyArtLog(str) {
   if (!set.has(str)) {
-    var textarea = document.getElementById("log");
-    textarea.scrollTop = textarea.scrollHeight;
-    document.getElementById("log").textContent += str + "\n";
+    var textarea = document.getElementById("artLog");
+    document.getElementById("artLog").textContent += str + "\n";
     set.add(str);
   }
 }

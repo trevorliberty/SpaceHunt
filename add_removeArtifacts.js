@@ -432,9 +432,6 @@ function setArtifacts() {
   celestialArtifacts.meteors = meteorArry;
   celestialArtifacts.recipe = recipeArry;
   celestialArtifacts.freighters = freighterArry;
-  localStorage.setItem(
-    "celestialArtifacts",
-    JSON.stringify(celestialArtifacts)
-  );
+  localStorage.setItem("celestialArtifacts", JSON.stringify(celestialArtifacts));
   window.location.href = "SpaceHunt Core HTML.html";
 }

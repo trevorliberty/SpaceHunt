@@ -10,44 +10,45 @@ function loadArtifacts(){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, planet){
   					placePlanets(planet);
-  					//console.log("Name: " + planet.Name + " xCoord: " + planet.XCoord + " yCoord: " + planet.YCoord);
+  					modifyArtLog(planet.Name + ":" + planet.YCoord + "," + planet.XCoord);
   				});
   			});
   		}else if(key == "asteroids"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, asteriod){
   					placeAsteriods(asteriod);
-					//console.log("Name: " + asteriod.Name + " xCoord: " + asteriod.XCoord + " yCoord: " + asteriod.YCoord);
+					  modifyArtLog(asteriod.Name + ":" + asteriod.YCoord + "," + asteriod.XCoord);
   				});
   			});
   		}else if(key == "stations"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
   					placeStations(station);
-					//console.log("Name: " + station.Name + " xCoord: " + station.XCoord + " yCoord: " + station.YCoord);
+					  modifyArtLog(station.Name + ":" + station.YCoord + "," + station.XCoord);
   				});
   			});
-		  }else if(key == "recipe"){
-            console.log("KEY: " + key);
-                $.each(value, function(key1, value1){
-                       $.each(value1, function(key2, recipe){
-                              placeRecipe(recipe);
-                              });
-                       });
-           }else if(key == "meteors"){
-           $.each(value, function(key1, value1){
-                  $.each(value1, function(key2, meteor){
-                         placeMeteors(meteor);
-                         });
-                  });
-           ;
-           }else if(key == "freighters"){
-           $.each(value, function(key1, value1){
-                  $.each(value1, function(key2, freighter){
-                         placeFreighters(freighter);
-                         });
-                  });
-           };
+		  }else if(key == "meteors"){
+        $.each(value, function(key1, value1){
+          $.each(value1, function(key2, meteor){
+            placeMeteors(meteor);
+            modifyArtLog(meteor.Name + ":" + meteor.YCoord + "," + meteor.XCoord);
+          });
+        });
+      }else if(key == "freighters"){
+        $.each(value, function(key1, value1){
+          $.each(value1, function(key2, freighter){
+            placeFreighters(freighter);
+            modifyArtLog(freighter.Name + ":" + freighter.YCoord + "," + freighter.XCoord);
+          });
+        });
+      }else if(key == "recipe"){
+        $.each(value, function(key1, value1){
+          $.each(value1, function(key2, recipe){
+            placeRecipe(recipe);
+            modifyArtLog(recipe.Name + ":" + recipe.YCoord + "," + recipe.XCoord);
+          });
+        });
+      }
   });
 }
 
@@ -172,41 +173,75 @@ function isArtifact(shipId){
   							updateSupplies(100 - supplies + 2);
 							  alert("You have landed on at the planet and have gained energy and supplies");
 
-  						returnValue = true;
+  						  returnValue = true;
+					    }
+					  }else if(shipId == planetId&& $("#distance").val() > 1){
+              var ranNum = Math.floor(Math.random() * 15);
+              if(ranNum >=6 ){
+                alert("You have collided with a planet and have taken some damage!");
+                updateEnergy(-10);
+                updateSupplies(-10);
+              }else{
+                updateEnergy(-1000);
+                updateSupplies(-100);
+                alert("You have collided with a planet and your ship has blown up." + "\n" + "Game Over!");
+                //game ends
+                window.location.href = "index.html";
+              }
 					  }
-					}else if(shipId == planetId&& $("#distance").val() > 1){
-  						alert("You have collided with a planet and have taken some damage!");
-  						updateEnergy(-10);
-  						updateSupplies(-10);
-  						returnValue = true;
-					}
   				});
   			});
   		}else if(key == "asteroids"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, asteriod){
 					var asteriodId = (asteriod.XCoord + "," + asteriod.YCoord);
-  					if(shipId == asteriodId){
+  					if(shipId == asteriodId && $("#distance").val() == 1){
   						returnValue = true;
   						alert("You have collided with an asteriod and have taken damage!");
   						updateEnergy(-20);
   						updateSupplies(-10);
-  					}
+  					}else if(shipId == asteriodId && $("#distance").val() == 1){
+              var ranNum = Math.floor(Math.random() * 15);
+              if(ranNum >=6 ){
+                alert("You have collided with a asteriod and have taken some damage!");
+                updateEnergy(-10);
+                updateSupplies(-10);
+              }else{
+                updateEnergy(-1000);
+                updateSupplies(-100);
+                alert("You have collided with a asteriod and your ship has blown up." + "\n" + "Game Over!");
+                //game ends
+                window.location.href = "index.html";
+              }
+            }
   				});
   			});
-           }else if(key == "meteors"){
+      }else if(key == "meteors"){
            $.each(value, function(key1, value1){
-                  $.each(value1, function(key2, meteor){
-                    var meteorId = (meteor.XCoord + "," + meteor.YCoord);
-                    if(shipId == meteorId){
-                         returnValue = true;
-                         alert("You have been hit by a meteor storm and damaged!");
-                         updateEnergy(-20);
-                         updateSupplies(-10);
-                        }
-                    });
-                  });
-           }else if(key == "stations"){
+              $.each(value1, function(key2, meteor){
+                var meteorId = (meteor.XCoord + "," + meteor.YCoord);
+                if(shipId == meteorId && $("#distance").val() == 1){
+                  returnValue = true;
+                    alert("You have been hit by a meteor storm and damaged!");
+                    updateEnergy(-20);
+                    updateSupplies(-10);
+                }else if(shipId == meteorId && $("#distance").val() == 1){
+                  var ranNum = Math.floor(Math.random() * 15);
+                  if(ranNum >=6 ){
+                    alert("You have collided with a meteor and have taken some damage!");
+                    updateEnergy(-10);
+                    updateSupplies(-10);
+                  }else{
+                    updateEnergy(-1000);
+                    updateSupplies(-100);
+                    alert("You have collided with a meteor and your ship has blown up." + "\n" + "Game Over!");
+                    //game ends
+                    window.location.href = "index.html";
+                  }
+                }
+              });
+            });
+      }else if(key == "stations"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, station){
   					var stationId = (station.XCoord + "," + station.YCoord);
@@ -225,22 +260,33 @@ function isArtifact(shipId){
   									$("#credits").val(credits);
   									alert("Congrats! You earned 100 credits.");
   								}else{
-  									alert("You did not win this game of chance.");
+  									alert("You did not win this game of chance and lost 50 credits.");
+                    var credits = parseInt($("#credits").val()) - 50;
+                    $("#credits").val(credits);
   								}
   							}
   						}
   						returnValue = true;
   					}else if(shipId == stationId && $("#distance").val() > 1){
-  						alert("You have collided with a Space Sation and have taken some damage!");
-  						updateEnergy(-10);
-  						updateSupplies(-10);
+              var ranNum = Math.floor(Math.random() * 15);
+              if(ranNum >=6){
+                alert("You have collided with a Space Sation and have taken some damage!");
+                updateEnergy(-10);
+                updateSupplies(-10);
+              }else{
+                updateEnergy(-1000);
+                updateSupplies(-100);
+                alert("You have collided with a Space Sation and your ship has blown up." + "\n" + "Game Over!");
+                //game ends
+                window.location.href = "index.html";
+              }
   						returnValue = true;
   					}
 
   				});
   			});
 
-           }else if(key == "freighters"){
+      }else if(key == "freighters"){
   			$.each(value, function(key1, value1){
   				$.each(value1, function(key2, freighter){
   					var freighterId = (freighter.XCoord + "," + freighter.YCoord);
@@ -258,9 +304,18 @@ function isArtifact(shipId){
   						}
   						returnValue = true;
   					}else if(shipId == freighterId && $("#distance").val() > 1){
-  						alert("You have collided with a freighter and have taken some damage!");
-  						updateEnergy(-10);
-  						updateSupplies(-10);
+              var ranNum = Math.floor(Math.random() * 15);
+              if(ranNum >=6){
+                alert("You have collided with a freighter and have taken some damage!");
+                updateEnergy(-10);
+                updateSupplies(-10);
+              }else{
+                updateEnergy(-1000);
+                updateSupplies(-100);
+                alert("You have collided with a freighter and your ship has blown up." + "\n" + "Game Over!");
+                //game ends
+                window.location.href = "index.html";
+              }
   						returnValue = true;
   					}
 

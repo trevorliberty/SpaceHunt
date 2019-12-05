@@ -17,7 +17,17 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 
-  </head>
+    <script>
+      $("document").ready(function(){
+        $(".lPanel").css({"visibility": "hidden"});
+        var user = localStorage.getItem("userType");
+        if(user == "administrator"){
+          $(".lPanel2").css({"visibility": "hidden"});
+          $(".lPanel").css({"visibility": "visible"});
+        }
+      });
+    </script>
+
   <style>
     @font-face {
       font-family: 'starnext';
@@ -29,6 +39,8 @@
       src: url('arcade.ttf') format('truetype');
     }
   </style>
+  </head>
+
   
   <body onload="load(), loadArtifacts()"class="stars"> 
     <div class="header">  
@@ -42,8 +54,25 @@
 <div class=lPanel>
   <span id="space">Space Hunt</span>
   <br><br>
-  <span class="words">Captain's Log
-    <textarea id="log" disabled="true"></textarea>
+  <div id="logs">
+    <div id="lLog">
+        <span class="words" id="captain">Captain's Log</span>
+        <textarea id="log" disabled="true"></textarea>
+    </div>
+    <div id="rLog">
+        <span class="words" id="art">Artifact Log</span>
+        <textarea id="artLog" disabled="true"></textarea>
+    </div>
+  </div>
+  <br><br>
+    <button id="sensor" class="words" value="off" onclick="sensorOnOff()">Sensor</button>  
+</div>
+
+<div class=lPanel2>
+    <span id="space">Space Hunt</span>
+    <br><br>
+    <span class="words">Captain's Log
+    <textarea id="log2" disabled="true"></textarea>
     <br><br>
     <button id="sensor" value="off" onclick="sensorOnOff()">Sensor</button>
   </span>
@@ -80,7 +109,7 @@
         <div class="btn-green-inner">
           <input type="button" class="movement" value="Right"/>
         </div>
-      </div>
+      </div><br>
   <!--Down button -->
       <div class="btn">
         <div class="btn-inner">
