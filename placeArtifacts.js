@@ -291,18 +291,44 @@ function isArtifact(shipId){
   				$.each(value1, function(key2, freighter){
   					var freighterId = (freighter.XCoord + "," + freighter.YCoord);
   					if(shipId == freighterId && $("#distance").val() == 1){
+              if(!("energy" in freighter)){
+                freighter.energy = parseInt(Math.random()*100 % 100);
+                freighter.supplies= parseInt(Math.random()*100 % 100);
+              }
 						  //Dock at the space freighter  						
 						  if("harvested" in freighter){
 							  alert("You have already harvested this freighter");
 						  }
-  						else if(prompt("Would you to harvest this space freighter? Y or N") == 'Y'){
-							updateEnergy(Math.abs($("#energy").val() - 1010));
-  							var supplies = $("#supplies").val(); 
-  							updateSupplies(100 - supplies + 2);
-							  alert("You have harvested the freighter and have gained energy and supplies");
-							  freighter.harvested =true;
-  						}
-  						returnValue = true;
+  						else if(prompt(`Would you to harvest this space freighter? There is ${freighter.energy} energy and ${freighter.supplies} supplies in this freighter. Enter Y or N`) == 'Y'){
+                var localEnergy=parseInt(prompt("how much energy?"));
+                var localSupplies=parseInt(prompt("How much supplies?"));
+                if(localEnergy > freighter.energy){
+                  localEnergy = freighter.energy;
+                }
+                if(localSupplies > freighter.supplies){
+                  localSupplies = freighter.supplies;
+                }
+                freighter.energy-=localEnergy;
+                freighter.supplies-=localSupplies;
+
+                updateEnergy(localEnergy);
+                  var supplies = parseInt($("#supplies").val());
+                  //full supplies amount
+                  if(localSupplies+supplies > 100){
+                    console.log(localSupplies)
+                    updateSupplies(100 - supplies + 2);
+                  }else{
+                    updateSupplies(localSupplies)
+                  }
+                  if(freighter.energy === 0 && freighter.supplies === 0){
+                    alert("This freighter is now completely harvested.")
+                    freighter.harvested =true;
+                  }else{
+                    alert("You have harvested the freighter and have gained energy and supplies");
+                  }
+                }
+              returnValue = true;
+              return;
   					}else if(shipId == freighterId && $("#distance").val() > 1){
               var ranNum = Math.floor(Math.random() * 15);
               if(ranNum >=6){
