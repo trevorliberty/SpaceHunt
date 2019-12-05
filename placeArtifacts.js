@@ -367,15 +367,15 @@ function isArtifact(shipId){
 sensorPaused = true;
 //setInterval(sensor, 500);
 function sensorOnOff(){
-	if($("#sensor").val() == "off"){
-		$("#sensor").css({"background-color": "green"});
-		$("#sensor").val("on");
+	if($(".sensor").val() == "off"){
+		$(".sensor").css({"background-color": "green"});
+		$(".sensor").val("on");
 		//console.log("button value: " + $("#sensor").val());
 		sensorPaused = false;
 		sensor();
-	}else if($("#sensor").val() == "on"){
-		$("#sensor").css({"background-color": "red"});
-		$("#sensor").val("off");
+	}else if($(".sensor").val() == "on"){
+		$(".sensor").css({"background-color": "red"});
+		$(".sensor").val("off");
 		//console.log("button value: " + $("#sensor").val());
 		sensorPaused = true;
 		//sensor();
